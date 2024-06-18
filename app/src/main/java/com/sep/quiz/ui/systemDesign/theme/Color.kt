@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.theme
+package com.sep.quiz.ui.systemDesign.theme
 
 import androidx.compose.ui.graphics.Color
 
