@@ -22,15 +22,19 @@ internal class NetworkResponseCall<T : BaseNetworkResponse>(
                 val code = response.code()
                 val error = response.errorBody()
                 if (response.isSuccessful) {
-                    // API success
-                    // No need to check 204, because we checked nullability of the body
                     if (code in 200 until 300) {
-                        //   Timber.d("API success")
                         body?.let {
-                            callback.onResponse(
-                                this@NetworkResponseCall,
-                                Response.success(NetworkResponse.Success(body))
-                            )
+                            if (it.isSuccess) {
+                                callback.onResponse(
+                                    this@NetworkResponseCall,
+                                    Response.success(NetworkResponse.Success(body))
+                                )
+                            } else {
+                                callback.onResponse(
+                                    this@NetworkResponseCall,
+                                    Response.success(NetworkResponse.ApiError(ServerError()))
+                                )
+                            }
                         }
                     } else {
                         callback.onResponse(
@@ -75,16 +79,12 @@ internal class NetworkResponseCall<T : BaseNetworkResponse>(
     override fun request(): Request = delegate.request()
 
 
-    /**
-     * We use Kotlin reflection for converting ResponseBody to ErrorBody.
-     */
     private fun convertToErrorBody(error: ResponseBody?): ServerError? {
 
         return when {
             error == null -> null
             error.contentLength() == 0L -> null
             else -> try {
-                //we use kotlin reflection for converting the body to ErrorBody Class
                 errorConverter.convert(error)
             } catch (ex: Exception) {
                 ex.printStackTrace()

@@ -29,6 +29,13 @@ data class ServerError(
 
 @Serializable
 open class BaseNetworkResponse(
+    @SerialName("response_code")
+    val code : Int = 0,
+    @SerialName("response_message")
+    val message : String = ""
 ) {
+    val isSuccess: Boolean
+        get() = code == 0
 
+    val hasTokenError: Boolean = (code == 3) || (code == 4)
 }
