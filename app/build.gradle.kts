@@ -78,6 +78,7 @@ dependencies {
 
         implementation(retrofit)
         implementation(retrofit.kotlin.serialization)
+        implementation(logging.interceptor)
         implementation(kotlinx.serialization.json)
 
         implementation("com.google.dagger:hilt-android:2.51.1")
