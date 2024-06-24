@@ -1,5 +1,6 @@
 package com.sep.quiz.ui.screen.difficulty
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sep.quiz.domain.entiry.CategoryInfo
@@ -14,8 +15,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DifficultyViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
     private val categoryInfoUseCase: CategoryInfoUseCase,
 ) : ViewModel() {
+
+    private val _categoryId = MutableStateFlow(savedStateHandle.get<String>("id"))
 
     private val _categoryInfo = MutableStateFlow<UiState<CategoryInfo>>(UiState.Initialize)
     val categoryInfo = _categoryInfo.asStateFlow()
@@ -27,13 +31,16 @@ class DifficultyViewModel @Inject constructor(
     fun fetchCategoryInfo() {
         viewModelScope.launch {
             _categoryInfo.value = UiState.Loading
-            when(val result = categoryInfoUseCase.invoke("id")) {
+            when (val result = categoryInfoUseCase.invoke(_categoryId.value.orEmpty())) {
                 is ResultState.Exception -> {
-                    _categoryInfo.value = UiState.Failed(error = result.error.localizedMessage.orEmpty())
+                    _categoryInfo.value =
+                        UiState.Failed(error = result.error.localizedMessage.orEmpty())
                 }
+
                 is ResultState.Failure -> {
                     _categoryInfo.value = UiState.Failed(error = result.error)
                 }
+
                 is ResultState.Success -> {
                     _categoryInfo.value = UiState.Success(data = result.data)
                 }

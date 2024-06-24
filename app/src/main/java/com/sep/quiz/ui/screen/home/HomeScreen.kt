@@ -14,7 +14,8 @@ import com.sep.quiz.ui.utils.UiState
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
+    onCategorySelected: (id: String) -> Unit
 ) {
     val categoryState = viewModel.categories.collectAsState()
 
@@ -32,9 +33,7 @@ fun HomeScreen(
             is UiState.Success -> {
                 CategoryList(
                     categories = (categoryState.value as UiState.Success).data,
-                    onCategorySelected = {
-                        // todo : navigate to selected category screen
-                    }
+                    onCategorySelected = onCategorySelected
                 )
             }
         }

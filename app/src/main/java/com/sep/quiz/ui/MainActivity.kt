@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import com.sep.quiz.ui.screen.home.HomeScreen
 import com.sep.quiz.ui.systemDesign.theme.QuizTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,10 +21,18 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             QuizTheme {
+                val navController = rememberNavController()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    HomeScreen(
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    NavHost(
+                        modifier = Modifier.padding(innerPadding),
+                        navController = navController,
+                        startDestination = homeRoute
+                    ) {
+                        homeScreen(navigateToDifficulty = {
+                            navController.navigateToDifficulty(categoryId = it)
+                        })
+                        difficultyScreen()
+                    }
                 }
             }
         }

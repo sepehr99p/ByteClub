@@ -10,7 +10,7 @@ fun DifficultyScreen(
     modifier: Modifier = Modifier,
     viewModel: DifficultyViewModel = hiltViewModel()
 ) {
-
+    
 }
 
 @Preview
