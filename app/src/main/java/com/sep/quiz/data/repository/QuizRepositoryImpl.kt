@@ -37,7 +37,7 @@ class QuizRepositoryImpl @Inject constructor(
             ResultState.Success(categoryResponse.categories.map { it.toDomainModel() })
         })
 
-    override suspend fun fetchQuestionsCount(categoryId : String) =
+    override suspend fun fetchCategoryInfo(categoryId : String) =
         quizApiService.fetchQuestionsCount(categoryId).toResultState(onSuccess = {
             ResultState.Success(it.categoryCountInfo.toDomainModel())
         })

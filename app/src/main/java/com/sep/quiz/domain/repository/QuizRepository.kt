@@ -14,6 +14,6 @@ interface QuizRepository {
 
     suspend fun fetchCategory() : ResultState<List<CategoryEntity>>
 
-    suspend fun fetchQuestionsCount(categoryId : String) : ResultState<CategoryInfo>
+    suspend fun fetchCategoryInfo(categoryId : String) : ResultState<CategoryInfo>
 
 }
