@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class QuestionCountResponse(
-    @SerialName("category_id") val id : String,
+    @SerialName("category_id") val id : Int,
     @SerialName("category_question_count") val categoryCountInfo : CategoryCountInfo
 ) : BaseNetworkResponse()
 
