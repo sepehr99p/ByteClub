@@ -3,9 +3,9 @@ package com.sep.quiz.di
 import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.sep.quiz.data.remote.QuizApiService
-import com.sep.quiz.data.utils.NetworkConnection
-import com.sep.quiz.data.utils.callAdapter.NetworkResponseAdapterFactory
-import com.sep.quiz.data.utils.interceptor.ForceCacheInterceptor
+import com.sep.quiz.utils.NetworkConnection
+import com.sep.quiz.utils.callAdapter.NetworkResponseAdapterFactory
+import com.sep.quiz.utils.interceptor.ForceCacheInterceptor
 import com.sep.quiz.domain.BASE_URL
 import dagger.Module
 import dagger.Provides

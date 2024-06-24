@@ -1,4 +1,4 @@
-package com.sep.quiz.data.utils.callAdapter
+package com.sep.quiz.utils.callAdapter
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

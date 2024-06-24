@@ -1,4 +1,4 @@
-package com.sep.quiz.data.utils
+package com.sep.quiz.utils
 
 import android.content.Context
 import android.net.ConnectivityManager

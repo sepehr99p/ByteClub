@@ -1,4 +1,4 @@
-package com.sep.quiz.data.utils.callAdapter
+package com.sep.quiz.utils.callAdapter
 
 import okhttp3.Request
 import okhttp3.ResponseBody
@@ -46,7 +46,7 @@ internal class NetworkResponseCall<T : BaseNetworkResponse>(
                     callback.onResponse(
                         this@NetworkResponseCall,
                         Response.success(
-                            NetworkResponse.ApiError(errorBody?: ServerError("",""))
+                            NetworkResponse.ApiError(errorBody ?: ServerError("", ""))
                         )
                     )
                 }

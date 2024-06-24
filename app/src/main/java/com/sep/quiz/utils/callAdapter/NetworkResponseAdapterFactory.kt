@@ -1,4 +1,4 @@
-package com.sep.quiz.data.utils.callAdapter
+package com.sep.quiz.utils.callAdapter
 
 import retrofit2.Call
 import retrofit2.CallAdapter

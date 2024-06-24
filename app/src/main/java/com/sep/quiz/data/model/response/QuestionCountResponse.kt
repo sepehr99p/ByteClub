@@ -1,6 +1,7 @@
 package com.sep.quiz.data.model.response
 
-import com.sep.quiz.data.utils.callAdapter.BaseNetworkResponse
+import com.sep.quiz.domain.entiry.CategoryInfo
+import com.sep.quiz.utils.callAdapter.BaseNetworkResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -16,4 +17,11 @@ data class CategoryCountInfo(
     @SerialName("total_easy_question_count") val easyCount : Int,
     @SerialName("total_medium_question_count") val mediumCount : Int,
     @SerialName("total_hard_question_count") val hardCount : Int
-)
+) {
+    fun toDomainModel() : CategoryInfo = CategoryInfo(
+        totalCount = this.total,
+        easyCount = this.easyCount,
+        mediumCount = this.mediumCount,
+        hardCount = this.hardCount
+    )
+}

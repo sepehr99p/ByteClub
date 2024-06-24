@@ -1,6 +1,6 @@
-package com.sep.quiz.data.utils.interceptor
+package com.sep.quiz.utils.interceptor
 
-import com.sep.quiz.data.utils.NetworkConnection
+import com.sep.quiz.utils.NetworkConnection
 import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.Request

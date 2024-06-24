@@ -1,4 +1,4 @@
-package com.sep.quiz.data.utils.interceptor
+package com.sep.quiz.utils.interceptor
 
 import okhttp3.CacheControl
 import okhttp3.Interceptor

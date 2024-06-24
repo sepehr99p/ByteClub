@@ -1,6 +1,6 @@
 package com.sep.quiz.data.model.response
 
-import com.sep.quiz.data.utils.callAdapter.BaseNetworkResponse
+import com.sep.quiz.utils.callAdapter.BaseNetworkResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

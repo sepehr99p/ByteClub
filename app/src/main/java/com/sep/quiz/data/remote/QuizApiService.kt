@@ -4,7 +4,7 @@ import com.sep.quiz.data.model.response.CategoryResponse
 import com.sep.quiz.data.model.response.QuestionCountResponse
 import com.sep.quiz.data.model.response.ResetTokenResponse
 import com.sep.quiz.data.model.response.RetrieveTokenResponse
-import com.sep.quiz.data.utils.callAdapter.NetworkResponse
+import com.sep.quiz.utils.callAdapter.NetworkResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -29,7 +29,7 @@ interface QuizApiService {
 
     @GET("api_count.php")
     suspend fun fetchQuestionsCount(
-        @Query("category") category: NetworkResponse<QuestionCountResponse>
-    )
+        @Query("category") category: String
+    ) : NetworkResponse<QuestionCountResponse>
 
 }
