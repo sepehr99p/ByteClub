@@ -30,7 +30,12 @@ fun HomeScreen(
             }
 
             is UiState.Success -> {
-                CategoryList(categories = (categoryState.value as UiState.Success).data)
+                CategoryList(
+                    categories = (categoryState.value as UiState.Success).data,
+                    onCategorySelected = {
+                        // todo : navigate to selected category screen
+                    }
+                )
             }
         }
     }
