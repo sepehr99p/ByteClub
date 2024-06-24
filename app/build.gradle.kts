@@ -73,6 +73,7 @@ dependencies {
             androidTestImplementation(ui.test.junit4)
             debugImplementation(ui.tooling)
             debugImplementation(ui.test.manifest)
+            implementation(multidex)
         }
         testImplementation(junit)
 
