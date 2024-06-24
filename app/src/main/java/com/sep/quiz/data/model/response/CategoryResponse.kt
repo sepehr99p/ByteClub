@@ -13,11 +13,11 @@ data class CategoryResponse(
 
 @Serializable
 data class CategoryResponseItem(
-    @SerialName("id") val id: String,
+    @SerialName("id") val id: Int,
     @SerialName("name") val name: String
 ) {
     fun toDomainModel() : CategoryEntity = CategoryEntity(
-        id = this.id,
+        id = this.id.toString(),
         name = this.name
     )
 }

@@ -1,6 +1,5 @@
-package com.sep.quiz.ui.screen
+package com.sep.quiz.ui.screen.home
 
-import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sep.quiz.domain.entiry.CategoryEntity
@@ -27,8 +26,9 @@ class HomeViewModel @Inject constructor(
         fetchCategories()
     }
 
-    private fun fetchCategories() {
+    fun fetchCategories() {
         viewModelScope.launch {
+            _categories.value = UiState.Loading
             when(val result = fetchCategoriesUseCase.invoke()) {
                 is ResultState.Exception -> {
                     _categories.value = UiState.Failed(error = result.error.localizedMessage.orEmpty())
