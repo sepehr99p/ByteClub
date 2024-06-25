@@ -16,7 +16,7 @@ import com.sep.quiz.ui.systemDesign.theme.dimen.font_18
 import com.sep.quiz.ui.systemDesign.theme.dimen.font_20
 
 val font = FontFamily(
-    Font(R.font.allerta_stencil, FontWeight.Thin),
+    Font(R.font.akatab, FontWeight.Thin),
 )
 
 
