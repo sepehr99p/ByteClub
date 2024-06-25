@@ -31,7 +31,7 @@ internal fun QuestionsComponent(
     question: QuestionEntity,
     onAnswerSelected: (correct : Boolean) -> Unit
 ) {
-    Column(modifier = modifier) {
+    Column(modifier = modifier.fillMaxSize()) {
         QuestionDescription(description = question.questionDescription)
         val list: ArrayList<String> = arrayListOf(question.correctAnswer)
         question.incorrectAnswers.forEach { list.add(it) }

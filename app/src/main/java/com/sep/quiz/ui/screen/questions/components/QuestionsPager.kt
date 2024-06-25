@@ -37,9 +37,9 @@ internal fun QuestionsPager(
             onCloseClicked = {
                 //todo : close questions and go to homepage (maybe show some dialog first to confirm)
             })
-        HorizontalPager(state = pagerState) {
+        HorizontalPager(modifier = Modifier.weight(1f),state = pagerState) {
             QuestionsComponent(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier,
                 question = questions[pagerState.currentPage],
                 onAnswerSelected = {
                     answered.value = true
