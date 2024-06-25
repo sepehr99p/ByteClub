@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.screen.components
+package com.sep.quiz.ui.systemDesign.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

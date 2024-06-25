@@ -1,47 +1,42 @@
-package com.sep.quiz.ui.screen.difficulty
+package com.sep.quiz.ui.screen.questions
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.sep.quiz.ui.screen.questions.components.QuestionsPager
 import com.sep.quiz.ui.systemDesign.components.ErrorComponent
 import com.sep.quiz.ui.systemDesign.components.LoadingComponent
-import com.sep.quiz.ui.screen.difficulty.components.DifficultyDetail
 import com.sep.quiz.ui.utils.UiState
 
 @Composable
-fun DifficultyScreen(
+fun QuestionsScreen(
     modifier: Modifier = Modifier,
-    viewModel: DifficultyViewModel = hiltViewModel()
+    viewModel: QuestionViewModel = hiltViewModel()
 ) {
-    val categoryState = viewModel.categoryInfo.collectAsState()
+    val questionState = viewModel.questions.collectAsState()
 
-    when (categoryState.value) {
+    when(questionState.value) {
         is UiState.Failed -> {
-            ErrorComponent(onRetryClick = viewModel::fetchCategoryInfo)
+            ErrorComponent(
+                onRetryClick = viewModel::fetchQuestions
+            )
         }
-
         is UiState.Initialize -> {}
         is UiState.Loading -> {
             LoadingComponent()
         }
-
         is UiState.Success -> {
-            DifficultyDetail(
-                modifier = modifier,
-                categoryInfo = (categoryState.value as UiState.Success).data,
-                onClick = {
-
-                }
+            QuestionsPager(
+                questions = (questionState.value as UiState.Success).data
             )
         }
     }
-
 }
 
 @Preview
 @Composable
-private fun DifficultyScreenPreview(modifier: Modifier = Modifier) {
-    DifficultyScreen()
+private fun QuestionsScreenPreview(modifier: Modifier = Modifier) {
+    QuestionsScreen()
 }

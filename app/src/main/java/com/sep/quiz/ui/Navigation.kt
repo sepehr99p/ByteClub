@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.sep.quiz.ui.screen.difficulty.DifficultyScreen
 import com.sep.quiz.ui.screen.home.HomeScreen
+import com.sep.quiz.ui.screen.questions.QuestionsScreen
 
 const val homeRoute = "home_route"
 const val difficultyRoute = "difficulty_route/{id}"
@@ -45,6 +46,6 @@ fun NavGraphBuilder.questionsScreen() {
     composable(
         route = questionsRoute
     ) {
-
+        QuestionsScreen()
     }
 }
