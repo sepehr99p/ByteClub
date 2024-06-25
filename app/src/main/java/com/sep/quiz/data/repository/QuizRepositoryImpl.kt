@@ -1,12 +1,15 @@
 package com.sep.quiz.data.repository
 
+import android.util.Log
 import com.sep.quiz.data.remote.QuizApiService
 import com.sep.quiz.domain.entiry.QuestionDifficulty
+import com.sep.quiz.domain.entiry.QuestionEntity
 import com.sep.quiz.domain.entiry.QuestionType
 import com.sep.quiz.domain.repository.QuizRepository
 import com.sep.quiz.utils.ResultState
 import com.sep.quiz.utils.toResultState
 import javax.inject.Inject
+import kotlin.math.log
 
 class QuizRepositoryImpl @Inject constructor(
     private val quizApiService: QuizApiService
@@ -32,18 +35,21 @@ class QuizRepositoryImpl @Inject constructor(
 
     override suspend fun inquiry(
         amount: Int,
-        difficulty: QuestionDifficulty,
-        type: QuestionType,
+        difficulty: String,
+        type: String,
         categoryId: String
-    ) =
-        quizApiService.inquiry(
+    ) : ResultState<List<QuestionEntity>> {
+        Log.i("TAG", "inquiry: ")
+        return quizApiService.inquiry(
             amount = amount,
-            difficulty = difficulty.name,
-            type = type.name,
+            difficulty = difficulty,
+//            type = type.name.lowercase(),
             category = categoryId
-        ).toResultState(onSuccess = {
-            ResultState.Success(it.questionList.map { it.toDomainModel() })
+        ).toResultState(onSuccess = { questionResponse ->
+            ResultState.Success(questionResponse.questionList.map { it.toDomainModel() })
         })
+
+    }
 
     override suspend fun fetchCategory() =
         quizApiService.fetchCategory().toResultState(onSuccess = { categoryResponse ->

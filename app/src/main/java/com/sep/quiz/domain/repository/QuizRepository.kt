@@ -15,8 +15,8 @@ interface QuizRepository {
 
     suspend fun inquiry(
         amount: Int,
-        difficulty: QuestionDifficulty = QuestionDifficulty.EASY,
-        type: QuestionType = QuestionType.MULTIPLE,
+        difficulty: String ,
+        type: String ,
         categoryId: String
     ): ResultState<List<QuestionEntity>>
 

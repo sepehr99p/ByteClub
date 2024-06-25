@@ -16,8 +16,8 @@ class InquiryUseCase @Inject constructor(
         categoryId : String
     ) = quizRepository.inquiry(
         amount = amount,
-        difficulty = difficulty,
-        type = type,
+        difficulty = difficulty.name.lowercase(),
+        type = type.name.lowercase(),
         categoryId = categoryId
     )
 

@@ -13,7 +13,8 @@ import com.sep.quiz.ui.utils.UiState
 @Composable
 fun DifficultyScreen(
     modifier: Modifier = Modifier,
-    viewModel: DifficultyViewModel = hiltViewModel()
+    viewModel: DifficultyViewModel = hiltViewModel(),
+    navigateToQuestions: (id: String, difficulty: String) -> Unit
 ) {
     val categoryState = viewModel.categoryInfo.collectAsState()
 
@@ -32,7 +33,7 @@ fun DifficultyScreen(
                 modifier = modifier,
                 categoryInfo = (categoryState.value as UiState.Success).data,
                 onClick = {
-
+                    navigateToQuestions.invoke(viewModel.categoryId.value.orEmpty(), it.name)
                 }
             )
         }
@@ -43,5 +44,7 @@ fun DifficultyScreen(
 @Preview
 @Composable
 private fun DifficultyScreenPreview(modifier: Modifier = Modifier) {
-    DifficultyScreen()
+    DifficultyScreen(navigateToQuestions = { t, v ->
+
+    })
 }

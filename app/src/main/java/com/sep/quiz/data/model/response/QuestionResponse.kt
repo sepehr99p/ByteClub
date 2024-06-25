@@ -16,8 +16,8 @@ data class QuestionResponseDto(
     @SerialName("difficulty") val difficulty: String,
     @SerialName("category") val category: String,
     @SerialName("question") val questionDescription: String,
-    @SerialName("correctAnswer") val correctAnswer: String,
-    @SerialName("correct_answer") val incorrectAnswers: List<String>
+    @SerialName("correct_answer") val correctAnswer: String,
+    @SerialName("incorrect_answers") val incorrectAnswers: List<String>
 ) {
     fun toDomainModel(): QuestionEntity = QuestionEntity(
         questionDescription = this.questionDescription,

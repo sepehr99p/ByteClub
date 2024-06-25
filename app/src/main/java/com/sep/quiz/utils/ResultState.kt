@@ -30,14 +30,14 @@ suspend fun <T : BaseNetworkResponse, S> NetworkResponse<T>.toResultState(
         when (val result = this) {
             is NetworkResponse.ApiError -> {
                 onFailure?.invoke(result.error)
-                com.sep.quiz.utils.ResultState.Failure(
+                ResultState.Failure(
                     result.error.error.orEmpty(),
                     error = result.error.path.orEmpty()
                 )
             }
 
             is NetworkResponse.Exception -> {
-                com.sep.quiz.utils.ResultState.Exception(result.throwable)
+                ResultState.Exception(result.throwable)
             }
 
             is NetworkResponse.Success -> {
@@ -45,6 +45,6 @@ suspend fun <T : BaseNetworkResponse, S> NetworkResponse<T>.toResultState(
             }
         }
     } catch (e: Exception) {
-        com.sep.quiz.utils.ResultState.Exception(Throwable(e))
+        ResultState.Exception(Throwable(e))
     }
 }

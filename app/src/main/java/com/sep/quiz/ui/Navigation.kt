@@ -12,15 +12,22 @@ import com.sep.quiz.ui.screen.questions.QuestionsScreen
 
 const val homeRoute = "home_route"
 const val difficultyRoute = "difficulty_route/{id}"
-const val questionsRoute = "questions_route"
+const val questionsRoute = "questions_route/{id}/{difficulty}"
 
 
 fun NavController.navigateToDifficulty(navOptions: NavOptions? = null, categoryId: String) {
     this.navigate(difficultyRoute.replace("{id}", categoryId), navOptions)
 }
 
-fun NavController.navigateToQuestions(navOptions: NavOptions? = null) {
-    this.navigate(questionsRoute, navOptions)
+fun NavController.navigateToQuestions(
+    navOptions: NavOptions? = null,
+    categoryId: String,
+    difficulty: String
+) {
+    this.navigate(
+        questionsRoute.replace("{id}", categoryId).replace("{difficulty}", difficulty),
+        navOptions
+    )
 }
 
 fun NavGraphBuilder.homeScreen(
@@ -32,19 +39,23 @@ fun NavGraphBuilder.homeScreen(
 }
 
 fun NavGraphBuilder.difficultyScreen(
-    navigateToQuestions: () -> Unit
+    navigateToQuestions: (id: String, difficulty: String) -> Unit
 ) {
     composable(
         route = difficultyRoute,
         arguments = listOf(navArgument("id") { type = NavType.StringType })
     ) {
-        DifficultyScreen()
+        DifficultyScreen(navigateToQuestions = navigateToQuestions)
     }
 }
 
 fun NavGraphBuilder.questionsScreen() {
     composable(
-        route = questionsRoute
+        route = questionsRoute,
+        arguments = listOf(
+            navArgument("id") { type = NavType.StringType },
+            navArgument("difficulty") { type = NavType.StringType },
+        )
     ) {
         QuestionsScreen()
     }

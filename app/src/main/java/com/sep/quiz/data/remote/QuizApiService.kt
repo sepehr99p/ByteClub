@@ -6,6 +6,7 @@ import com.sep.quiz.data.model.response.QuestionResponse
 import com.sep.quiz.data.model.response.ResetTokenResponse
 import com.sep.quiz.data.model.response.RetrieveTokenResponse
 import com.sep.quiz.utils.callAdapter.NetworkResponse
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -23,9 +24,9 @@ interface QuizApiService {
     @GET("api.php")
     suspend fun inquiry(
         @Query("amount") amount: Int ,// = 10,
+        @Query("category") category: String,
         @Query("difficulty") difficulty : String, // = "easy",
-        @Query("type") type : String , //= "multiple" //multiple & boolean
-        @Query("category") category: String
+//        @Query("type") type : String , //= "multiple" //multiple & boolean
     ) : NetworkResponse<QuestionResponse>
 
     @GET("api_category.php")

@@ -19,7 +19,7 @@ class DifficultyViewModel @Inject constructor(
     private val categoryInfoUseCase: CategoryInfoUseCase,
 ) : ViewModel() {
 
-    private val _categoryId = MutableStateFlow(savedStateHandle.get<String>("id"))
+    val categoryId = MutableStateFlow(savedStateHandle.get<String>("id"))
 
     private val _categoryInfo = MutableStateFlow<UiState<CategoryInfo>>(UiState.Initialize)
     val categoryInfo = _categoryInfo.asStateFlow()
@@ -31,7 +31,7 @@ class DifficultyViewModel @Inject constructor(
     fun fetchCategoryInfo() {
         viewModelScope.launch {
             _categoryInfo.value = UiState.Loading
-            when (val result = categoryInfoUseCase.invoke(_categoryId.value.orEmpty())) {
+            when (val result = categoryInfoUseCase.invoke(categoryId.value.orEmpty())) {
                 is ResultState.Exception -> {
                     _categoryInfo.value =
                         UiState.Failed(error = result.error.localizedMessage.orEmpty())

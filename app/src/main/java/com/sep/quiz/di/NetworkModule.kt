@@ -69,12 +69,14 @@ object NetworkModule {
     fun provideOkHttpClient(
         forceCacheInterceptor: Interceptor,
         connectionSpecList: List<ConnectionSpec>,
+        interceptor : HttpLoggingInterceptor
     ): OkHttpClient = OkHttpClient.Builder()
         .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
         .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
         .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
         .connectionSpecs(connectionSpecList)
         .addInterceptor(forceCacheInterceptor)
+        .addInterceptor(interceptor)
         .build()
 
 
