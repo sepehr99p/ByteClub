@@ -1,9 +1,11 @@
 package com.sep.quiz.ui.screen.difficulty.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -58,8 +60,10 @@ private fun DifficultyComponent(
 ) {
     Box(
         modifier = modifier
+            .fillMaxWidth()
             .padding(padding_8)
             .clip(RoundedCornerShape(corner_8))
+            .background(color = MaterialTheme.colorScheme.secondaryContainer)
             .padding(padding_8)
             .clickable { onClick.invoke(type) }
     ) {

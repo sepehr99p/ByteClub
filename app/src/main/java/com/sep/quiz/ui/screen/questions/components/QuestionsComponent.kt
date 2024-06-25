@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,10 +17,13 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import com.sep.quiz.domain.entiry.QuestionEntity
 import com.sep.quiz.ui.systemDesign.theme.Bold_14
 import com.sep.quiz.ui.systemDesign.theme.Regular_14
+import com.sep.quiz.ui.systemDesign.theme.dimen.corner_8
+import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
 
 @Composable
 internal fun QuestionsComponent(
@@ -26,7 +31,7 @@ internal fun QuestionsComponent(
     question: QuestionEntity,
     onAnswerSelected: (correct : Boolean) -> Unit
 ) {
-    Column(modifier = modifier.fillMaxSize()) {
+    Column(modifier = modifier) {
         QuestionDescription(description = question.questionDescription)
         val list: ArrayList<String> = arrayListOf(question.correctAnswer)
         question.incorrectAnswers.forEach { list.add(it) }
@@ -38,6 +43,7 @@ internal fun QuestionsComponent(
         LazyColumn {
             items(list.shuffled()) {
                 QuestionItemComponent(
+                    modifier = Modifier.padding(padding_8).clip(RoundedCornerShape(corner_8)),
                     text = it,
                     userChoice = userChoice,
                     isCorrect = it == question.correctAnswer
@@ -63,13 +69,13 @@ private fun QuestionItemComponent(
         modifier = modifier
             .fillMaxWidth()
             .clickable {
-                if (userChoice.value.isNotEmpty()) {
+                if (userChoice.value.isEmpty()) {
                     onClick.invoke()
                 }
             }
             .background(
                 color = if (userChoice.value.isEmpty()) {
-                    MaterialTheme.colorScheme.background
+                    MaterialTheme.colorScheme.tertiaryContainer
                 } else {
                     if (isCorrect) {
                         MaterialTheme.colorScheme.primaryContainer
@@ -78,6 +84,7 @@ private fun QuestionItemComponent(
                     }
                 }
             )
+            .padding(padding_8)
     ) {
         Text(text = text, style = Regular_14, color = MaterialTheme.colorScheme.onPrimary)
     }

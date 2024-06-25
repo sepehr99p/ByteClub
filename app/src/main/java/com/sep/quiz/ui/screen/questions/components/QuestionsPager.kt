@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,6 +28,9 @@ internal fun QuestionsPager(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         val pagerState = rememberPagerState(pageCount = { questions.size })
+        val answered = remember {
+            mutableStateOf(false)
+        }
 
         QuestionsHeaderComponent(
             pagerState = pagerState,
@@ -34,13 +39,15 @@ internal fun QuestionsPager(
             })
         HorizontalPager(state = pagerState) {
             QuestionsComponent(
+                modifier = Modifier.weight(1f),
                 question = questions[pagerState.currentPage],
                 onAnswerSelected = {
-
+                    answered.value = true
                 })
         }
         QuestionPagerButtons(
             pagerState = pagerState,
+            answered = answered,
             onFinish = {
                 // todo : show results
             })
