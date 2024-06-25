@@ -11,10 +11,15 @@ import com.sep.quiz.ui.screen.home.HomeScreen
 
 const val homeRoute = "home_route"
 const val difficultyRoute = "difficulty_route/{id}"
+const val questionsRoute = "questions_route"
 
 
 fun NavController.navigateToDifficulty(navOptions: NavOptions? = null, categoryId: String) {
     this.navigate(difficultyRoute.replace("{id}", categoryId), navOptions)
+}
+
+fun NavController.navigateToQuestions(navOptions: NavOptions? = null) {
+    this.navigate(questionsRoute, navOptions)
 }
 
 fun NavGraphBuilder.homeScreen(
@@ -25,13 +30,21 @@ fun NavGraphBuilder.homeScreen(
     }
 }
 
-//difficulty_route/10
-
-fun NavGraphBuilder.difficultyScreen() {
+fun NavGraphBuilder.difficultyScreen(
+    navigateToQuestions: () -> Unit
+) {
     composable(
         route = difficultyRoute,
         arguments = listOf(navArgument("id") { type = NavType.StringType })
     ) {
         DifficultyScreen()
+    }
+}
+
+fun NavGraphBuilder.questionsScreen() {
+    composable(
+        route = questionsRoute
+    ) {
+
     }
 }

@@ -2,6 +2,7 @@ package com.sep.quiz.data.remote
 
 import com.sep.quiz.data.model.response.CategoryResponse
 import com.sep.quiz.data.model.response.QuestionCountResponse
+import com.sep.quiz.data.model.response.QuestionResponse
 import com.sep.quiz.data.model.response.ResetTokenResponse
 import com.sep.quiz.data.model.response.RetrieveTokenResponse
 import com.sep.quiz.utils.callAdapter.NetworkResponse
@@ -21,8 +22,11 @@ interface QuizApiService {
     //todo : add token here later
     @GET("api.php")
     suspend fun inquiry(
-        @Query("amount") amount: Int = 10
-    )
+        @Query("amount") amount: Int ,// = 10,
+        @Query("difficulty") difficulty : String, // = "easy",
+        @Query("type") type : String , //= "multiple" //multiple & boolean
+        @Query("category") category: String
+    ) : NetworkResponse<QuestionResponse>
 
     @GET("api_category.php")
     suspend fun fetchCategory(): NetworkResponse<CategoryResponse>

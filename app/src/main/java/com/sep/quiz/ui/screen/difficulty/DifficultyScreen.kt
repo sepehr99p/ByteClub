@@ -28,7 +28,13 @@ fun DifficultyScreen(
         }
 
         is UiState.Success -> {
-            DifficultyDetail(modifier = modifier,categoryInfo = (categoryState.value as UiState.Success).data)
+            DifficultyDetail(
+                modifier = modifier,
+                categoryInfo = (categoryState.value as UiState.Success).data,
+                onClick = {
+
+                }
+            )
         }
     }
 
