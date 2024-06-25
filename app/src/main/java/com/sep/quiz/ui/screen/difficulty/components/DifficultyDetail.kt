@@ -64,8 +64,8 @@ private fun DifficultyComponent(
             .padding(padding_8)
             .clip(RoundedCornerShape(corner_8))
             .background(color = MaterialTheme.colorScheme.secondaryContainer)
-            .padding(padding_8)
             .clickable { onClick.invoke(type) }
+            .padding(padding_8)
     ) {
         Text(
             modifier = Modifier.align(Alignment.Center),

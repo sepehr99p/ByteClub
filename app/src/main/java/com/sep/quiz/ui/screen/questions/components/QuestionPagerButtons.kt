@@ -44,11 +44,13 @@ internal fun QuestionPagerButtons(
         LaunchedEffect(scrollNext.value) {
             if (scrollNext.value) {
                 pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                scrollNext.value = false
             }
         }
         LaunchedEffect(scrollPrev.value) {
             if (scrollPrev.value) {
                 pagerState.animateScrollToPage(pagerState.currentPage - 1)
+                scrollPrev.value = false
             }
         }
         ButtonComponent(
