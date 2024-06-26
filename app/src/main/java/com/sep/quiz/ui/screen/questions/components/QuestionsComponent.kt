@@ -1,11 +1,14 @@
 package com.sep.quiz.ui.screen.questions.components
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -13,17 +16,30 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import com.sep.quiz.domain.entiry.QuestionEntity
+import com.sep.quiz.ui.systemDesign.ex.ShakeConfig
+import com.sep.quiz.ui.systemDesign.ex.rememberShakeController
+import com.sep.quiz.ui.systemDesign.ex.shake
 import com.sep.quiz.ui.systemDesign.theme.Bold_14
 import com.sep.quiz.ui.systemDesign.theme.Regular_14
 import com.sep.quiz.ui.systemDesign.theme.dimen.corner_8
 import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
+import kotlinx.coroutines.delay
+import kotlin.math.roundToInt
 
 @Composable
 internal fun QuestionsComponent(
@@ -56,7 +72,6 @@ internal fun QuestionsComponent(
     }
 }
 
-
 @Composable
 private fun QuestionItemComponent(
     modifier: Modifier = Modifier,
@@ -65,6 +80,8 @@ private fun QuestionItemComponent(
     userChoice: MutableState<String>,
     onClick: () -> Unit
 ) {
+
+    val shakeController = rememberShakeController()
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -80,11 +97,15 @@ private fun QuestionItemComponent(
                     if (isCorrect) {
                         MaterialTheme.colorScheme.primaryContainer
                     } else {
+                        if (userChoice.value == text) {
+                            shakeController.shake(ShakeConfig(10, translateX = 5f))
+                        }
                         MaterialTheme.colorScheme.errorContainer
                     }
                 }
             )
             .padding(padding_8)
+            .shake(shakeController)
     ) {
         Text(text = text, style = Regular_14, color = MaterialTheme.colorScheme.onPrimary)
     }
