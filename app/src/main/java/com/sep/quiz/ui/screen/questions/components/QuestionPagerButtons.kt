@@ -53,16 +53,16 @@ internal fun QuestionPagerButtons(
                 scrollPrev.value = false
             }
         }
-        ButtonComponent(
-            modifier = Modifier
-                .weight(1f)
-                .padding(horizontal = padding_4),
-            buttonStyle = ButtonStyle.Dismiss,
-            title = "Prev",
-            isDisabled = (pagerState.currentPage == 0) || answered.value.not(), // todo : check if this is the first question
-            onclick = {
-                scrollPrev.value = true
-            })
+//        ButtonComponent(
+//            modifier = Modifier
+//                .weight(1f)
+//                .padding(horizontal = padding_4),
+//            buttonStyle = ButtonStyle.Dismiss,
+//            title = "Prev",
+//            isDisabled = (pagerState.currentPage == 0) || answered.value.not(), // todo : check if this is the first question
+//            onclick = {
+//                scrollPrev.value = true
+//            })
         ButtonComponent(
             modifier = Modifier
                 .weight(1f)

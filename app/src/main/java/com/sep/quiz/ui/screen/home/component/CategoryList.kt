@@ -17,7 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import com.sep.quiz.domain.entiry.CategoryEntity
 import com.sep.quiz.ui.systemDesign.theme.Bold_14
-import com.sep.quiz.ui.systemDesign.theme.dimen.corner_16
+import com.sep.quiz.ui.systemDesign.theme.dimen.corner_8
 import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
 
 @Composable
@@ -43,7 +43,7 @@ private fun CategoryListItem(
         modifier = modifier
             .fillMaxWidth()
             .padding(padding_8)
-            .clip(RoundedCornerShape(corner_16))
+            .clip(RoundedCornerShape(corner_8))
             .background(color = MaterialTheme.colorScheme.primaryContainer)
             .clickable {
                 onCategorySelected.invoke(categoryEntity.id)

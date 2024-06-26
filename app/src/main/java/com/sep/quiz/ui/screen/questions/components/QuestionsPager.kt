@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -14,12 +15,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.sep.quiz.domain.entiry.QuestionEntity
 import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
+import kotlinx.coroutines.flow.StateFlow
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun QuestionsPager(
     modifier: Modifier = Modifier,
-    questions: List<QuestionEntity>
+    questions: List<QuestionEntity>,
 ) {
     Column(
         modifier = modifier
@@ -43,6 +45,7 @@ internal fun QuestionsPager(
                 question = questions[pagerState.currentPage],
                 onAnswerSelected = {
                     answered.value = true
+
                 })
         }
         QuestionPagerButtons(

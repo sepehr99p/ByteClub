@@ -29,7 +29,7 @@ fun QuestionsScreen(
         }
         is UiState.Success -> {
             QuestionsPager(
-                questions = (questionState.value as UiState.Success).data
+                questions = (questionState.value as UiState.Success).data,
             )
         }
     }
