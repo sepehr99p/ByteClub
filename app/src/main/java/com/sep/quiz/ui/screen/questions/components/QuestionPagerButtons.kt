@@ -71,7 +71,7 @@ internal fun QuestionPagerButtons(
             isDisabled = answered.value.not(),
             title = "Next", // if this is the last question, change the title and its action
             onclick = {
-                if (pagerState.currentPage == pagerState.pageCount) {
+                if (pagerState.currentPage == (pagerState.pageCount - 1)) {
                     onFinish.invoke()
                 } else {
                     scrollNext.value = true

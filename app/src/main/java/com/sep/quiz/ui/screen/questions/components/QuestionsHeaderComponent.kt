@@ -38,7 +38,7 @@ internal fun QuestionsHeaderComponent(
 
         Text(
             modifier = Modifier.align(Alignment.CenterStart),
-            text = "${pagerState.currentPage} / ${pagerState.pageCount}",
+            text = "${pagerState.currentPage + 1} / ${pagerState.pageCount}",
             color = MaterialTheme.colorScheme.onPrimary,
             style = Regular_14
         )

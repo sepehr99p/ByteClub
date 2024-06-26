@@ -1,6 +1,7 @@
 package com.sep.quiz.ui.screen.result
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,7 +18,7 @@ fun ResultScreen(
     viewModel: ResultViewModel = hiltViewModel()
 ) {
     val score = viewModel.score.collectAsState()
-    Box(modifier = modifier) {
+    Box(modifier = modifier.fillMaxSize()) {
         Text(
             modifier = Modifier.align(Alignment.TopCenter),
             text = "Result",
