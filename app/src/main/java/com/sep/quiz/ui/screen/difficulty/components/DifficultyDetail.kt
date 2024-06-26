@@ -63,7 +63,7 @@ private fun DifficultyComponent(
             .fillMaxWidth()
             .padding(padding_8)
             .clip(RoundedCornerShape(corner_8))
-            .background(color = MaterialTheme.colorScheme.secondaryContainer)
+            .background(color = MaterialTheme.colorScheme.primaryContainer)
             .clickable { onClick.invoke(type) }
             .padding(padding_8)
     ) {

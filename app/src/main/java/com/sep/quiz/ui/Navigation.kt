@@ -30,6 +30,10 @@ fun NavController.navigateToQuestions(
     )
 }
 
+fun NavController.navigateToHome() {
+    this.navigate(homeRoute)
+}
+
 fun NavGraphBuilder.homeScreen(
     navigateToDifficulty: (id: String) -> Unit
 ) {
@@ -49,7 +53,9 @@ fun NavGraphBuilder.difficultyScreen(
     }
 }
 
-fun NavGraphBuilder.questionsScreen() {
+fun NavGraphBuilder.questionsScreen(
+    navigateToHome: () -> Unit
+) {
     composable(
         route = questionsRoute,
         arguments = listOf(
@@ -57,6 +63,6 @@ fun NavGraphBuilder.questionsScreen() {
             navArgument("difficulty") { type = NavType.StringType },
         )
     ) {
-        QuestionsScreen()
+        QuestionsScreen(navigateToHome = navigateToHome)
     }
 }

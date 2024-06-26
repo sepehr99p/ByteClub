@@ -40,7 +40,9 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                         )
-                        questionsScreen()
+                        questionsScreen(
+                            navigateToHome = navController::navigateToHome
+                        )
                     }
                 }
             }

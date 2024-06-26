@@ -13,23 +13,27 @@ import com.sep.quiz.ui.utils.UiState
 @Composable
 fun QuestionsScreen(
     modifier: Modifier = Modifier,
-    viewModel: QuestionViewModel = hiltViewModel()
+    viewModel: QuestionViewModel = hiltViewModel(),
+    navigateToHome: () -> Unit
 ) {
     val questionState = viewModel.questions.collectAsState()
 
-    when(questionState.value) {
+    when (questionState.value) {
         is UiState.Failed -> {
             ErrorComponent(
                 onRetryClick = viewModel::fetchQuestions
             )
         }
+
         is UiState.Initialize -> {}
         is UiState.Loading -> {
             LoadingComponent()
         }
+
         is UiState.Success -> {
             QuestionsPager(
                 questions = (questionState.value as UiState.Success).data,
+                navigateToHome = navigateToHome
             )
         }
     }
@@ -38,5 +42,7 @@ fun QuestionsScreen(
 @Preview
 @Composable
 private fun QuestionsScreenPreview(modifier: Modifier = Modifier) {
-    QuestionsScreen()
+    QuestionsScreen(){
+
+    }
 }
