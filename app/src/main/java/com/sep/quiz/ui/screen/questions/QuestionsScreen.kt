@@ -14,9 +14,11 @@ import com.sep.quiz.ui.utils.UiState
 fun QuestionsScreen(
     modifier: Modifier = Modifier,
     viewModel: QuestionViewModel = hiltViewModel(),
-    navigateToHome: () -> Unit
+    navigateToHome: () -> Unit,
+    navigateToResult : (score: String) -> Unit
 ) {
     val questionState = viewModel.questions.collectAsState()
+    val score = viewModel.score.collectAsState()
 
     when (questionState.value) {
         is UiState.Failed -> {
@@ -33,7 +35,10 @@ fun QuestionsScreen(
         is UiState.Success -> {
             QuestionsPager(
                 questions = (questionState.value as UiState.Success).data,
-                navigateToHome = navigateToHome
+                navigateToHome = navigateToHome,
+                navigateToResult = {
+                    navigateToResult.invoke(score.value.toString())
+                }
             )
         }
     }
@@ -42,7 +47,7 @@ fun QuestionsScreen(
 @Preview
 @Composable
 private fun QuestionsScreenPreview(modifier: Modifier = Modifier) {
-    QuestionsScreen(){
+    QuestionsScreen(navigateToHome = {}){
 
     }
 }

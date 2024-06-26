@@ -9,11 +9,16 @@ import androidx.navigation.navArgument
 import com.sep.quiz.ui.screen.difficulty.DifficultyScreen
 import com.sep.quiz.ui.screen.home.HomeScreen
 import com.sep.quiz.ui.screen.questions.QuestionsScreen
+import com.sep.quiz.ui.screen.result.ResultScreen
 
 const val homeRoute = "home_route"
 const val difficultyRoute = "difficulty_route/{id}"
 const val questionsRoute = "questions_route/{id}/{difficulty}"
+const val resultRoute = "result/{score}"
 
+fun NavController.navigateToResult(score: String) {
+    this.navigate(resultRoute.replace("{score}", score))
+}
 
 fun NavController.navigateToDifficulty(navOptions: NavOptions? = null, categoryId: String) {
     this.navigate(difficultyRoute.replace("{id}", categoryId), navOptions)
@@ -54,7 +59,8 @@ fun NavGraphBuilder.difficultyScreen(
 }
 
 fun NavGraphBuilder.questionsScreen(
-    navigateToHome: () -> Unit
+    navigateToHome: () -> Unit,
+    navigateToResult: (score: String) -> Unit
 ) {
     composable(
         route = questionsRoute,
@@ -63,6 +69,17 @@ fun NavGraphBuilder.questionsScreen(
             navArgument("difficulty") { type = NavType.StringType },
         )
     ) {
-        QuestionsScreen(navigateToHome = navigateToHome)
+        QuestionsScreen(navigateToHome = navigateToHome,navigateToResult = navigateToResult)
+    }
+}
+
+fun NavGraphBuilder.resultScreen(
+
+) {
+    composable(
+        route = resultRoute,
+        arguments = listOf(navArgument("score") { type = NavType.StringType })
+    ) {
+        ResultScreen()
     }
 }

@@ -20,7 +20,8 @@ import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
 internal fun QuestionsPager(
     modifier: Modifier = Modifier,
     questions: List<QuestionEntity>,
-    navigateToHome : () -> Unit
+    navigateToHome: () -> Unit,
+    navigateToResult: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -38,7 +39,7 @@ internal fun QuestionsPager(
             onCloseClicked = {
                 navigateToHome.invoke()
             })
-        HorizontalPager(modifier = Modifier.weight(1f),state = pagerState) {
+        HorizontalPager(modifier = Modifier.weight(1f), state = pagerState) {
             QuestionsComponent(
                 modifier = Modifier,
                 question = questions[pagerState.currentPage],
@@ -51,7 +52,7 @@ internal fun QuestionsPager(
             pagerState = pagerState,
             answered = answered,
             onFinish = {
-                // todo : show results
+                navigateToResult.invoke()
             })
     }
 }
@@ -66,7 +67,8 @@ internal val mockQuestions = QuestionEntity(
 @Preview
 @Composable
 private fun QuestionsPagerPreview(modifier: Modifier = Modifier) {
-    QuestionsPager(questions = listOf(mockQuestions, mockQuestions, mockQuestions, mockQuestions)){
-
-    }
+    QuestionsPager(
+        questions = listOf(mockQuestions, mockQuestions, mockQuestions, mockQuestions),
+        navigateToResult = {},
+        navigateToHome = {})
 }
