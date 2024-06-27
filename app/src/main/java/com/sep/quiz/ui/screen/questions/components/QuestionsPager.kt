@@ -39,7 +39,11 @@ internal fun QuestionsPager(
             onCloseClicked = {
                 navigateToHome.invoke()
             })
-        HorizontalPager(modifier = Modifier.weight(1f), state = pagerState) {
+        HorizontalPager(
+            modifier = Modifier.weight(1f),
+            state = pagerState,
+            userScrollEnabled = false
+        ) {
             QuestionsComponent(
                 modifier = Modifier,
                 question = questions[pagerState.currentPage],
