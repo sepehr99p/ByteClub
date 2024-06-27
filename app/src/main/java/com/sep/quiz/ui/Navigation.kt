@@ -24,11 +24,11 @@ const val resultRoute = "result/{$scoreArg}"
 
 
 fun NavController.navigateToResult(score: String) {
+    clearBackStack(homeRoute)
     this.navigate(resultRoute.replace("{$scoreArg}", score))
 }
 
 fun NavController.navigateToDifficulty(navOptions: NavOptions? = null, categoryId: String) {
-    clearBackStack(homeRoute)
     this.navigate(difficultyRoute.replace("{$idArg}", categoryId), navOptions)
 }
 
