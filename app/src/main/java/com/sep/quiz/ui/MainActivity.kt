@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
                             navigateToHome = navController::navigateToHome,
                             navigateToResult = navController::navigateToResult
                         )
-                        resultScreen()
+                        resultScreen(navigateToHome = navController::navigateToHome)
                     }
                 }
             }

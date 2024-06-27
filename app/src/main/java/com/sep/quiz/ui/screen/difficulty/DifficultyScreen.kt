@@ -48,7 +48,7 @@ fun DifficultyScreen(
 @Preview
 @Composable
 private fun DifficultyScreenPreview(modifier: Modifier = Modifier) {
-    DifficultyScreen(navigateToQuestions = { t, v, c ->
+    DifficultyScreen(navigateToQuestions = { _, _, _ ->
 
     })
 }

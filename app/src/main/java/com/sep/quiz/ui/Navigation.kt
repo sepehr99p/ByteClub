@@ -11,17 +11,25 @@ import com.sep.quiz.ui.screen.home.HomeScreen
 import com.sep.quiz.ui.screen.questions.QuestionsScreen
 import com.sep.quiz.ui.screen.result.ResultScreen
 
+const val idArg = "id"
+const val difficultyArg = "difficulty"
+const val countArg = "count"
+const val scoreArg = "score"
+
 const val homeRoute = "home_route"
-const val difficultyRoute = "difficulty_route/{id}"
-const val questionsRoute = "questions_route/{id}/{difficulty}/{count}"
-const val resultRoute = "result/{score}"
+const val difficultyRoute = "difficulty_route/{$idArg}"
+const val questionsRoute = "questions_route/{$idArg}/{$difficultyArg}/{$countArg}"
+const val resultRoute = "result/{$scoreArg}"
+
+
 
 fun NavController.navigateToResult(score: String) {
-    this.navigate(resultRoute.replace("{score}", score))
+    this.navigate(resultRoute.replace("{$scoreArg}", score))
 }
 
 fun NavController.navigateToDifficulty(navOptions: NavOptions? = null, categoryId: String) {
-    this.navigate(difficultyRoute.replace("{id}", categoryId), navOptions)
+    clearBackStack(homeRoute)
+    this.navigate(difficultyRoute.replace("{$idArg}", categoryId), navOptions)
 }
 
 fun NavController.navigateToQuestions(
@@ -31,8 +39,8 @@ fun NavController.navigateToQuestions(
     count: Int
 ) {
     this.navigate(
-        questionsRoute.replace("{id}", categoryId).replace("{difficulty}", difficulty)
-            .replace("{count}", count.toString()),
+        questionsRoute.replace("{$idArg}", categoryId).replace("{$difficultyArg}", difficulty)
+            .replace("{$countArg}", count.toString()),
         navOptions
     )
 }
@@ -54,7 +62,7 @@ fun NavGraphBuilder.difficultyScreen(
 ) {
     composable(
         route = difficultyRoute,
-        arguments = listOf(navArgument("id") { type = NavType.StringType })
+        arguments = listOf(navArgument(idArg) { type = NavType.StringType })
     ) {
         DifficultyScreen(navigateToQuestions = navigateToQuestions)
     }
@@ -67,9 +75,9 @@ fun NavGraphBuilder.questionsScreen(
     composable(
         route = questionsRoute,
         arguments = listOf(
-            navArgument("id") { type = NavType.StringType },
-            navArgument("difficulty") { type = NavType.StringType },
-            navArgument("count") { type = NavType.StringType },
+            navArgument(idArg) { type = NavType.StringType },
+            navArgument(difficultyArg) { type = NavType.StringType },
+            navArgument(countArg) { type = NavType.StringType },
         )
     ) {
         QuestionsScreen(navigateToHome = navigateToHome, navigateToResult = navigateToResult)
@@ -77,12 +85,12 @@ fun NavGraphBuilder.questionsScreen(
 }
 
 fun NavGraphBuilder.resultScreen(
-
+    navigateToHome: () -> Unit,
 ) {
     composable(
         route = resultRoute,
-        arguments = listOf(navArgument("score") { type = NavType.StringType })
+        arguments = listOf(navArgument(scoreArg) { type = NavType.StringType })
     ) {
-        ResultScreen()
+        ResultScreen(navigateToHome = navigateToHome)
     }
 }

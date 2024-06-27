@@ -1,5 +1,6 @@
 package com.sep.quiz.ui.screen.result
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -15,6 +16,7 @@ import com.sep.quiz.ui.systemDesign.theme.Bold_18
 @Composable
 fun ResultScreen(
     modifier: Modifier = Modifier,
+    navigateToHome: () -> Unit,
     viewModel: ResultViewModel = hiltViewModel()
 ) {
     val score = viewModel.score.collectAsState()
@@ -31,11 +33,17 @@ fun ResultScreen(
             style = Bold_18,
             color = MaterialTheme.colorScheme.primary
         )
+        Text(
+            modifier = Modifier.align(Alignment.BottomCenter).clickable { navigateToHome.invoke() },
+            text = "Home Screen",
+            style = Bold_18,
+            color = MaterialTheme.colorScheme.primary
+        )
     }
 }
 
 @Preview
 @Composable
 private fun ResultScreenPreview(modifier: Modifier = Modifier) {
-    ResultScreen()
+    ResultScreen(navigateToHome = {})
 }
