@@ -24,7 +24,7 @@ const val resultRoute = "result/{$scoreArg}"
 
 
 fun NavController.navigateToResult(score: String) {
-    clearBackStack(homeRoute)
+    this.clearBackStack(homeRoute) // not working !!
     this.navigate(resultRoute.replace("{$scoreArg}", score))
 }
 
