@@ -34,6 +34,7 @@ fun QuestionsScreen(
 
         is UiState.Success -> {
             QuestionsPager(
+                modifier = modifier,
                 questions = (questionState.value as UiState.Success).data,
                 navigateToHome = navigateToHome,
                 navigateToResult = {

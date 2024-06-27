@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sep.quiz.domain.entiry.CategoryInfo
 import com.sep.quiz.domain.usecase.CategoryInfoUseCase
+import com.sep.quiz.ui.idArg
 import com.sep.quiz.ui.utils.UiState
 import com.sep.quiz.utils.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +20,7 @@ class DifficultyViewModel @Inject constructor(
     private val categoryInfoUseCase: CategoryInfoUseCase,
 ) : ViewModel() {
 
-    val categoryId = MutableStateFlow(savedStateHandle.get<String>("id"))
+    val categoryId = MutableStateFlow(savedStateHandle.get<String>(idArg))
 
     private val _categoryInfo = MutableStateFlow<UiState<CategoryInfo>>(UiState.Initialize)
     val categoryInfo = _categoryInfo.asStateFlow()

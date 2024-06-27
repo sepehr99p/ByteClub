@@ -7,6 +7,9 @@ import com.sep.quiz.domain.entiry.QuestionDifficulty
 import com.sep.quiz.domain.entiry.QuestionEntity
 import com.sep.quiz.domain.entiry.QuestionType
 import com.sep.quiz.domain.usecase.InquiryUseCase
+import com.sep.quiz.ui.countArg
+import com.sep.quiz.ui.difficultyArg
+import com.sep.quiz.ui.idArg
 import com.sep.quiz.ui.utils.UiState
 import com.sep.quiz.utils.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,9 +24,9 @@ class QuestionViewModel @Inject constructor(
     private val inquiryUseCase: InquiryUseCase
 ) : ViewModel() {
 
-    private val _categoryId = MutableStateFlow(savedStateHandle.get<String>("id"))
-    private val _categoryDifficulty = MutableStateFlow(savedStateHandle.get<String>("difficulty"))
-    private val _count = MutableStateFlow(savedStateHandle.get<String>("count"))
+    private val _categoryId = MutableStateFlow(savedStateHandle.get<String>(idArg))
+    private val _categoryDifficulty = MutableStateFlow(savedStateHandle.get<String>(difficultyArg))
+    private val _count = MutableStateFlow(savedStateHandle.get<String>(countArg))
 
     private val _questions = MutableStateFlow<UiState<List<QuestionEntity>>>(UiState.Initialize)
     val questions = _questions.asStateFlow()

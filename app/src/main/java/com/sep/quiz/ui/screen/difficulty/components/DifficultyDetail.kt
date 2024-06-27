@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -79,16 +80,16 @@ internal fun DifficultyDetail(
 
         Column(modifier = Modifier.fillMaxWidth()) {
             val finalCount = remember {
-                mutableStateOf(10)
+                mutableIntStateOf(10)
             }
             selectedDifficultyCount.value?.let { total ->
                 val sliderValue = remember {
                     mutableFloatStateOf(10f / total)
                 }
-                finalCount.value = (sliderValue.floatValue * total).toInt()
+                finalCount.intValue = (sliderValue.floatValue * total).toInt()
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = "${finalCount.value} Questions",
+                    text = "${finalCount.intValue} Questions",
                     color = MaterialTheme.colorScheme.primary
                 )
                 Slider(
@@ -103,11 +104,11 @@ internal fun DifficultyDetail(
             ButtonComponent(
                 modifier = Modifier.fillMaxWidth(),
                 title = "Start",
-                isDisabled = (selectedDifficultyCount.value == null) || (finalCount.value == 0),
+                isDisabled = (selectedDifficultyCount.value == null) || (finalCount.intValue == 0),
                 onclick = {
                     onClick.invoke(
                         selectedDifficultyType.value ?: QuestionDifficulty.EASY,
-                        finalCount.value
+                        finalCount.intValue
                     )
                 })
         }
