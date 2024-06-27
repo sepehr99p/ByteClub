@@ -103,7 +103,7 @@ internal fun DifficultyDetail(
             ButtonComponent(
                 modifier = Modifier.fillMaxWidth(),
                 title = "Start",
-                isDisabled = selectedDifficultyCount.value == null,
+                isDisabled = (selectedDifficultyCount.value == null) || (finalCount.value == 0),
                 onclick = {
                     onClick.invoke(
                         selectedDifficultyType.value ?: QuestionDifficulty.EASY,
