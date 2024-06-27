@@ -35,8 +35,11 @@ import com.sep.quiz.ui.systemDesign.ex.ShakeConfig
 import com.sep.quiz.ui.systemDesign.ex.rememberShakeController
 import com.sep.quiz.ui.systemDesign.ex.shake
 import com.sep.quiz.ui.systemDesign.theme.Bold_14
+import com.sep.quiz.ui.systemDesign.theme.Bold_18
+import com.sep.quiz.ui.systemDesign.theme.Bold_20
 import com.sep.quiz.ui.systemDesign.theme.Regular_14
 import com.sep.quiz.ui.systemDesign.theme.dimen.corner_8
+import com.sep.quiz.ui.systemDesign.theme.dimen.padding_16
 import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
 import kotlinx.coroutines.delay
 import kotlin.math.roundToInt
@@ -114,10 +117,10 @@ private fun QuestionItemComponent(
 @Composable
 private fun QuestionDescription(modifier: Modifier = Modifier, description: String) {
     Text(
-        modifier = modifier,
+        modifier = modifier.padding(horizontal = padding_8, vertical = padding_16),
         text = description,
         color = MaterialTheme.colorScheme.onPrimaryContainer,
-        style = Bold_14
+        style = Bold_18
     )
 }
 
