@@ -33,10 +33,11 @@ class MainActivity : ComponentActivity() {
                                 navController.navigateToDifficulty(categoryId = it)
                             })
                         difficultyScreen(
-                            navigateToQuestions = { id, difficulty ->
+                            navigateToQuestions = { id, difficulty, count ->
                                 navController.navigateToQuestions(
                                     categoryId = id,
-                                    difficulty = difficulty
+                                    difficulty = difficulty,
+                                    count = count
                                 )
                             }
                         )

@@ -1,127 +1,119 @@
 package com.sep.quiz.ui.screen.difficulty.components
 
-import android.content.res.Resources.getSystem
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.draggable
-import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.sep.quiz.domain.entiry.CategoryInfo
 import com.sep.quiz.domain.entiry.QuestionDifficulty
+import com.sep.quiz.ui.systemDesign.components.button.ButtonComponent
 import com.sep.quiz.ui.systemDesign.theme.Regular_14
-import com.sep.quiz.ui.systemDesign.theme.Regular_16
 import com.sep.quiz.ui.systemDesign.theme.dimen.corner_8
 import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
-import kotlin.math.roundToInt
 
 
 @Composable
 internal fun DifficultyDetail(
     modifier: Modifier = Modifier,
     categoryInfo: CategoryInfo,
-    onClick: (type: QuestionDifficulty) -> Unit
+    onClick: (type: QuestionDifficulty, count: Int) -> Unit
 ) {
-    Column(modifier = modifier.fillMaxSize()) {
-        Text(
-            text = "Total ${categoryInfo.totalCount} Questions",
-            style = Regular_14,
-            color = MaterialTheme.colorScheme.onPrimary
-        )
-        DifficultyComponent(
-            count = categoryInfo.easyCount,
-            type = QuestionDifficulty.EASY,
-            onClick = onClick
-        )
-        DifficultyComponent(
-            count = categoryInfo.mediumCount,
-            type = QuestionDifficulty.MEDIUM,
-            onClick = onClick
-        )
-        DifficultyComponent(
-            count = categoryInfo.hardCount,
-            type = QuestionDifficulty.HARD,
-            onClick = onClick
-        )
-        DraggableNumberSelector()
-
-    }
-}
-
-@Composable
-private fun DraggableNumberSelector(modifier: Modifier = Modifier, amount : Int = 100) {
-    var offsetX by remember { mutableFloatStateOf(0f) }
-    var number by remember { mutableIntStateOf(0) }
-    var maxWidth by remember { mutableFloatStateOf(0f) }
-
-    Box(
-        contentAlignment = Alignment.CenterStart,
+    Column(
         modifier = modifier
-            .background(MaterialTheme.colorScheme.background)
+            .fillMaxSize()
             .padding(padding_8)
-
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(4.dp)
-                .onGloballyPositioned { coordinates ->
-                    maxWidth = coordinates.size.width.toFloat()
-                }
-                .background(MaterialTheme.colorScheme.secondary)
-        )
+        val selectedDifficultyCount = remember {
+            mutableStateOf<Int?>(null)
+        }
+        val selectedDifficultyType = remember {
+            mutableStateOf<QuestionDifficulty?>(null)
+        }
 
-        Box(
-            modifier = Modifier
-                .offset { IntOffset(offsetX.roundToInt(), 0) }
-                .clip(CircleShape)
-                .size(40.dp)
-                .background(MaterialTheme.colorScheme.secondary)
-                .draggable(
-                    orientation = Orientation.Horizontal,
-                    state = rememberDraggableState { delta ->
-                        offsetX = (offsetX + delta).coerceIn(0f, maxWidth - 40.dp.value)
-                        number = ((offsetX / (maxWidth - (40.dp.value))) * amount).roundToInt()
-                    }
-                ),
-            contentAlignment = Alignment.Center
+        Column(
+            modifier = modifier
+                .weight(1f)
+                .fillMaxWidth()
         ) {
             Text(
-                text = number.toString(),
-                color = MaterialTheme.colorScheme.onSecondary,
-                style = Regular_16
+                text = "Total ${categoryInfo.totalCount} Questions",
+                style = Regular_14,
+                color = MaterialTheme.colorScheme.onPrimary
             )
+            DifficultyComponent(
+                count = categoryInfo.easyCount,
+                type = QuestionDifficulty.EASY,
+                selectedDifficultyCount = selectedDifficultyCount,
+                selectedDifficultyType = selectedDifficultyType
+            )
+            DifficultyComponent(
+                count = categoryInfo.mediumCount,
+                type = QuestionDifficulty.MEDIUM,
+                selectedDifficultyCount = selectedDifficultyCount,
+                selectedDifficultyType = selectedDifficultyType
+            )
+            DifficultyComponent(
+                count = categoryInfo.hardCount,
+                type = QuestionDifficulty.HARD,
+                selectedDifficultyCount = selectedDifficultyCount,
+                selectedDifficultyType = selectedDifficultyType
+            )
+
         }
+
+        Column(modifier = Modifier.fillMaxWidth()) {
+            val finalCount = remember {
+                mutableStateOf(10)
+            }
+            selectedDifficultyCount.value?.let { total ->
+                val sliderValue = remember {
+                    mutableFloatStateOf(10f / total)
+                }
+                finalCount.value = (sliderValue.floatValue * total).toInt()
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = "${finalCount.value} Questions",
+                    color = MaterialTheme.colorScheme.primary
+                )
+                Slider(
+                    modifier = Modifier.fillMaxWidth(),
+                    value = sliderValue.floatValue,
+                    onValueChange = {
+                        sliderValue.floatValue = it
+                    },
+                    enabled = true
+                )
+            }
+            ButtonComponent(
+                modifier = Modifier.fillMaxWidth(),
+                title = "Start",
+                isDisabled = selectedDifficultyCount.value == null,
+                onclick = {
+                    onClick.invoke(
+                        selectedDifficultyType.value ?: QuestionDifficulty.EASY,
+                        finalCount.value
+                    )
+                })
+        }
+
     }
 }
-
 
 
 @Composable
@@ -129,15 +121,25 @@ private fun DifficultyComponent(
     modifier: Modifier = Modifier,
     count: Int,
     type: QuestionDifficulty,
-    onClick: (type: QuestionDifficulty) -> Unit
+    selectedDifficultyCount: MutableState<Int?>,
+    selectedDifficultyType: MutableState<QuestionDifficulty?>,
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .padding(padding_8)
+            .padding(vertical = padding_8)
             .clip(RoundedCornerShape(corner_8))
-            .background(color = MaterialTheme.colorScheme.primaryContainer)
-            .clickable { onClick.invoke(type) }
+            .background(
+                color = if (selectedDifficultyCount.value == count) {
+                    MaterialTheme.colorScheme.primaryContainer
+                } else {
+                    MaterialTheme.colorScheme.secondaryContainer
+                }
+            )
+            .clickable {
+                selectedDifficultyCount.value = count
+                selectedDifficultyType.value = type
+            }
             .padding(padding_8)
     ) {
         Text(
@@ -159,11 +161,22 @@ private val mockCategoryInfo = CategoryInfo(
 @Preview
 @Composable
 private fun DifficultyComponentPreview(modifier: Modifier = Modifier) {
-    DifficultyComponent(count = 23, type = QuestionDifficulty.HARD) {}
+    val selectedDifficulty = remember {
+        mutableStateOf<Int?>(null)
+    }
+    val selectedDifficultyType = remember {
+        mutableStateOf<QuestionDifficulty?>(null)
+    }
+    DifficultyComponent(
+        count = 23,
+        type = QuestionDifficulty.HARD,
+        selectedDifficultyCount = selectedDifficulty,
+        selectedDifficultyType = selectedDifficultyType
+    )
 }
 
 @Preview
 @Composable
 private fun DifficultyDetailPreview(modifier: Modifier = Modifier) {
-    DifficultyDetail(categoryInfo = mockCategoryInfo) {}
+    DifficultyDetail(categoryInfo = mockCategoryInfo) { _, _ -> }
 }

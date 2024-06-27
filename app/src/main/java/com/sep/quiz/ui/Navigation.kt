@@ -13,7 +13,7 @@ import com.sep.quiz.ui.screen.result.ResultScreen
 
 const val homeRoute = "home_route"
 const val difficultyRoute = "difficulty_route/{id}"
-const val questionsRoute = "questions_route/{id}/{difficulty}"
+const val questionsRoute = "questions_route/{id}/{difficulty}/{count}"
 const val resultRoute = "result/{score}"
 
 fun NavController.navigateToResult(score: String) {
@@ -27,10 +27,12 @@ fun NavController.navigateToDifficulty(navOptions: NavOptions? = null, categoryI
 fun NavController.navigateToQuestions(
     navOptions: NavOptions? = null,
     categoryId: String,
-    difficulty: String
+    difficulty: String,
+    count: Int
 ) {
     this.navigate(
-        questionsRoute.replace("{id}", categoryId).replace("{difficulty}", difficulty),
+        questionsRoute.replace("{id}", categoryId).replace("{difficulty}", difficulty)
+            .replace("{count}", count.toString()),
         navOptions
     )
 }
@@ -48,7 +50,7 @@ fun NavGraphBuilder.homeScreen(
 }
 
 fun NavGraphBuilder.difficultyScreen(
-    navigateToQuestions: (id: String, difficulty: String) -> Unit
+    navigateToQuestions: (id: String, difficulty: String, count: Int) -> Unit
 ) {
     composable(
         route = difficultyRoute,
@@ -67,9 +69,10 @@ fun NavGraphBuilder.questionsScreen(
         arguments = listOf(
             navArgument("id") { type = NavType.StringType },
             navArgument("difficulty") { type = NavType.StringType },
+            navArgument("count") { type = NavType.StringType },
         )
     ) {
-        QuestionsScreen(navigateToHome = navigateToHome,navigateToResult = navigateToResult)
+        QuestionsScreen(navigateToHome = navigateToHome, navigateToResult = navigateToResult)
     }
 }
 
