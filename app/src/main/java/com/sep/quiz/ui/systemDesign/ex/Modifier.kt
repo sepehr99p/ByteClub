@@ -1,5 +1,6 @@
 package com.sep.quiz.ui.systemDesign.ex
 
+import android.content.res.Resources
 import androidx.compose.foundation.background
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
@@ -17,3 +18,5 @@ fun Modifier.shadowBackground(): Modifier =
             )
         )
     }
+
+val Int.px: Int get() = (this * Resources.getSystem().displayMetrics.density).toInt()

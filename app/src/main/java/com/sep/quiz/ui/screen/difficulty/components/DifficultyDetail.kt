@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import com.sep.quiz.domain.entiry.CategoryInfo
 import com.sep.quiz.domain.entiry.QuestionDifficulty
 import com.sep.quiz.ui.systemDesign.theme.Regular_14
+import com.sep.quiz.ui.systemDesign.theme.Regular_16
 import com.sep.quiz.ui.systemDesign.theme.dimen.corner_8
 import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
 import kotlin.math.roundToInt
@@ -75,29 +76,27 @@ internal fun DifficultyDetail(
 }
 
 @Composable
-fun DraggableNumberSelector(modifier: Modifier = Modifier) {
+private fun DraggableNumberSelector(modifier: Modifier = Modifier, amount : Int = 100) {
     var offsetX by remember { mutableFloatStateOf(0f) }
     var number by remember { mutableIntStateOf(0) }
     var maxWidth by remember { mutableFloatStateOf(0f) }
-    val maxNumber = 100
 
     Box(
-        contentAlignment = Alignment.Center,
+        contentAlignment = Alignment.CenterStart,
         modifier = modifier
             .background(MaterialTheme.colorScheme.background)
             .padding(padding_8)
-            .onGloballyPositioned { coordinates ->
-                maxWidth = coordinates.size.width.toFloat()
-            }
+
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(4.dp)
+                .onGloballyPositioned { coordinates ->
+                    maxWidth = coordinates.size.width.toFloat()
+                }
                 .background(MaterialTheme.colorScheme.secondary)
         )
-
-
 
         Box(
             modifier = Modifier
@@ -108,22 +107,22 @@ fun DraggableNumberSelector(modifier: Modifier = Modifier) {
                 .draggable(
                     orientation = Orientation.Horizontal,
                     state = rememberDraggableState { delta ->
-                        offsetX = (offsetX + delta) //.coerceIn(0f, maxWidth - 40.dp.value)
-                        number = ((offsetX / (maxWidth - (40.dp.value.toInt().px))) * maxNumber).roundToInt() + (maxNumber / 2)
+                        offsetX = (offsetX + delta).coerceIn(0f, maxWidth - 40.dp.value)
+                        number = ((offsetX / (maxWidth - (40.dp.value))) * amount).roundToInt()
                     }
                 ),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 text = number.toString(),
-                color = Color.White,
-                fontSize = 20.sp
+                color = MaterialTheme.colorScheme.onSecondary,
+                style = Regular_16
             )
         }
     }
 }
 
-val Int.px: Int get() = (this * getSystem().displayMetrics.density).toInt()
+
 
 @Composable
 private fun DifficultyComponent(
