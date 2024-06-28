@@ -20,7 +20,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.sep.quiz.R
 import com.sep.quiz.domain.entiry.CategoryInfo
 import com.sep.quiz.domain.entiry.QuestionDifficulty
 import com.sep.quiz.ui.systemDesign.components.button.ButtonComponent
@@ -103,7 +105,7 @@ internal fun DifficultyDetail(
             }
             ButtonComponent(
                 modifier = Modifier.fillMaxWidth(),
-                title = "Start",
+                title = stringResource(id = R.string.start),
                 isDisabled = (selectedDifficultyCount.value == null) || (finalCount.intValue == 0),
                 onclick = {
                     onClick.invoke(

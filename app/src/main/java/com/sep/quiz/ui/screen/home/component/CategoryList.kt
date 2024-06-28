@@ -15,7 +15,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.sep.quiz.R
 import com.sep.quiz.domain.entiry.CategoryEntity
 import com.sep.quiz.ui.systemDesign.theme.Bold_14
 import com.sep.quiz.ui.systemDesign.theme.Bold_20
@@ -31,7 +33,7 @@ fun CategoryList(
     Column(modifier = modifier) {
         Text(
             modifier = Modifier.padding(padding_8),
-            text = "Select category",
+            text = stringResource(id = R.string.select_category),
             color = MaterialTheme.colorScheme.onPrimary,
             style = Bold_20
         )

@@ -15,8 +15,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.sep.quiz.R
 import com.sep.quiz.ui.systemDesign.theme.SemiBold_16
 import com.sep.quiz.ui.systemDesign.theme.dimen.corner_8
 import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
@@ -24,7 +26,7 @@ import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
 @Composable
 fun ErrorComponent(
     modifier: Modifier = Modifier,
-    errorMessage: String = "Error",
+    errorMessage: String = stringResource(id = R.string.error),
     onRetryClick: () -> Unit
 ) {
     Column(
@@ -52,7 +54,7 @@ fun ErrorComponent(
                     interactionSource = interactionSource,
                     indication = null
                 ) { onRetryClick.invoke() },
-            text = "Retry",
+            text = stringResource(id = R.string.retry),
             style = SemiBold_16,
             color = MaterialTheme.colorScheme.onErrorContainer,
             textAlign = TextAlign.Center

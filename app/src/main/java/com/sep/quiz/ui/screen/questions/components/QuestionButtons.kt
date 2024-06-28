@@ -11,6 +11,8 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.sep.quiz.R
 import com.sep.quiz.ui.systemDesign.components.button.ButtonComponent
 import com.sep.quiz.ui.systemDesign.components.button.ButtonStyle
 import com.sep.quiz.ui.systemDesign.theme.dimen.padding_4
@@ -69,7 +71,7 @@ internal fun QuestionPagerButtons(
                 .padding(horizontal = padding_4),
             buttonStyle = ButtonStyle.Default,
             isDisabled = answered.value.not(),
-            title = "Next", // if this is the last question, change the title and its action
+            title = stringResource(id = R.string.next), // if this is the last question, change the title and its action
             onclick = {
                 if (pagerState.currentPage == (pagerState.pageCount - 1)) {
                     onFinish.invoke()

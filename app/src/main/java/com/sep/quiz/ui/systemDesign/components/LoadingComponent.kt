@@ -8,7 +8,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.sep.quiz.R
 
 @Composable
 fun LoadingComponent(modifier: Modifier = Modifier) {
@@ -17,7 +19,10 @@ fun LoadingComponent(modifier: Modifier = Modifier) {
             modifier = Modifier.align(Alignment.Center),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Loading", color = MaterialTheme.colorScheme.onPrimary)
+            Text(
+                text = stringResource(id = R.string.loading),
+                color = MaterialTheme.colorScheme.onPrimary
+            )
             DotsPulsing()
         }
     }
