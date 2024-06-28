@@ -3,6 +3,7 @@ package com.sep.quiz.ui.screen.home.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,6 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import com.sep.quiz.domain.entiry.CategoryEntity
 import com.sep.quiz.ui.systemDesign.theme.Bold_14
+import com.sep.quiz.ui.systemDesign.theme.Bold_20
 import com.sep.quiz.ui.systemDesign.theme.dimen.corner_8
 import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
 
@@ -26,9 +28,17 @@ fun CategoryList(
     categories: List<CategoryEntity>,
     onCategorySelected: (id: String) -> Unit
 ) {
-    LazyColumn(modifier = modifier) {
-        items(categories) {
-            CategoryListItem(categoryEntity = it, onCategorySelected = onCategorySelected)
+    Column(modifier = modifier) {
+        Text(
+            modifier = Modifier.padding(padding_8),
+            text = "Select category",
+            color = MaterialTheme.colorScheme.onPrimary,
+            style = Bold_20
+        )
+        LazyColumn(modifier = Modifier) {
+            items(categories) {
+                CategoryListItem(categoryEntity = it, onCategorySelected = onCategorySelected)
+            }
         }
     }
 }
