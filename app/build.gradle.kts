@@ -15,7 +15,7 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -25,11 +25,16 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isShrinkResources = true
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            ndk {
+                abiFilters.clear()
+                abiFilters.addAll(mutableSetOf("armeabi", "armeabi-v7a", "arm64-v8a"))
+            }
         }
     }
     compileOptions {
@@ -73,7 +78,6 @@ dependencies {
             androidTestImplementation(ui.test.junit4)
             debugImplementation(ui.tooling)
             debugImplementation(ui.test.manifest)
-            implementation(multidex)
         }
         testImplementation(junit)
 
