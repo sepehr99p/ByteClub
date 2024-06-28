@@ -31,14 +31,6 @@ class QuestionViewModel @Inject constructor(
     private val _questions = MutableStateFlow<UiState<List<QuestionEntity>>>(UiState.Initialize)
     val questions = _questions.asStateFlow()
 
-    private val _score = MutableStateFlow(0)
-    val score = _score.asStateFlow()
-
-    fun increaseScore() {
-        _score.value += 1
-    }
-
-
 
     init {
         fetchQuestions()

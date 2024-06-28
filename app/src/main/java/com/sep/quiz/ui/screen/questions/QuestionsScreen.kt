@@ -18,7 +18,6 @@ fun QuestionsScreen(
     navigateToResult : (score: String) -> Unit
 ) {
     val questionState = viewModel.questions.collectAsState()
-    val score = viewModel.score.collectAsState()
 
     when (questionState.value) {
         is UiState.Failed -> {
@@ -38,7 +37,7 @@ fun QuestionsScreen(
                 questions = (questionState.value as UiState.Success).data,
                 navigateToHome = navigateToHome,
                 navigateToResult = {
-                    navigateToResult.invoke(score.value.toString())
+                    navigateToResult.invoke(it.toString())
                 }
             )
         }

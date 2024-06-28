@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -21,7 +22,7 @@ internal fun QuestionsPager(
     modifier: Modifier = Modifier,
     questions: List<QuestionEntity>,
     navigateToHome: () -> Unit,
-    navigateToResult: () -> Unit
+    navigateToResult: (score: Int) -> Unit
 ) {
     Column(
         modifier = modifier
@@ -32,6 +33,9 @@ internal fun QuestionsPager(
         val pagerState = rememberPagerState(pageCount = { questions.size })
         val answered = remember {
             mutableStateOf(false)
+        }
+        val score = remember {
+            mutableIntStateOf(0)
         }
 
         QuestionsHeaderComponent(
@@ -49,14 +53,14 @@ internal fun QuestionsPager(
                 question = questions[pagerState.currentPage],
                 onAnswerSelected = {
                     answered.value = true
-
+                    if (it) score.intValue += 1
                 })
         }
         QuestionPagerButtons(
             pagerState = pagerState,
             answered = answered,
             onFinish = {
-                navigateToResult.invoke()
+                navigateToResult.invoke(score.intValue)
             })
     }
 }
