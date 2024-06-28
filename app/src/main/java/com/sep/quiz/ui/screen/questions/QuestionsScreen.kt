@@ -46,7 +46,7 @@ fun QuestionsScreen(
 
 @Preview
 @Composable
-private fun QuestionsScreenPreview(modifier: Modifier = Modifier) {
+private fun QuestionsScreenPreview() {
     QuestionsScreen(navigateToHome = {}){
 
     }

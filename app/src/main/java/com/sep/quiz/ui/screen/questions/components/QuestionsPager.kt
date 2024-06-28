@@ -74,7 +74,7 @@ internal val mockQuestions = QuestionEntity(
 
 @Preview
 @Composable
-private fun QuestionsPagerPreview(modifier: Modifier = Modifier) {
+private fun QuestionsPagerPreview() {
     QuestionsPager(
         questions = listOf(mockQuestions, mockQuestions, mockQuestions, mockQuestions),
         navigateToResult = {},

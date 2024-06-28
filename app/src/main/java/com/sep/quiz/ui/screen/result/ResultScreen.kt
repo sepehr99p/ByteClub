@@ -44,6 +44,6 @@ fun ResultScreen(
 
 @Preview
 @Composable
-private fun ResultScreenPreview(modifier: Modifier = Modifier) {
+private fun ResultScreenPreview() {
     ResultScreen(navigateToHome = {})
 }

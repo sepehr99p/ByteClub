@@ -27,8 +27,6 @@ fun ButtonComponent(
     isLoading: Boolean = false,
     isDisabled: Boolean = false,
     onclick: () -> Unit,
-    startIconRes: Int? = null,
-    endIconRes: Int? = null,
     @StringRes titleRes: Int = 0,
     title: String = "",
     textStyle: TextStyle? = null
@@ -43,8 +41,6 @@ fun ButtonComponent(
         isLoading,
         isDisabled,
         onclick,
-        startIconRes,
-        endIconRes,
         titleRes,
         containerColor,
         textColor,
@@ -60,8 +56,6 @@ private fun FilledButton(
     isLoading: Boolean,
     isDisabled: Boolean,
     onclick: () -> Unit,
-    startIconRes: Int?,
-    endIconRes: Int?,
     titleRes: Int,
     containerColor: Color,
     textColor: Color,
@@ -84,8 +78,6 @@ private fun FilledButton(
     ) {
         ButtonContent(
             titleRes,
-            startIconRes,
-            endIconRes,
             isLoading,
             isDisabled,
             textColor,
@@ -98,8 +90,6 @@ private fun FilledButton(
 @Composable
 private fun ButtonContent(
     titleRes: Int,
-    startIconRes: Int?,
-    endIconRes: Int?,
     isLoading: Boolean,
     isDisabled: Boolean,
     color: Color,

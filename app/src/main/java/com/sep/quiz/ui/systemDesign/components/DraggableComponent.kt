@@ -14,7 +14,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
@@ -34,7 +33,6 @@ import kotlin.math.roundToInt
 private fun DraggableNumberSelector(
     modifier: Modifier = Modifier,
     amount: Int = 100,
-    selectedDifficulty: MutableState<Int?>,
 ) {
     var offsetX by remember { mutableFloatStateOf(0f) }
     var number by remember { mutableIntStateOf(0) }

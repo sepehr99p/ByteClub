@@ -161,7 +161,7 @@ private val mockCategoryInfo = CategoryInfo(
 
 @Preview
 @Composable
-private fun DifficultyComponentPreview(modifier: Modifier = Modifier) {
+private fun DifficultyComponentPreview() {
     val selectedDifficulty = remember {
         mutableStateOf<Int?>(null)
     }
@@ -178,6 +178,6 @@ private fun DifficultyComponentPreview(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-private fun DifficultyDetailPreview(modifier: Modifier = Modifier) {
+private fun DifficultyDetailPreview() {
     DifficultyDetail(categoryInfo = mockCategoryInfo) { _, _ -> }
 }

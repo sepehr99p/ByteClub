@@ -62,7 +62,7 @@ fun ErrorComponent(
 
 @Preview
 @Composable
-private fun ErrorComponentPreview(modifier: Modifier = Modifier) {
+private fun ErrorComponentPreview() {
     ErrorComponent {
 
     }

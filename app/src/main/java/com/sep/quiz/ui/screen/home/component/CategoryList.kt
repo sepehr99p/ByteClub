@@ -62,12 +62,12 @@ private fun CategoryListItem(
 
 @Preview
 @Composable
-private fun CategoryListItemPreview(modifier: Modifier = Modifier) {
+private fun CategoryListItemPreview() {
     CategoryListItem(categoryEntity = CategoryEntity(id = "id", name = "name")) {}
 }
 
 @Preview
 @Composable
-private fun CategoryListPreview(modifier: Modifier = Modifier) {
+private fun CategoryListPreview() {
     CategoryList(categories = listOf()) {}
 }

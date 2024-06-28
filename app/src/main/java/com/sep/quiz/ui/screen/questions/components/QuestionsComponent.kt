@@ -126,13 +126,13 @@ private fun QuestionDescription(modifier: Modifier = Modifier, description: Stri
 
 @Preview
 @Composable
-private fun QuestionDescriptionPreview(modifier: Modifier = Modifier) {
+private fun QuestionDescriptionPreview() {
     QuestionDescription(description = "description")
 }
 
 @Preview
 @Composable
-private fun QuestionComponentPreview(modifier: Modifier = Modifier) {
+private fun QuestionComponentPreview() {
     QuestionsComponent(question = mockQuestions) {
 
     }
@@ -140,7 +140,7 @@ private fun QuestionComponentPreview(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-private fun QuestionItemComponentPreview(modifier: Modifier = Modifier) {
+private fun QuestionItemComponentPreview() {
     val choice = remember {
         mutableStateOf("")
     }

@@ -25,6 +25,6 @@ fun LoadingComponent(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-private fun LoadingComponentPreview(modifier: Modifier = Modifier) {
+private fun LoadingComponentPreview() {
     LoadingComponent()
 }

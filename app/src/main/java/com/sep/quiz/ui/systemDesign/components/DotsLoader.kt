@@ -80,6 +80,6 @@ fun InfiniteTransition.animateScaleWithDelay(delay: Int) = this.animateFloat(
 
 @Preview
 @Composable
-private fun DotsPulsingPreview(modifier: Modifier = Modifier) {
+private fun DotsPulsingPreview() {
     DotsPulsing()
 }
