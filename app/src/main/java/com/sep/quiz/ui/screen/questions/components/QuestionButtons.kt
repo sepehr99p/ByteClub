@@ -24,6 +24,7 @@ internal fun QuestionPagerButtons(
     modifier: Modifier = Modifier,
     pagerState: PagerState,
     answered: MutableState<Boolean>,
+    restartTimer : MutableState<Boolean>,
     onFinish: () -> Unit
 ) {
     Row(
@@ -34,37 +35,19 @@ internal fun QuestionPagerButtons(
         val scrollNext = remember {
             mutableStateOf(false)
         }
-        val scrollPrev = remember {
-            mutableStateOf(false)
-        }
         LaunchedEffect(answered.value) {
             if (answered.value.not()) {
                 scrollNext.value = false
-                scrollPrev.value = false
             }
         }
         LaunchedEffect(scrollNext.value) {
             if (scrollNext.value) {
+                restartTimer.value = true
                 pagerState.animateScrollToPage(pagerState.currentPage + 1)
                 scrollNext.value = false
+                answered.value = false
             }
         }
-        LaunchedEffect(scrollPrev.value) {
-            if (scrollPrev.value) {
-                pagerState.animateScrollToPage(pagerState.currentPage - 1)
-                scrollPrev.value = false
-            }
-        }
-//        ButtonComponent(
-//            modifier = Modifier
-//                .weight(1f)
-//                .padding(horizontal = padding_4),
-//            buttonStyle = ButtonStyle.Dismiss,
-//            title = "Prev",
-//            isDisabled = (pagerState.currentPage == 0) || answered.value.not(), // todo : check if this is the first question
-//            onclick = {
-//                scrollPrev.value = true
-//            })
         ButtonComponent(
             modifier = Modifier
                 .weight(1f)

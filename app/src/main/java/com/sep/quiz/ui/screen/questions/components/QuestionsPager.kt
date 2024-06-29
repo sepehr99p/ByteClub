@@ -38,11 +38,24 @@ internal fun QuestionsPager(
             mutableIntStateOf(0)
         }
 
+        val stopTimer = remember { mutableStateOf(false) }
+        val restartTimer = remember { mutableStateOf(false) }
+
         QuestionsHeaderComponent(
             pagerState = pagerState,
             onCloseClicked = {
                 navigateToHome.invoke()
             })
+
+        QuestionTimer(
+            onTimerFinished = {
+                answered.value = true
+            },
+            stopTimer = stopTimer,
+            restartTimer = restartTimer
+        )
+
+
         HorizontalPager(
             modifier = Modifier.weight(1f),
             state = pagerState,
@@ -52,6 +65,7 @@ internal fun QuestionsPager(
                 modifier = Modifier,
                 question = questions[pagerState.currentPage],
                 onAnswerSelected = {
+                    stopTimer.value = true
                     answered.value = true
                     if (it) score.intValue += 1
                 })
@@ -59,6 +73,7 @@ internal fun QuestionsPager(
         QuestionPagerButtons(
             pagerState = pagerState,
             answered = answered,
+            restartTimer = restartTimer,
             onFinish = {
                 navigateToResult.invoke(score.intValue)
             })
