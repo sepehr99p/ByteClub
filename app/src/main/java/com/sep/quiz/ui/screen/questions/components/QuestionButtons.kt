@@ -24,7 +24,7 @@ internal fun QuestionPagerButtons(
     modifier: Modifier = Modifier,
     pagerState: PagerState,
     answered: MutableState<Boolean>,
-    restartTimer : MutableState<Boolean>,
+    timerState : MutableState<TimerState>,
     onFinish: () -> Unit
 ) {
     Row(
@@ -42,7 +42,7 @@ internal fun QuestionPagerButtons(
         }
         LaunchedEffect(scrollNext.value) {
             if (scrollNext.value) {
-                restartTimer.value = true
+                timerState.value = TimerState.RESTART
                 pagerState.animateScrollToPage(pagerState.currentPage + 1)
                 scrollNext.value = false
                 answered.value = false

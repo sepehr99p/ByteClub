@@ -2,7 +2,6 @@ package com.sep.quiz.ui.screen.questions.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Slider
-import androidx.compose.material3.SliderColors
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -15,12 +14,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.delay
 
+const val Delay = 1000L
+
+enum class TimerState {
+    PAUSE, RESTART, START
+}
+
 @Composable
 internal fun QuestionTimer(
     modifier: Modifier = Modifier,
     timeRequired: Int = 20,
-    stopTimer: MutableState<Boolean>,
-    restartTimer: MutableState<Boolean>,
+    timerState: MutableState<TimerState>,
     onTimerFinished: () -> Unit
 ) {
     val sliderValue = remember {
@@ -28,23 +32,19 @@ internal fun QuestionTimer(
     }
     val eachStep = ((100f) / timeRequired) / 100f
 
-    LaunchedEffect(restartTimer.value) {
-        if (restartTimer.value) {
+    LaunchedEffect(timerState.value) {
+        if (timerState.value == TimerState.RESTART) {
             sliderValue.floatValue = 0f
-            stopTimer.value = false
         }
-    }
-
-    LaunchedEffect(Unit,restartTimer.value) {
-        while (sliderValue.floatValue != 1f) {
-            delay(1000)
-            if (stopTimer.value) {
-                restartTimer.value = false
-                break
-            }
-            sliderValue.floatValue += eachStep
-            if (sliderValue.floatValue >= 1f) {
-                onTimerFinished.invoke()
+        if (timerState.value == TimerState.PAUSE) {
+            onTimerFinished.invoke()
+        } else {
+            while (sliderValue.floatValue != 1f) {
+                delay(Delay)
+                sliderValue.floatValue += eachStep
+                if (sliderValue.floatValue >= 1f) {
+                    onTimerFinished.invoke()
+                }
             }
         }
     }
@@ -64,10 +64,9 @@ internal fun QuestionTimer(
 @Preview
 @Composable
 private fun QuestionTimerPreview() {
-    val stopTimer = remember {
-        mutableStateOf(false)
-    }
-    QuestionTimer(stopTimer = stopTimer, restartTimer = stopTimer) {
+    QuestionTimer(timerState = remember {
+        mutableStateOf(TimerState.PAUSE)
+    }) {
 
     }
 }
