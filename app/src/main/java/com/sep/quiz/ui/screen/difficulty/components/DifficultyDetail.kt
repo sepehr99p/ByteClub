@@ -20,8 +20,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.sep.quiz.R
 import com.sep.quiz.domain.entiry.CategoryInfo
 import com.sep.quiz.domain.entiry.QuestionDifficulty
@@ -131,6 +134,11 @@ private fun DifficultyComponent(
         modifier = modifier
             .fillMaxWidth()
             .padding(vertical = padding_8)
+            .shadow(
+                elevation = 4.dp,
+                shape = RoundedCornerShape(corner_8),
+                spotColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.4f),
+            )
             .clip(RoundedCornerShape(corner_8))
             .background(
                 color = if (selectedDifficultyCount.value == count) {
