@@ -10,21 +10,10 @@ sealed class NetworkResponse<out T : BaseNetworkResponse> {
     data class Success<out T : BaseNetworkResponse>(val data: T?) : NetworkResponse<T>()
 
     @Serializable
-    data class ApiError(val error: ServerError) : NetworkResponse<Nothing>()
+    data class ApiError(val error: String) : NetworkResponse<Nothing>()
     data class Exception(val throwable: Throwable) : NetworkResponse<Nothing>()
 }
 
-@Serializable
-data class ServerError(
-    @SerialName("error")
-    val error: String? = "",
-    @SerialName("path")
-    val path: String? = "",
-    @SerialName("status")
-    val status: Int? = 0,
-    @SerialName("timestamp")
-    val timestamp: Long? = 0L
-)
 
 
 @Serializable

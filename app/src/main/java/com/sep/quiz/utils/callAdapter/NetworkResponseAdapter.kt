@@ -8,7 +8,7 @@ import java.lang.reflect.Type
 
 internal class NetworkResponseAdapter<RESPONSE : BaseNetworkResponse>(
     private val successType: Type,
-    private val errorConverter: Converter<ResponseBody, ServerError>,
+    private val errorConverter: Converter<ResponseBody, String>,
 ) : CallAdapter<RESPONSE, Call<NetworkResponse<RESPONSE>>> {
 
     override fun responseType(): Type = successType

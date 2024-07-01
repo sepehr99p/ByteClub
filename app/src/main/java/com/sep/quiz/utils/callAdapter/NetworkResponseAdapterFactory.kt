@@ -42,7 +42,7 @@ internal class NetworkResponseAdapterFactory(
 
         return NetworkResponseAdapter<BaseNetworkResponse>(
             successBodyType, retrofit.responseBodyConverter(
-                ServerError::class.java, arrayOfNulls(0)
+                String::class.java, arrayOfNulls(0)
             )
         )
     }

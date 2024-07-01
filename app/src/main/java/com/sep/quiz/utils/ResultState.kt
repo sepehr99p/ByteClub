@@ -2,14 +2,12 @@ package com.sep.quiz.utils
 
 import com.sep.quiz.utils.callAdapter.BaseNetworkResponse
 import com.sep.quiz.utils.callAdapter.NetworkResponse
-import com.sep.quiz.utils.callAdapter.ServerError
-import retrofit2.Response
 
 
 sealed class ResultState<out T> {
     data class Success<T>(val data: T) : ResultState<T>()
 
-    data class Failure(val code: String, val error: String) : ResultState<Nothing>()
+    data class Failure(val error: String) : ResultState<Nothing>()
 
     data class Exception(val error: Throwable) : ResultState<Nothing>() {
         init {
@@ -23,7 +21,7 @@ sealed class ResultState<out T> {
 
 
 suspend fun <T : BaseNetworkResponse, S> NetworkResponse<T>.toResultState(
-    onFailure: (suspend (error: ServerError) -> Unit)? = null,
+    onFailure: (suspend (error: String) -> Unit)? = null,
     onSuccess: suspend (T) -> ResultState.Success<S>
 ): ResultState<S> {
     return try {
@@ -31,8 +29,7 @@ suspend fun <T : BaseNetworkResponse, S> NetworkResponse<T>.toResultState(
             is NetworkResponse.ApiError -> {
                 onFailure?.invoke(result.error)
                 ResultState.Failure(
-                    result.error.error.orEmpty(),
-                    error = result.error.path.orEmpty()
+                    error = result.error
                 )
             }
 

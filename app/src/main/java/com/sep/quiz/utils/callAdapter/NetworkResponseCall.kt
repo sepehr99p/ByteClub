@@ -11,7 +11,7 @@ import java.io.IOException
 
 internal class NetworkResponseCall<T : BaseNetworkResponse>(
     private val delegate: Call<T>,
-    private val errorConverter: Converter<ResponseBody, ServerError>,
+    private val errorConverter: Converter<ResponseBody, String>,
 ) : Call<NetworkResponse<T>> {
 
     override fun enqueue(callback: Callback<NetworkResponse<T>>) {
@@ -32,21 +32,21 @@ internal class NetworkResponseCall<T : BaseNetworkResponse>(
                             } else {
                                 callback.onResponse(
                                     this@NetworkResponseCall,
-                                    Response.success(NetworkResponse.ApiError(ServerError()))
+                                    Response.success(NetworkResponse.ApiError(it.message))
                                 )
                             }
                         }
                     } else {
                         callback.onResponse(
                             this@NetworkResponseCall,
-                            Response.success(NetworkResponse.ApiError(ServerError())))
+                            Response.success(NetworkResponse.ApiError(body?.message.orEmpty())))
                     }
                 } else {
                     val errorBody = convertToErrorBody(error)
                     callback.onResponse(
                         this@NetworkResponseCall,
                         Response.success(
-                            NetworkResponse.ApiError(errorBody ?: ServerError("", ""))
+                            NetworkResponse.ApiError(errorBody.toString())
                         )
                     )
                 }
@@ -79,7 +79,7 @@ internal class NetworkResponseCall<T : BaseNetworkResponse>(
     override fun request(): Request = delegate.request()
 
 
-    private fun convertToErrorBody(error: ResponseBody?): ServerError? {
+    private fun convertToErrorBody(error: ResponseBody?): String? {
 
         return when {
             error == null -> null
