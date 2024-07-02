@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.systemDesign.ex
+package com.sep.quiz.ui.designSystem.ex
 
 import android.content.res.Resources
 import androidx.compose.foundation.background

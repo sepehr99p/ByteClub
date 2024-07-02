@@ -14,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.sep.quiz.domain.entiry.QuestionEntity
-import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
+import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

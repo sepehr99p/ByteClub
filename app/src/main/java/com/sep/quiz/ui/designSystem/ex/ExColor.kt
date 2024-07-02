@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.systemDesign.ex
+package com.sep.quiz.ui.designSystem.ex
 
 import androidx.compose.ui.graphics.Color
 import java.lang.Exception

@@ -5,8 +5,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.sep.quiz.ui.systemDesign.components.ErrorComponent
-import com.sep.quiz.ui.systemDesign.components.LoadingComponent
+import com.sep.quiz.ui.designSystem.components.ErrorComponent
+import com.sep.quiz.ui.designSystem.components.LoadingComponent
 import com.sep.quiz.ui.screen.difficulty.components.DifficultyDetail
 import com.sep.quiz.ui.utils.UiState
 

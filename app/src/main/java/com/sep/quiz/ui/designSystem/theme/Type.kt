@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.systemDesign.theme
+package com.sep.quiz.ui.designSystem.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
@@ -8,12 +8,12 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.sep.quiz.R
-import com.sep.quiz.ui.systemDesign.theme.dimen.font_10
-import com.sep.quiz.ui.systemDesign.theme.dimen.font_12
-import com.sep.quiz.ui.systemDesign.theme.dimen.font_14
-import com.sep.quiz.ui.systemDesign.theme.dimen.font_16
-import com.sep.quiz.ui.systemDesign.theme.dimen.font_18
-import com.sep.quiz.ui.systemDesign.theme.dimen.font_20
+import com.sep.quiz.ui.designSystem.theme.dimen.font_10
+import com.sep.quiz.ui.designSystem.theme.dimen.font_12
+import com.sep.quiz.ui.designSystem.theme.dimen.font_14
+import com.sep.quiz.ui.designSystem.theme.dimen.font_16
+import com.sep.quiz.ui.designSystem.theme.dimen.font_18
+import com.sep.quiz.ui.designSystem.theme.dimen.font_20
 
 val font = FontFamily(
     Font(R.font.akatab, FontWeight.Thin),

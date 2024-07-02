@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.sep.quiz.R
-import com.sep.quiz.ui.systemDesign.theme.Bold_18
+import com.sep.quiz.ui.designSystem.theme.Bold_18
 
 @Composable
 fun ResultScreen(

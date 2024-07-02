@@ -18,18 +18,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.sep.quiz.domain.entiry.QuestionEntity
-import com.sep.quiz.ui.systemDesign.ex.ShakeConfig
-import com.sep.quiz.ui.systemDesign.ex.rememberShakeController
-import com.sep.quiz.ui.systemDesign.ex.shake
-import com.sep.quiz.ui.systemDesign.theme.Bold_18
-import com.sep.quiz.ui.systemDesign.theme.Regular_14
-import com.sep.quiz.ui.systemDesign.theme.dimen.corner_8
-import com.sep.quiz.ui.systemDesign.theme.dimen.padding_16
-import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
+import com.sep.quiz.ui.designSystem.ex.ShakeConfig
+import com.sep.quiz.ui.designSystem.ex.rememberShakeController
+import com.sep.quiz.ui.designSystem.ex.shake
+import com.sep.quiz.ui.designSystem.theme.Bold_18
+import com.sep.quiz.ui.designSystem.theme.Regular_14
+import com.sep.quiz.ui.designSystem.theme.dimen.corner_8
+import com.sep.quiz.ui.designSystem.theme.dimen.padding_16
+import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
 
 @Composable
 internal fun QuestionsComponent(

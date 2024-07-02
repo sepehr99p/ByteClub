@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.systemDesign.components
+package com.sep.quiz.ui.designSystem.components
 
 import androidx.compose.animation.core.InfiniteTransition
 import androidx.compose.animation.core.LinearEasing

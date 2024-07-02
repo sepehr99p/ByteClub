@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.systemDesign.components
+package com.sep.quiz.ui.designSystem.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
@@ -25,8 +25,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import com.sep.quiz.ui.systemDesign.theme.Regular_16
-import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
+import com.sep.quiz.ui.designSystem.theme.Regular_16
+import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
 import kotlin.math.roundToInt
 
 @Composable

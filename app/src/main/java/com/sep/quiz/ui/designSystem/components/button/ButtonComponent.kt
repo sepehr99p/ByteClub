@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.systemDesign.components.button
+package com.sep.quiz.ui.designSystem.components.button
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.size
@@ -14,9 +14,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.sep.quiz.ui.systemDesign.ex.disabledColor
-import com.sep.quiz.ui.systemDesign.theme.Regular_16
-import com.sep.quiz.ui.systemDesign.theme.dimen.corner_8
+import com.sep.quiz.ui.designSystem.ex.disabledColor
+import com.sep.quiz.ui.designSystem.theme.Regular_16
+import com.sep.quiz.ui.designSystem.theme.dimen.corner_8
 
 class InvalidButtonInputException : Exception()
 

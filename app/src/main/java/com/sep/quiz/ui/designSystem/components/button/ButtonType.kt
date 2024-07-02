@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.systemDesign.components.button
+package com.sep.quiz.ui.designSystem.components.button
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable

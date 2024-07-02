@@ -14,8 +14,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.sep.quiz.ui.systemDesign.theme.Regular_14
-import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
+import com.sep.quiz.ui.designSystem.theme.Regular_14
+import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

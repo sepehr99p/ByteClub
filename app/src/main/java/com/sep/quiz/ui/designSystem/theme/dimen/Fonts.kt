@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.systemDesign.theme.dimen
+package com.sep.quiz.ui.designSystem.theme.dimen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable

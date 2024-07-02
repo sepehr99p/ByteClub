@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.systemDesign.components
+package com.sep.quiz.ui.designSystem.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column

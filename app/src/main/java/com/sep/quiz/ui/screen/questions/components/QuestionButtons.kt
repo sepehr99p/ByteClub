@@ -13,10 +13,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.sep.quiz.R
-import com.sep.quiz.ui.systemDesign.components.button.ButtonComponent
-import com.sep.quiz.ui.systemDesign.components.button.ButtonStyle
-import com.sep.quiz.ui.systemDesign.theme.dimen.padding_4
-import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
+import com.sep.quiz.ui.designSystem.components.button.ButtonComponent
+import com.sep.quiz.ui.designSystem.components.button.ButtonStyle
+import com.sep.quiz.ui.designSystem.theme.dimen.padding_4
+import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

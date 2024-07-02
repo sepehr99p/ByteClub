@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.systemDesign.components
+package com.sep.quiz.ui.designSystem.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,9 +19,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.sep.quiz.R
-import com.sep.quiz.ui.systemDesign.theme.SemiBold_16
-import com.sep.quiz.ui.systemDesign.theme.dimen.corner_8
-import com.sep.quiz.ui.systemDesign.theme.dimen.padding_8
+import com.sep.quiz.ui.designSystem.theme.SemiBold_16
+import com.sep.quiz.ui.designSystem.theme.dimen.corner_8
+import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
 
 @Composable
 fun ErrorComponent(
