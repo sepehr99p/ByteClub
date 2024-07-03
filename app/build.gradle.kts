@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("kotlinx-serialization")
     id("dagger.hilt.android.plugin")
+    alias(libs.plugins.baselineprofile)
 }
 
 android {
@@ -62,6 +63,8 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.profileinstaller)
+    "baselineProfile"(project(":baselineprofile"))
     with(libs) {
         with(androidx) {
             implementation(core.ktx)
