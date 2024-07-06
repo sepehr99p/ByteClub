@@ -5,6 +5,7 @@ plugins {
     id("kotlinx-serialization")
     id("dagger.hilt.android.plugin")
     alias(libs.plugins.baselineprofile)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -103,6 +104,21 @@ dependencies {
         // For local unit tests
         testImplementation("com.google.dagger:hilt-android-testing:2.51.1")
         kaptTest("com.google.dagger:hilt-compiler:2.51.1")
+
+
+        // Import the Firebase BoM
+        implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
+
+        // When using the BoM, you don't specify versions in Firebase library dependencies
+
+        // Add the dependency for the Firebase SDK for Google Analytics
+        implementation("com.google.firebase:firebase-analytics")
+
+        // TODO: Add the dependencies for any other Firebase products you want to use
+        // See https://firebase.google.com/docs/android/setup#available-libraries
+        // For example, add the dependencies for Firebase Authentication and Cloud Firestore
+        implementation("com.google.firebase:firebase-auth")
+        implementation("com.google.firebase:firebase-firestore")
     }
 
 }
