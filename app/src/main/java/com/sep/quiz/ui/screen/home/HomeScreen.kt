@@ -9,6 +9,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.sep.quiz.ui.designSystem.components.ErrorComponent
 import com.sep.quiz.ui.designSystem.components.LoadingComponent
 import com.sep.quiz.ui.screen.home.component.CategoryList
+import com.sep.quiz.ui.screen.home.component.ShimmerCategoryList
 import com.sep.quiz.ui.utils.UiState
 
 @Composable
@@ -27,7 +28,7 @@ fun HomeScreen(
 
             is UiState.Initialize -> {}
             is UiState.Loading -> {
-                LoadingComponent()
+                ShimmerCategoryList()
             }
 
             is UiState.Success -> {
