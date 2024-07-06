@@ -30,10 +30,10 @@ android {
         release {
             isShrinkResources = true
             isMinifyEnabled = true
-//            proguardFiles(
-//                getDefaultProguardFile("proguard-android-optimize.txt"),
-//                "proguard-rules.pro"
-//            )
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
 //            ndk {
 //                abiFilters.clear()
 //                abiFilters.addAll(mutableSetOf("armeabi", "armeabi-v7a", "arm64-v8a"))

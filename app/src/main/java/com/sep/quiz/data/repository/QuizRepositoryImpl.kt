@@ -2,6 +2,8 @@ package com.sep.quiz.data.repository
 
 import android.util.Log
 import com.sep.quiz.data.remote.QuizApiService
+import com.sep.quiz.domain.entiry.CategoryEntity
+import com.sep.quiz.domain.entiry.CategoryInfo
 import com.sep.quiz.domain.entiry.QuestionDifficulty
 import com.sep.quiz.domain.entiry.QuestionEntity
 import com.sep.quiz.domain.entiry.QuestionType
@@ -39,7 +41,6 @@ class QuizRepositoryImpl @Inject constructor(
         type: String,
         categoryId: String
     ) : ResultState<List<QuestionEntity>> {
-        Log.i("TAG", "inquiry: ")
         return quizApiService.inquiry(
             amount = amount,
             difficulty = difficulty,
@@ -51,12 +52,12 @@ class QuizRepositoryImpl @Inject constructor(
 
     }
 
-    override suspend fun fetchCategory() =
+    override suspend fun fetchCategory() : ResultState<List<CategoryEntity>> =
         quizApiService.fetchCategory().toResultState(onSuccess = { categoryResponse ->
             ResultState.Success(categoryResponse.categories.map { it.toDomainModel() })
         })
 
-    override suspend fun fetchCategoryInfo(categoryId: String) =
+    override suspend fun fetchCategoryInfo(categoryId: String) : ResultState<CategoryInfo> =
         quizApiService.fetchQuestionsCount(categoryId).toResultState(onSuccess = {
             ResultState.Success(it.categoryCountInfo.toDomainModel())
         })
