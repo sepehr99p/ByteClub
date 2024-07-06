@@ -6,6 +6,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     alias(libs.plugins.baselineprofile)
     id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -29,10 +30,10 @@ android {
         release {
             isShrinkResources = true
             isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+//            proguardFiles(
+//                getDefaultProguardFile("proguard-android-optimize.txt"),
+//                "proguard-rules.pro"
+//            )
 //            ndk {
 //                abiFilters.clear()
 //                abiFilters.addAll(mutableSetOf("armeabi", "armeabi-v7a", "arm64-v8a"))
@@ -119,6 +120,14 @@ dependencies {
         // For example, add the dependencies for Firebase Authentication and Cloud Firestore
         implementation("com.google.firebase:firebase-auth")
         implementation("com.google.firebase:firebase-firestore")
+
+        // Import the BoM for the Firebase platform
+        implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
+
+        // Add the dependencies for the Crashlytics and Analytics libraries
+        // When using the BoM, you don't specify versions in Firebase library dependencies
+        implementation("com.google.firebase:firebase-crashlytics")
+        implementation("com.google.firebase:firebase-analytics")
     }
 
 }
