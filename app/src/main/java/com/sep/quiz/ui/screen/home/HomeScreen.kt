@@ -4,11 +4,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.sep.quiz.ui.designSystem.components.ErrorComponent
 import com.sep.quiz.ui.designSystem.components.LoadingComponent
 import com.sep.quiz.ui.screen.home.component.CategoryList
+import com.sep.quiz.ui.screen.home.component.MenuComponent
 import com.sep.quiz.ui.screen.home.component.ShimmerCategoryList
 import com.sep.quiz.ui.utils.UiState
 
@@ -19,24 +22,39 @@ fun HomeScreen(
     onCategorySelected: (id: String) -> Unit
 ) {
     val categoryState = viewModel.categories.collectAsState()
+    val showCategory = remember { mutableStateOf(false) }
+    val showSetting = remember { mutableStateOf(false) }
+
 
     Column(modifier = modifier.fillMaxSize()) {
-        when (categoryState.value) {
-            is UiState.Failed -> {
-                ErrorComponent(onRetryClick = viewModel::fetchCategories)
-            }
+        if (showCategory.value) {
+            when (categoryState.value) {
+                is UiState.Failed -> {
+                    ErrorComponent(onRetryClick = viewModel::fetchCategories)
+                }
 
-            is UiState.Initialize -> {}
-            is UiState.Loading -> {
-                ShimmerCategoryList()
-            }
+                is UiState.Initialize -> {}
+                is UiState.Loading -> {
+                    ShimmerCategoryList()
+                }
 
-            is UiState.Success -> {
-                CategoryList(
-                    categories = (categoryState.value as UiState.Success).data,
-                    onCategorySelected = onCategorySelected
-                )
+                is UiState.Success -> {
+                    CategoryList(
+                        categories = (categoryState.value as UiState.Success).data,
+                        onCategorySelected = onCategorySelected
+                    )
+                }
             }
+        } else if (showSetting.value) {
+
+        } else {
+            MenuComponent(
+                onStartClick = {
+                    showCategory.value = true
+                },
+                onAboutClick = {
+                    showSetting.value = true
+                })
         }
     }
 
