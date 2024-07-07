@@ -9,7 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.sep.quiz.ui.designSystem.components.ErrorComponent
-import com.sep.quiz.ui.designSystem.components.LoadingComponent
+import com.sep.quiz.ui.screen.home.component.AboutBottomSheet
 import com.sep.quiz.ui.screen.home.component.CategoryList
 import com.sep.quiz.ui.screen.home.component.MenuComponent
 import com.sep.quiz.ui.screen.home.component.ShimmerCategoryList
@@ -45,16 +45,15 @@ fun HomeScreen(
                     )
                 }
             }
-        } else if (showSetting.value) {
-
         } else {
             MenuComponent(
-                onStartClick = {
-                    showCategory.value = true
-                },
-                onAboutClick = {
-                    showSetting.value = true
-                })
+                onStartClick = { showCategory.value = true },
+                onAboutClick = { showSetting.value = true })
+        }
+        if (showSetting.value) {
+            AboutBottomSheet {
+                showSetting.value = false
+            }
         }
     }
 
