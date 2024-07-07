@@ -25,11 +25,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.core.os.BuildCompat
+import com.google.firebase.BuildConfig
 import com.sep.quiz.R
 import com.sep.quiz.ui.designSystem.theme.Bold_18
+import com.sep.quiz.ui.designSystem.theme.Regular_10
 import com.sep.quiz.ui.designSystem.theme.Regular_14
 import com.sep.quiz.ui.designSystem.theme.Regular_16
 import com.sep.quiz.ui.designSystem.theme.dimen.corner_24
@@ -92,6 +97,18 @@ fun AboutBottomSheet(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
                     text = stringResource(id = R.string.project_detail),
                     color = MaterialTheme.colorScheme.onPrimary,
                     style = Regular_14
+                )
+                Text(
+                    modifier = Modifier.padding(vertical = padding_8),
+                    text = "Version ${
+                        LocalContext.current.packageManager.getPackageInfo(
+                            LocalContext.current.packageName,
+                            0
+                        ).versionName
+                    }",
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    style = Regular_10,
+                    fontWeight = FontWeight.Thin
                 )
             }
         }
