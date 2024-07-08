@@ -72,15 +72,25 @@ class QuizRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun fetchCategory(): ResultState<List<CategoryEntity>> =
-        quizApiService.fetchCategory().toResultState(onSuccess = { categoryResponse ->
-            withContext(Dispatchers.IO) {
-                questionDatabase.categoryDao()
-                    .insertAll(*categoryResponse.categories.map { it.toDatabaseDto() }
-                        .toTypedArray())
+    override suspend fun fetchCategory(): ResultState<List<CategoryEntity>> {
+        return if (networkConnection.isInternetOn()) {
+            quizApiService.fetchCategory().toResultState(onSuccess = { categoryResponse ->
+                withContext(Dispatchers.IO) {
+                    questionDatabase.categoryDao()
+                        .insertAll(*categoryResponse.categories.map { it.toDatabaseDto() }
+                            .toTypedArray())
+                }
+                ResultState.Success(categoryResponse.categories.map { it.toDomainModel() })
+            })
+        } else {
+            val cachedData = questionDatabase.categoryDao().fetchAll()
+            if (cachedData.isEmpty()) {
+                ResultState.Failure("No cached data available")
+            } else {
+                ResultState.Success(cachedData.map { it.toDomainModel() })
             }
-            ResultState.Success(categoryResponse.categories.map { it.toDomainModel() })
-        })
+        }
+    }
 
     override suspend fun fetchCategoryInfo(categoryId: String): ResultState<CategoryInfo> =
         quizApiService.fetchQuestionsCount(categoryId).toResultState(onSuccess = {
