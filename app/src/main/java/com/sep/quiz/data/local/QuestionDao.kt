@@ -13,7 +13,7 @@ interface QuestionDao {
     fun fetchAll() : List<QuestionDto>
 
     @Query("SELECT * FROM questions WHERE category IS (:cat)")
-    fun loadAllByIds(cat: String): List<QuestionDto>
+    fun loadAllByCategory(cat: String): List<QuestionDto>
 
     @Insert
     fun insertAll(vararg questions: QuestionDto)

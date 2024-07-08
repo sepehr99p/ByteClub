@@ -6,6 +6,7 @@ import com.sep.quiz.domain.entiry.CategoryEntity
 import com.sep.quiz.domain.entiry.CategoryInfo
 import com.sep.quiz.domain.entiry.QuestionEntity
 import com.sep.quiz.domain.repository.QuizRepository
+import com.sep.quiz.utils.NetworkConnection
 import com.sep.quiz.utils.ResultState
 import com.sep.quiz.utils.toResultState
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,8 @@ import javax.inject.Inject
 
 class QuizRepositoryImpl @Inject constructor(
     private val quizApiService: QuizApiService,
-    private val questionDatabase: QuestionDatabase
+    private val questionDatabase: QuestionDatabase,
+    private val networkConnection: NetworkConnection
 ) : QuizRepository {
 
     override suspend fun retrieveToken() {
@@ -41,20 +43,29 @@ class QuizRepositoryImpl @Inject constructor(
         type: String,
         categoryId: String
     ): ResultState<List<QuestionEntity>> {
-        return quizApiService.inquiry(
-            amount = amount,
-            difficulty = difficulty,
+        if (networkConnection.isInternetOn()) {
+            return quizApiService.inquiry(
+                amount = amount,
+                difficulty = difficulty,
 //            type = type.name.lowercase(),
-            category = categoryId
-        ).toResultState(onSuccess = { questionResponse ->
-            withContext(Dispatchers.IO) {
-                questionDatabase.userDao()
-                    .insertAll(*questionResponse.questionList.map { it.toDatabaseDto() }
-                        .toTypedArray())
+                category = categoryId
+            ).toResultState(onSuccess = { questionResponse ->
+                withContext(Dispatchers.IO) {
+                    questionDatabase.userDao()
+                        .insertAll(*questionResponse.questionList.map { it.toDatabaseDto() }
+                            .toTypedArray())
+                }
+                ResultState.Success(questionResponse.questionList.map { it.toDomainModel() })
+            })
+        } else {
+            val cachedData =
+                questionDatabase.userDao().loadAllByCategory(categoryId).map { it.toDomainModel() }
+            return if (cachedData.isEmpty()) {
+                ResultState.Failure("No cached question available")
+            } else {
+                ResultState.Success(cachedData)
             }
-            ResultState.Success(questionResponse.questionList.map { it.toDomainModel() })
-        })
-
+        }
     }
 
     override suspend fun fetchCategory(): ResultState<List<CategoryEntity>> =

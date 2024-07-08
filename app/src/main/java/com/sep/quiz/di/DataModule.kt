@@ -7,6 +7,7 @@ import com.sep.quiz.domain.repository.QuizRepository
 import com.sep.quiz.domain.usecase.CategoryInfoUseCase
 import com.sep.quiz.domain.usecase.FetchCategoriesUseCase
 import com.sep.quiz.domain.usecase.InquiryUseCase
+import com.sep.quiz.utils.NetworkConnection
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,9 +22,14 @@ object DataModule {
     @Provides
     fun provideQuizRepository(
         quizApiService: QuizApiService,
-        questionDatabase: QuestionDatabase
+        questionDatabase: QuestionDatabase,
+        networkConnection: NetworkConnection
     ): QuizRepository =
-        QuizRepositoryImpl(quizApiService = quizApiService, questionDatabase = questionDatabase)
+        QuizRepositoryImpl(
+            quizApiService = quizApiService,
+            questionDatabase = questionDatabase,
+            networkConnection = networkConnection
+        )
 
     @Provides
     fun provideCategoryInfoUseCase(
