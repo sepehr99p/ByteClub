@@ -22,7 +22,8 @@ fun QuestionsScreen(
     when (questionState.value) {
         is UiState.Failed -> {
             ErrorComponent(
-                onRetryClick = viewModel::fetchQuestions
+                onRetryClick = viewModel::fetchQuestions,
+                errorMessage = (questionState.value as UiState.Failed).error
             )
         }
 

@@ -30,7 +30,10 @@ fun HomeScreen(
         if (showCategory.value) {
             when (categoryState.value) {
                 is UiState.Failed -> {
-                    ErrorComponent(onRetryClick = viewModel::fetchCategories)
+                    ErrorComponent(
+                        onRetryClick = viewModel::fetchCategories,
+                        errorMessage = (categoryState.value as UiState.Failed).error
+                    )
                 }
 
                 is UiState.Initialize -> {}

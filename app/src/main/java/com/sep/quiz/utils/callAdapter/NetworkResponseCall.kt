@@ -46,7 +46,7 @@ internal class NetworkResponseCall<T : BaseNetworkResponse>(
                     callback.onResponse(
                         this@NetworkResponseCall,
                         Response.success(
-                            NetworkResponse.ApiError(errorBody.toString())
+                            NetworkResponse.ApiError(errorBody ?: "Error")
                         )
                     )
                 }

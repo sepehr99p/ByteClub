@@ -20,7 +20,10 @@ fun DifficultyScreen(
 
     when (categoryState.value) {
         is UiState.Failed -> {
-            ErrorComponent(onRetryClick = viewModel::fetchCategoryInfo)
+            ErrorComponent(
+                onRetryClick = viewModel::fetchCategoryInfo,
+                errorMessage = (categoryState.value as UiState.Failed).error
+            )
         }
 
         is UiState.Initialize -> {}
