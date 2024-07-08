@@ -1,20 +1,20 @@
 package com.sep.quiz.data.repository
 
-import android.util.Log
+import com.sep.quiz.data.local.QuestionDatabase
 import com.sep.quiz.data.remote.QuizApiService
 import com.sep.quiz.domain.entiry.CategoryEntity
 import com.sep.quiz.domain.entiry.CategoryInfo
-import com.sep.quiz.domain.entiry.QuestionDifficulty
 import com.sep.quiz.domain.entiry.QuestionEntity
-import com.sep.quiz.domain.entiry.QuestionType
 import com.sep.quiz.domain.repository.QuizRepository
 import com.sep.quiz.utils.ResultState
 import com.sep.quiz.utils.toResultState
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
-import kotlin.math.log
 
 class QuizRepositoryImpl @Inject constructor(
-    private val quizApiService: QuizApiService
+    private val quizApiService: QuizApiService,
+    private val questionDatabase: QuestionDatabase
 ) : QuizRepository {
 
     override suspend fun retrieveToken() {
@@ -40,24 +40,29 @@ class QuizRepositoryImpl @Inject constructor(
         difficulty: String,
         type: String,
         categoryId: String
-    ) : ResultState<List<QuestionEntity>> {
+    ): ResultState<List<QuestionEntity>> {
         return quizApiService.inquiry(
             amount = amount,
             difficulty = difficulty,
 //            type = type.name.lowercase(),
             category = categoryId
         ).toResultState(onSuccess = { questionResponse ->
+            withContext(Dispatchers.IO) {
+                questionDatabase.userDao()
+                    .insertAll(*questionResponse.questionList.map { it.toDatabaseDto() }
+                        .toTypedArray())
+            }
             ResultState.Success(questionResponse.questionList.map { it.toDomainModel() })
         })
 
     }
 
-    override suspend fun fetchCategory() : ResultState<List<CategoryEntity>> =
+    override suspend fun fetchCategory(): ResultState<List<CategoryEntity>> =
         quizApiService.fetchCategory().toResultState(onSuccess = { categoryResponse ->
             ResultState.Success(categoryResponse.categories.map { it.toDomainModel() })
         })
 
-    override suspend fun fetchCategoryInfo(categoryId: String) : ResultState<CategoryInfo> =
+    override suspend fun fetchCategoryInfo(categoryId: String): ResultState<CategoryInfo> =
         quizApiService.fetchQuestionsCount(categoryId).toResultState(onSuccess = {
             ResultState.Success(it.categoryCountInfo.toDomainModel())
         })

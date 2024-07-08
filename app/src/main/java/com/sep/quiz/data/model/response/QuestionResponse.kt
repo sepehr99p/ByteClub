@@ -1,5 +1,6 @@
 package com.sep.quiz.data.model.response
 
+import com.sep.quiz.data.local.entity.QuestionDto
 import com.sep.quiz.domain.entiry.QuestionEntity
 import com.sep.quiz.utils.callAdapter.BaseNetworkResponse
 import kotlinx.serialization.SerialName
@@ -24,4 +25,17 @@ data class QuestionResponseDto(
         correctAnswer = this.correctAnswer,
         incorrectAnswers = this.incorrectAnswers
     )
+
+    fun toDatabaseDto(): QuestionDto {
+
+        return QuestionDto(
+            category = category,
+            questionDescription = questionDescription,
+            correctAnswer = correctAnswer,
+            firstIncorrectAnswers = incorrectAnswers[0],
+            secondIncorrectAnswers = if (incorrectAnswers.size >= 2) incorrectAnswers[1] else null,
+            thirdIncorrectAnswers = if (incorrectAnswers.size >= 3) incorrectAnswers[2] else null,
+            fourthIncorrectAnswers = if (incorrectAnswers.size >= 4) incorrectAnswers[3] else null
+        )
+    }
 }

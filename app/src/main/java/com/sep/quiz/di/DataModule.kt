@@ -1,5 +1,6 @@
 package com.sep.quiz.di
 
+import com.sep.quiz.data.local.QuestionDatabase
 import com.sep.quiz.data.remote.QuizApiService
 import com.sep.quiz.data.repository.QuizRepositoryImpl
 import com.sep.quiz.domain.repository.QuizRepository
@@ -19,8 +20,10 @@ object DataModule {
     @Singleton
     @Provides
     fun provideQuizRepository(
-        quizApiService: QuizApiService
-    ): QuizRepository = QuizRepositoryImpl(quizApiService = quizApiService)
+        quizApiService: QuizApiService,
+        questionDatabase: QuestionDatabase
+    ): QuizRepository =
+        QuizRepositoryImpl(quizApiService = quizApiService, questionDatabase = questionDatabase)
 
     @Provides
     fun provideCategoryInfoUseCase(
