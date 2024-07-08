@@ -1,8 +1,9 @@
-package com.sep.quiz.data.local
+package com.sep.quiz.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.sep.quiz.data.local.entity.QuestionDto
 
@@ -10,12 +11,12 @@ import com.sep.quiz.data.local.entity.QuestionDto
 interface QuestionDao {
 
     @Query("SELECT * FROM questions")
-    fun fetchAll() : List<QuestionDto>
+    fun fetchAll(): List<QuestionDto>
 
     @Query("SELECT * FROM questions WHERE category IS (:cat)")
     fun loadAllByCategory(cat: String): List<QuestionDto>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg questions: QuestionDto)
 
     @Delete
