@@ -70,6 +70,11 @@ class QuizRepositoryImpl @Inject constructor(
 
     override suspend fun fetchCategory(): ResultState<List<CategoryEntity>> =
         quizApiService.fetchCategory().toResultState(onSuccess = { categoryResponse ->
+            withContext(Dispatchers.IO) {
+                questionDatabase.categoryDao()
+                    .insertAll(*categoryResponse.categories.map { it.toDatabaseDto() }
+                        .toTypedArray())
+            }
             ResultState.Success(categoryResponse.categories.map { it.toDomainModel() })
         })
 
