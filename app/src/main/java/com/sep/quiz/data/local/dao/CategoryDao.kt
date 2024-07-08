@@ -14,7 +14,7 @@ interface CategoryDao {
     fun fetchAll() : List<CategoryDto>
 
     @Query("SELECT * FROM category WHERE id IS (:id)")
-    fun loadAllById(id: Int): List<CategoryDto>
+    fun loadById(id: Int): CategoryDto
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg categories: CategoryDto)

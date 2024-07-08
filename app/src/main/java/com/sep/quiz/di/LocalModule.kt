@@ -16,9 +16,9 @@ object LocalModule {
     @Provides
     fun provideDatabase(
         @ApplicationContext applicationContext: Context
-    ) : QuestionDatabase = Room.databaseBuilder(
+    ): QuestionDatabase = Room.databaseBuilder(
         applicationContext,
         QuestionDatabase::class.java, "quiz-database"
-    ).build()
+    ).allowMainThreadQueries().build()
 
 }

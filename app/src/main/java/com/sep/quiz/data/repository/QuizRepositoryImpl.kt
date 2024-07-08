@@ -59,7 +59,11 @@ class QuizRepositoryImpl @Inject constructor(
             })
         } else {
             val cachedData =
-                questionDatabase.userDao().loadAllByCategory(categoryId).map { it.toDomainModel() }
+                questionDatabase.userDao()
+                    .loadAllByCategory(
+                        questionDatabase.categoryDao().loadById(categoryId.toInt()).name
+                    )
+                    .map { it.toDomainModel() }
             return if (cachedData.isEmpty()) {
                 ResultState.Failure("No cached question available")
             } else {
