@@ -9,13 +9,7 @@ class ScoreDataSource @Inject constructor(
     private val dataStore: DataStore<Score>
 ) {
 
-    suspend fun getScore() : Flow<Score> {
-        try {
-            return dataStore.data
-        } catch (e : Exception) {
-            throw e
-        }
-    }
+    fun getScore(): Flow<Score> = dataStore.data
 
     suspend fun increaseScore(newScore: Int) {
         try {

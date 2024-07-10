@@ -3,6 +3,9 @@ package com.sep.quiz.di
 import android.content.Context
 import androidx.room.Room
 import com.sep.quiz.data.local.database.QuestionDatabase
+import com.sep.quiz.data.local.datastore.ScoreDataSource
+import com.sep.quiz.data.repository.ScoreRepositoryImpl
+import com.sep.quiz.domain.repository.ScoreRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,5 +23,10 @@ object LocalModule {
         applicationContext,
         QuestionDatabase::class.java, "quiz-database"
     ).allowMainThreadQueries().build()
+
+    @Provides
+    fun provideScoreRepository(
+        scoreDataSource: ScoreDataSource
+    ): ScoreRepository = ScoreRepositoryImpl(scoreDataSource)
 
 }
