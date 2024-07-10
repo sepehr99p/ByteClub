@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.baselineprofile)
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    alias(libs.plugins.protobuf)
 //    id("com.google.devtools.ksp")
 }
 
@@ -92,6 +93,11 @@ dependencies {
         implementation(logging.interceptor)
         implementation(kotlinx.serialization.json)
 
+        implementation(libs.androidx.dataStore.core)
+        api(libs.google.protobuf)
+        api(libs.protobuf.kotlin.lite)
+        implementation(libs.androidx.dataStore.prefreneces)
+
         implementation("com.google.dagger:hilt-android:2.51.1")
         kapt("com.google.dagger:hilt-compiler:2.51.1")
 
@@ -148,6 +154,25 @@ dependencies {
 
         // optional - Paging 3 Integration
         implementation("androidx.room:room-paging:$room_version")
+
     }
 
+}
+
+protobuf {
+    protoc {
+        artifact = libs.protobuf.protoc.get().toString()
+    }
+    generateProtoTasks {
+        all().forEach { task ->
+            task.builtins {
+                register("java") {
+                    option("lite")
+                }
+                register("kotlin") {
+                    option("lite")
+                }
+            }
+        }
+    }
 }

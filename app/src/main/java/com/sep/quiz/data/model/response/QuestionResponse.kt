@@ -1,6 +1,6 @@
 package com.sep.quiz.data.model.response
 
-import com.sep.quiz.data.local.entity.QuestionDto
+import com.sep.quiz.data.local.database.entity.QuestionDto
 import com.sep.quiz.domain.entiry.QuestionEntity
 import com.sep.quiz.utils.callAdapter.BaseNetworkResponse
 import kotlinx.serialization.SerialName

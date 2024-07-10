@@ -1,6 +1,6 @@
 package com.sep.quiz.di
 
-import com.sep.quiz.data.local.QuestionDatabase
+import com.sep.quiz.data.local.database.QuestionDatabase
 import com.sep.quiz.data.remote.QuizApiService
 import com.sep.quiz.data.repository.QuizRepositoryImpl
 import com.sep.quiz.domain.repository.QuizRepository

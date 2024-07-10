@@ -1,11 +1,11 @@
-package com.sep.quiz.data.local.dao
+package com.sep.quiz.data.local.database.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.sep.quiz.data.local.entity.QuestionDto
+import com.sep.quiz.data.local.database.entity.QuestionDto
 
 @Dao
 interface QuestionDao {

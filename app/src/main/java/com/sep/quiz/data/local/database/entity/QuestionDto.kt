@@ -1,4 +1,4 @@
-package com.sep.quiz.data.local.entity
+package com.sep.quiz.data.local.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

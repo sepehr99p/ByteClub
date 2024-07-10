@@ -2,7 +2,7 @@ package com.sep.quiz.di
 
 import android.content.Context
 import androidx.room.Room
-import com.sep.quiz.data.local.QuestionDatabase
+import com.sep.quiz.data.local.database.QuestionDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
