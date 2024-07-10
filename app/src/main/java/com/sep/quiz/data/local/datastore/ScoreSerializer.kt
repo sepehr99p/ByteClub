@@ -27,8 +27,8 @@ object ScoreSerializer : Serializer<Score> {
     }
 
 
-    val Context.settingsDataStore: DataStore<Score> by dataStore(
-        fileName = "settings.pb",
+    val Context.scoreDataStoreFile: DataStore<Score> by dataStore(
+        fileName = "score.pb",
         serializer = ScoreSerializer
     )
 

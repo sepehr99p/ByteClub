@@ -24,6 +24,7 @@ fun HomeScreen(
     val categoryState = viewModel.categories.collectAsState()
     val showCategory = remember { mutableStateOf(false) }
     val showSetting = remember { mutableStateOf(false) }
+    val score = viewModel.score.collectAsState()
 
 
     Column(modifier = modifier.fillMaxSize()) {
