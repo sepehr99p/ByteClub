@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -26,6 +27,7 @@ import com.sep.quiz.ui.designSystem.theme.dimen.padding_4
 import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
 import com.sep.quiz.utils.NetworkConnection
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -45,22 +47,22 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     topBar = {
-                        if (connection.value.not()) {
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(top = padding_8)
-                                    .background(color = MaterialTheme.colorScheme.errorContainer)
-                            ) {
-                                Text(
-                                    modifier = Modifier
-                                        .align(Alignment.Center)
-                                        .padding(top = padding_16),
-                                    text = stringResource(id = R.string.local_mode),
-                                    color = MaterialTheme.colorScheme.error
-                                )
-                            }
-                        }
+//                        if (connection.value.not()) {
+//                            Box(
+//                                modifier = Modifier
+//                                    .fillMaxWidth()
+//                                    .padding(top = padding_8)
+//                                    .background(color = MaterialTheme.colorScheme.errorContainer)
+//                            ) {
+//                                Text(
+//                                    modifier = Modifier
+//                                        .align(Alignment.Center)
+//                                        .padding(top = padding_16),
+//                                    text = stringResource(id = R.string.local_mode),
+//                                    color = MaterialTheme.colorScheme.error
+//                                )
+//                            }
+//                        }
                     },
                     content = { innerPadding ->
                         NavHost(

@@ -42,13 +42,22 @@ internal class NetworkResponseCall<T : BaseNetworkResponse>(
                             Response.success(NetworkResponse.ApiError(body?.message.orEmpty())))
                     }
                 } else {
-                    val errorBody = convertToErrorBody(error)
-                    callback.onResponse(
-                        this@NetworkResponseCall,
-                        Response.success(
-                            NetworkResponse.ApiError(errorBody ?: "Error")
+                    if (code == 504) {
+                        callback.onResponse(
+                            this@NetworkResponseCall,
+                            Response.success(
+                                NetworkResponse.ApiError("Check your internet connection")
+                            )
                         )
-                    )
+                    } else {
+                        val errorBody = convertToErrorBody(error)
+                        callback.onResponse(
+                            this@NetworkResponseCall,
+                            Response.success(
+                                NetworkResponse.ApiError(errorBody ?: "Error")
+                            )
+                        )
+                    }
                 }
             }
 
