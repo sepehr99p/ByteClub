@@ -25,7 +25,7 @@ class ResultViewModel @Inject constructor(
     val score = _score.asStateFlow()
 
     private val _oldScore = MutableStateFlow(0)
-    val oldScore = _score.asStateFlow()
+    val oldScore = _oldScore.asStateFlow()
 
     init {
         collectScore()

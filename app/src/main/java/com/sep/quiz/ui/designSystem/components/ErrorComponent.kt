@@ -39,8 +39,7 @@ fun ErrorComponent(
             .padding(padding_8)
             .clip(RoundedCornerShape(corner_8))
             .background(color = MaterialTheme.colorScheme.errorContainer)
-            .padding(vertical = padding_8)
-        ,
+            .padding(vertical = padding_8),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -57,7 +56,7 @@ fun ErrorComponent(
                 .fillMaxWidth()
                 .padding(padding_8)
                 .clip(RoundedCornerShape(corner_8))
-                .background(color = MaterialTheme.colorScheme.error.copy(alpha = 0.1f))
+                .background(color = MaterialTheme.colorScheme.onErrorContainer.copy(alpha = 0.1f))
                 .padding(vertical = padding_8)
                 .clickable(
                     interactionSource = interactionSource,
@@ -67,13 +66,17 @@ fun ErrorComponent(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                modifier = Modifier,
+                modifier = Modifier.padding(horizontal = padding_8),
                 text = stringResource(id = R.string.retry),
                 style = SemiBold_16,
                 color = MaterialTheme.colorScheme.onErrorContainer,
                 textAlign = TextAlign.Center
             )
-            Icon(imageVector = Icons.Default.Refresh, contentDescription = "retry error")
+            Icon(
+                imageVector = Icons.Default.Refresh,
+                contentDescription = "retry error",
+                tint = MaterialTheme.colorScheme.onErrorContainer
+            )
         }
     }
 }
