@@ -2,7 +2,8 @@ package com.sep.quiz.ui.screen.result
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,24 +30,28 @@ fun ResultScreen(
 ) {
     val score = viewModel.score.collectAsState()
     val oldScore = viewModel.oldScore.collectAsState()
-    Box(modifier = modifier
-        .fillMaxSize()
-        .padding(vertical = padding_16)) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(vertical = padding_16),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Bottom
+    ) {
         Text(
-            modifier = Modifier.align(Alignment.TopCenter),
+            modifier = Modifier.padding(vertical = padding_16),
             text = stringResource(id = R.string.result),
             color = MaterialTheme.colorScheme.onPrimary,
             style = Bold_18
         )
         Text(
-            modifier = Modifier.align(Alignment.Center),
+            modifier = Modifier.padding(vertical = padding_16),
             text = "Score : ${oldScore.value} + ${score.value}",
             style = Bold_18,
             color = MaterialTheme.colorScheme.primary
         )
         Text(
             modifier = Modifier
-                .align(Alignment.BottomCenter)
+                .padding(vertical = padding_16)
                 .clip(RoundedCornerShape(corner_8))
                 .background(color = MaterialTheme.colorScheme.primaryContainer)
                 .padding(padding_16)

@@ -28,6 +28,7 @@ import com.sep.quiz.R
 import com.sep.quiz.ui.designSystem.theme.Bold_20
 import com.sep.quiz.ui.designSystem.theme.dimen.corner_8
 import com.sep.quiz.ui.designSystem.theme.dimen.padding_16
+import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
 
 @Composable
 internal fun MenuComponent(
@@ -51,7 +52,7 @@ internal fun MenuComponent(
 private fun MenuScoreComponent(modifier: Modifier = Modifier, score: State<Int>) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Text(
-            modifier = modifier.padding(padding_16),
+            modifier = modifier.padding(padding_8),
             text = "Score : ${score.value}",
             style = Bold_20,
             color = MaterialTheme.colorScheme.onPrimary,
