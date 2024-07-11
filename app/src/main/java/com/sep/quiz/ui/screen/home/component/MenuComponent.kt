@@ -4,10 +4,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,14 +41,26 @@ internal fun MenuComponent(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        MenuScoreComponent(score = score)
+        MenuComponentItem(title = stringResource(id = R.string.start), onClick = onStartClick)
+        MenuComponentItem(title = stringResource(id = R.string.about), onClick = onAboutClick)
+    }
+}
+
+@Composable
+private fun MenuScoreComponent(modifier: Modifier = Modifier, score: State<Int>) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
         Text(
-            modifier = Modifier.padding(padding_16),
+            modifier = modifier.padding(padding_16),
             text = "Score : ${score.value}",
             style = Bold_20,
             color = MaterialTheme.colorScheme.onPrimary,
         )
-        MenuComponentItem(title = stringResource(id = R.string.start), onClick = onStartClick)
-        MenuComponentItem(title = stringResource(id = R.string.about), onClick = onAboutClick)
+        Icon(
+            imageVector = Icons.Default.Star,
+            contentDescription = "score value",
+            tint = MaterialTheme.colorScheme.primary
+        )
     }
 }
 
@@ -76,4 +92,11 @@ private fun MenuComponentItemPreview(modifier: Modifier = Modifier) {
 private fun MenuComponentPreview() {
     val score = remember { mutableIntStateOf(30) }
     MenuComponent(onAboutClick = {}, onStartClick = {}, score = score)
+}
+
+@Preview
+@Composable
+private fun MenuScoreComponentPreview() {
+    val score = remember { mutableIntStateOf(30) }
+    MenuScoreComponent(score = score)
 }
