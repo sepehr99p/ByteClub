@@ -5,9 +5,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,7 +38,9 @@ fun ErrorComponent(
             .fillMaxWidth()
             .padding(padding_8)
             .clip(RoundedCornerShape(corner_8))
-            .background(color = MaterialTheme.colorScheme.errorContainer),
+            .background(color = MaterialTheme.colorScheme.errorContainer)
+            .padding(vertical = padding_8)
+        ,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -46,19 +52,29 @@ fun ErrorComponent(
             style = SemiBold_16,
             color = MaterialTheme.colorScheme.onErrorContainer
         )
-        Text(
+        Row(
             modifier = Modifier
-                .padding(vertical = padding_8)
                 .fillMaxWidth()
+                .padding(padding_8)
+                .clip(RoundedCornerShape(corner_8))
+                .background(color = MaterialTheme.colorScheme.error.copy(alpha = 0.1f))
+                .padding(vertical = padding_8)
                 .clickable(
                     interactionSource = interactionSource,
                     indication = null
                 ) { onRetryClick.invoke() },
-            text = stringResource(id = R.string.retry),
-            style = SemiBold_16,
-            color = MaterialTheme.colorScheme.onErrorContainer,
-            textAlign = TextAlign.Center
-        )
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                modifier = Modifier,
+                text = stringResource(id = R.string.retry),
+                style = SemiBold_16,
+                color = MaterialTheme.colorScheme.onErrorContainer,
+                textAlign = TextAlign.Center
+            )
+            Icon(imageVector = Icons.Default.Refresh, contentDescription = "retry error")
+        }
     }
 }
 
