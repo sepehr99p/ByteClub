@@ -5,9 +5,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.sep.quiz.ui.screen.questions.components.QuestionsPager
 import com.sep.quiz.ui.designSystem.components.ErrorComponent
 import com.sep.quiz.ui.designSystem.components.LoadingComponent
+import com.sep.quiz.ui.screen.questions.components.QuestionsPager
 import com.sep.quiz.ui.utils.UiState
 
 @Composable
@@ -15,9 +15,10 @@ fun QuestionsScreen(
     modifier: Modifier = Modifier,
     viewModel: QuestionViewModel = hiltViewModel(),
     navigateToHome: () -> Unit,
-    navigateToResult : (score: String) -> Unit
+    navigateToResult: (score: String) -> Unit
 ) {
     val questionState = viewModel.questions.collectAsState()
+    val difficulty = viewModel.categoryDifficulty.collectAsState()
 
     when (questionState.value) {
         is UiState.Failed -> {
@@ -38,7 +39,7 @@ fun QuestionsScreen(
                 questions = (questionState.value as UiState.Success).data,
                 navigateToHome = navigateToHome,
                 navigateToResult = {
-                    navigateToResult.invoke(it.toString())
+                    navigateToResult.invoke((it * difficulty.value.leverage).toString())
                 }
             )
         }
@@ -48,7 +49,7 @@ fun QuestionsScreen(
 @Preview
 @Composable
 private fun QuestionsScreenPreview() {
-    QuestionsScreen(navigateToHome = {}){
+    QuestionsScreen(navigateToHome = {}) {
 
     }
 }

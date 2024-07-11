@@ -25,7 +25,7 @@ class QuestionViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _categoryId = MutableStateFlow(savedStateHandle.get<String>(idArg))
-    private val _categoryDifficulty = MutableStateFlow(savedStateHandle.get<String>(difficultyArg))
+    val categoryDifficulty = MutableStateFlow(QuestionDifficulty.valueOf(savedStateHandle.get<String>(difficultyArg) ?: "EASY"))
     private val _count = MutableStateFlow(savedStateHandle.get<String>(countArg))
 
     private val _questions = MutableStateFlow<UiState<List<QuestionEntity>>>(UiState.Initialize)
@@ -41,7 +41,7 @@ class QuestionViewModel @Inject constructor(
             _questions.value = UiState.Loading
             when (val result = inquiryUseCase.invoke(
                 amount = _count.value?.toInt() ?: 10,
-                difficulty = QuestionDifficulty.valueOf(_categoryDifficulty.value ?: "EASY"),
+                difficulty = QuestionDifficulty.valueOf(categoryDifficulty.value.name),
                 categoryId = _categoryId.value.orEmpty(),
                 type = QuestionType.MULTIPLE
             )) {
