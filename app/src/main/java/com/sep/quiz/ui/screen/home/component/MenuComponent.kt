@@ -11,11 +11,16 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.sep.quiz.R
 import com.sep.quiz.ui.designSystem.theme.Bold_20
 import com.sep.quiz.ui.designSystem.theme.dimen.corner_8
 import com.sep.quiz.ui.designSystem.theme.dimen.padding_16
@@ -23,6 +28,7 @@ import com.sep.quiz.ui.designSystem.theme.dimen.padding_16
 @Composable
 internal fun MenuComponent(
     modifier: Modifier = Modifier,
+    score: State<Int>,
     onStartClick: () -> Unit,
     onAboutClick: () -> Unit
 ) {
@@ -31,8 +37,14 @@ internal fun MenuComponent(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        MenuComponentItem(title = "Start", onClick = onStartClick)
-        MenuComponentItem(title = "About", onClick = onAboutClick)
+        Text(
+            modifier = Modifier.padding(padding_16),
+            text = "Score : ${score.value}",
+            style = Bold_20,
+            color = MaterialTheme.colorScheme.onPrimary,
+        )
+        MenuComponentItem(title = stringResource(id = R.string.start), onClick = onStartClick)
+        MenuComponentItem(title = stringResource(id = R.string.about), onClick = onAboutClick)
     }
 }
 
@@ -62,5 +74,6 @@ private fun MenuComponentItemPreview(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun MenuComponentPreview() {
-    MenuComponent(onAboutClick = {}, onStartClick = {})
+    val score = remember { mutableIntStateOf(30) }
+    MenuComponent(onAboutClick = {}, onStartClick = {}, score = score)
 }

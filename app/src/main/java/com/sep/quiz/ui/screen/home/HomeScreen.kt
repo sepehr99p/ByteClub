@@ -51,8 +51,10 @@ fun HomeScreen(
             }
         } else {
             MenuComponent(
+                score = score,
                 onStartClick = { showCategory.value = true },
-                onAboutClick = { showSetting.value = true })
+                onAboutClick = { showSetting.value = true }
+            )
         }
         if (showSetting.value) {
             AboutBottomSheet {

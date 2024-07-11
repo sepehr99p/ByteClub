@@ -84,7 +84,7 @@ private fun QuestionItemComponent(
                     MaterialTheme.colorScheme.tertiaryContainer
                 } else {
                     if (isCorrect) {
-                        MaterialTheme.colorScheme.primaryContainer
+                        MaterialTheme.colorScheme.primary
                     } else {
                         if (userChoice.value == text) {
                             shakeController.shake(ShakeConfig(10, translateX = 5f))
