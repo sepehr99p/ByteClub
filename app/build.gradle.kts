@@ -5,8 +5,8 @@ plugins {
     id("kotlinx-serialization")
     id("dagger.hilt.android.plugin")
     alias(libs.plugins.baselineprofile)
-    id("com.google.gms.google-services")
-    id("com.google.firebase.crashlytics")
+    alias(libs.plugins.google.service)
+    alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.protobuf)
 //    id("com.google.devtools.ksp")
 }

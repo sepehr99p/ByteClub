@@ -29,6 +29,11 @@ navigationCompose = "2.7.7"
 firebase = "33.1.1"
 room = "2.6.1"
 
+google-service = "4.4.2"
+firebase-crashlytics = "3.0.2"
+serialization = "1.6.10"
+kapt = "1.8.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -84,4 +89,10 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 android-test = { id = "com.android.test", version.ref = "agp" }
 baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }
 protobuf = { id = "com.google.protobuf", version.ref = "protobuf" }
-
+kapt = { id = "kotlin-kapt", version.ref = "kapt" }
+kotlinx-serialization = { id = "kotlinx-serialization", version.ref = "serialization" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization" }
+dagger-hilt = { id = "dagger.hilt.android.plugin", version.ref = "daggerHilt" }
+dagger-hilt-google = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
+google-service = { id = "com.google.gms.google-services", version.ref = "google-service" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics" }
