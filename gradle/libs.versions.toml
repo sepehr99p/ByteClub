@@ -23,6 +23,12 @@ androidxDataStore = "1.1.1"
 googleProtobuf = "3.24.4"
 protobuf = "0.9.4"
 
+daggerHilt = "2.51.1"
+hiltNavigation = "1.2.0"
+navigationCompose = "2.7.7"
+firebase = "33.1.1"
+room = "2.6.1"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -53,6 +59,24 @@ androidx-dataStore-core = { group = "androidx.datastore", name = "datastore", ve
 google-protobuf = { group = "com.google.protobuf", name = "protobuf-javalite", version.ref = "googleProtobuf" }
 protobuf-kotlin-lite = { group = "com.google.protobuf", name = "protobuf-kotlin-lite", version.ref = "googleProtobuf" }
 protobuf-protoc = { group = "com.google.protobuf", name = "protoc", version.ref = "googleProtobuf" }
+
+dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
+dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "daggerHilt" }
+androidx-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+
+firebase = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase" }
+firebase-analytic = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
+
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx-room-guava = { group = "androidx.room", name = "room-guava", version.ref = "room" }
+androidx-room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room" }
+androidx-room-paging = { group = "androidx.room", name = "room-paging", version.ref = "room" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
