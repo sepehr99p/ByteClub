@@ -23,7 +23,7 @@ fun HomeScreen(
 ) {
     val categoryState = viewModel.categories.collectAsState()
     val showCategory = remember { mutableStateOf(false) }
-    val showSetting = remember { mutableStateOf(false) }
+    val showAbout = remember { mutableStateOf(false) }
     val score = viewModel.score.collectAsState()
 
 
@@ -53,12 +53,12 @@ fun HomeScreen(
             MenuComponent(
                 score = score,
                 onStartClick = { showCategory.value = true },
-                onAboutClick = { showSetting.value = true }
+                onAboutClick = { showAbout.value = true }
             )
         }
-        if (showSetting.value) {
+        if (showAbout.value) {
             AboutBottomSheet {
-                showSetting.value = false
+                showAbout.value = false
             }
         }
     }

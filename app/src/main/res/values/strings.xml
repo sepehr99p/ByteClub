@@ -15,4 +15,6 @@
     <string name="api_details">used https://opentdb.com as question database</string>
     <string name="project_detail">this project is open source at https://github.com/sepehr99p/Quiz</string>
     <string name="about">About</string>
+    <string name="shop">Shop</string>
+    <string name="settings">Settings</string>
 </resources>
