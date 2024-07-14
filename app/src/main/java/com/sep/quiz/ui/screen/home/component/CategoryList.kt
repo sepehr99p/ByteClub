@@ -1,7 +1,6 @@
 package com.sep.quiz.ui.screen.home.component
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sep.quiz.R
 import com.sep.quiz.domain.entiry.CategoryEntity
+import com.sep.quiz.ui.designSystem.ex.bounceClick
 import com.sep.quiz.ui.designSystem.theme.Bold_14
 import com.sep.quiz.ui.designSystem.theme.Bold_20
 import com.sep.quiz.ui.designSystem.theme.dimen.corner_8
@@ -64,7 +64,7 @@ private fun CategoryListItem(
             )
             .clip(RoundedCornerShape(corner_8))
             .background(color = MaterialTheme.colorScheme.primaryContainer)
-            .clickable {
+            .bounceClick {
                 onCategorySelected.invoke(categoryEntity.id)
             }
     ) {

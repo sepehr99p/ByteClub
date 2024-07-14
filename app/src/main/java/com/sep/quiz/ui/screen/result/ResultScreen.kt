@@ -18,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.sep.quiz.R
+import com.sep.quiz.ui.designSystem.ex.bounceClick
 import com.sep.quiz.ui.designSystem.theme.Bold_18
 import com.sep.quiz.ui.designSystem.theme.dimen.corner_8
 import com.sep.quiz.ui.designSystem.theme.dimen.padding_16
@@ -55,7 +56,7 @@ fun ResultScreen(
                 .clip(RoundedCornerShape(corner_8))
                 .background(color = MaterialTheme.colorScheme.primaryContainer)
                 .padding(padding_16)
-                .clickable { navigateToHome.invoke() },
+                .bounceClick { navigateToHome.invoke() },
             text = stringResource(id = R.string.go_to_home),
             style = Bold_18,
             color = MaterialTheme.colorScheme.primary

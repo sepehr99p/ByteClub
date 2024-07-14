@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import com.sep.quiz.domain.entiry.QuestionEntity
 import com.sep.quiz.ui.designSystem.ex.ShakeConfig
+import com.sep.quiz.ui.designSystem.ex.bounceClick
 import com.sep.quiz.ui.designSystem.ex.rememberShakeController
 import com.sep.quiz.ui.designSystem.ex.shake
 import com.sep.quiz.ui.designSystem.theme.Bold_18
@@ -74,7 +75,7 @@ private fun QuestionItemComponent(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .clickable {
+            .bounceClick {
                 if (userChoice.value.isEmpty()) {
                     onClick.invoke()
                 }

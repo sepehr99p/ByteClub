@@ -28,6 +28,7 @@ import com.sep.quiz.R
 import com.sep.quiz.domain.entiry.CategoryInfo
 import com.sep.quiz.domain.entiry.QuestionDifficulty
 import com.sep.quiz.ui.designSystem.components.button.ButtonComponent
+import com.sep.quiz.ui.designSystem.ex.bounceClick
 import com.sep.quiz.ui.designSystem.theme.Regular_14
 import com.sep.quiz.ui.designSystem.theme.dimen.corner_8
 import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
@@ -146,7 +147,7 @@ private fun DifficultyComponent(
                     MaterialTheme.colorScheme.secondaryContainer
                 }
             )
-            .clickable {
+            .bounceClick {
                 selectedDifficultyCount.value = count
                 selectedDifficultyType.value = type
             }

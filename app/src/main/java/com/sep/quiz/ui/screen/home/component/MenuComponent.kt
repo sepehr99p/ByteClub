@@ -1,7 +1,6 @@
 package com.sep.quiz.ui.screen.home.component
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,10 +24,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.sep.quiz.R
+import com.sep.quiz.ui.designSystem.ex.bounceClick
 import com.sep.quiz.ui.designSystem.theme.Bold_20
 import com.sep.quiz.ui.designSystem.theme.dimen.corner_8
 import com.sep.quiz.ui.designSystem.theme.dimen.padding_16
-import com.sep.quiz.ui.designSystem.theme.dimen.padding_32
 import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
 
 @Composable
@@ -76,7 +75,7 @@ private fun MenuComponentItem(modifier: Modifier = Modifier, title: String, onCl
             .padding(vertical = padding_8)
             .clip(RoundedCornerShape(corner_8))
             .background(color = MaterialTheme.colorScheme.primaryContainer)
-            .clickable { onClick.invoke() }
+            .bounceClick { onClick.invoke() }
             .padding(padding_16),
         text = title,
         style = Bold_20,
