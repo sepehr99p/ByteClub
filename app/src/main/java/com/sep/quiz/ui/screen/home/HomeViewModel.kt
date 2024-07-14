@@ -23,7 +23,7 @@ class HomeViewModel @Inject constructor(
     private val _categories = MutableStateFlow<UiState<List<CategoryEntity>>>(UiState.Initialize)
     val categories = _categories.asStateFlow()
 
-    private val _score = MutableStateFlow<Int>(0)
+    private val _score = MutableStateFlow(0)
     val score = _score.asStateFlow()
 
     init {

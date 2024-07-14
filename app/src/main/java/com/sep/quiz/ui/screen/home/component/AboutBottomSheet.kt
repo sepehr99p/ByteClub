@@ -30,8 +30,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.core.os.BuildCompat
-import com.google.firebase.BuildConfig
 import com.sep.quiz.R
 import com.sep.quiz.ui.designSystem.theme.Bold_18
 import com.sep.quiz.ui.designSystem.theme.Regular_10
@@ -46,7 +44,7 @@ import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
 fun AboutBottomSheet(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
     val bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     ModalBottomSheet(
-        modifier = Modifier.padding(padding_8),
+        modifier = modifier.padding(padding_8),
         onDismissRequest = onDismiss,
         sheetState = bottomSheetState,
         containerColor = Color.Transparent,
