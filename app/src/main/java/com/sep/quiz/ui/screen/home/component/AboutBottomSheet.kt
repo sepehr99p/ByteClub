@@ -91,6 +91,12 @@ fun AboutBottomSheet(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
                     style = Regular_16
                 )
                 Text(
+                    modifier = Modifier.padding(top = padding_8),
+                    text = stringResource(id = R.string.api_dictionary_details),
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    style = Regular_16
+                )
+                Text(
                     modifier = Modifier.padding(vertical = padding_8),
                     text = stringResource(id = R.string.project_detail),
                     color = MaterialTheme.colorScheme.onPrimary,
