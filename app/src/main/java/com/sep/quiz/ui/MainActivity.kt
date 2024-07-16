@@ -4,30 +4,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.sep.quiz.R
 import com.sep.quiz.ui.designSystem.theme.QuizTheme
-import com.sep.quiz.ui.designSystem.theme.dimen.padding_16
-import com.sep.quiz.ui.designSystem.theme.dimen.padding_4
-import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
 import com.sep.quiz.utils.NetworkConnection
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -73,7 +60,11 @@ class MainActivity : ComponentActivity() {
                             homeScreen(
                                 navigateToDifficulty = {
                                     navController.navigateToDifficulty(categoryId = it)
-                                })
+                                },
+                                navigateToDictionary = {
+                                    navController.navigateToDictionary()
+                                }
+                            )
                             difficultyScreen(
                                 navigateToQuestions = { id, difficulty, count ->
                                     navController.navigateToQuestions(
@@ -88,6 +79,7 @@ class MainActivity : ComponentActivity() {
                                 navigateToResult = navController::navigateToResult
                             )
                             resultScreen(navigateToHome = navController::navigateToHome)
+                            dictionaryScreen()
                         }
                     })
             }

@@ -7,6 +7,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.sep.quiz.ui.designSystem.components.ErrorComponent
 import com.sep.quiz.ui.screen.home.component.AboutBottomSheet
@@ -19,7 +20,8 @@ import com.sep.quiz.ui.utils.UiState
 fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
-    onCategorySelected: (id: String) -> Unit
+    onCategorySelected: (id: String) -> Unit,
+    navigateToDictionary: () -> Unit
 ) {
     val categoryState = viewModel.categories.collectAsState()
     val showCategory = remember { mutableStateOf(false) }
@@ -53,7 +55,10 @@ fun HomeScreen(
             MenuComponent(
                 score = score,
                 onStartClick = { showCategory.value = true },
-                onAboutClick = { showAbout.value = true }
+                onAboutClick = { showAbout.value = true },
+                navigateToDictionary = {
+                    navigateToDictionary.invoke()
+                }
             )
         }
         if (showAbout.value) {
@@ -63,4 +68,13 @@ fun HomeScreen(
         }
     }
 
+}
+
+@Preview
+@Composable
+private fun HomeScreenPreview() {
+    HomeScreen(
+        onCategorySelected = {},
+        navigateToDictionary = {}
+    )
 }

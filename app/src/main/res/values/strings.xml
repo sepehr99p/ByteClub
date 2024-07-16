@@ -16,5 +16,6 @@
     <string name="project_detail">this project is open source at https://github.com/sepehr99p/Quiz</string>
     <string name="about">About</string>
     <string name="shop">Shop</string>
+    <string name="dictionary">Dictionary</string>
     <string name="settings">Settings</string>
 </resources>

@@ -6,6 +6,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.sep.quiz.ui.screen.dictionary.DictionaryScreen
 import com.sep.quiz.ui.screen.difficulty.DifficultyScreen
 import com.sep.quiz.ui.screen.home.HomeScreen
 import com.sep.quiz.ui.screen.questions.QuestionsScreen
@@ -20,11 +21,11 @@ const val homeRoute = "home_route"
 const val difficultyRoute = "difficulty_route/{$idArg}"
 const val questionsRoute = "questions_route/{$idArg}/{$difficultyArg}/{$countArg}"
 const val resultRoute = "result/{$scoreArg}"
-
+const val dictionaryRoute = "dictionary"
 
 
 fun NavController.navigateToResult(score: String) {
-    this.popBackStack(homeRoute,inclusive = false)
+    this.popBackStack(homeRoute, inclusive = false)
     this.navigate(resultRoute.replace("{$scoreArg}", score))
 }
 
@@ -50,10 +51,14 @@ fun NavController.navigateToHome() {
 }
 
 fun NavGraphBuilder.homeScreen(
-    navigateToDifficulty: (id: String) -> Unit
+    navigateToDifficulty: (id: String) -> Unit,
+    navigateToDictionary: () -> Unit
 ) {
     composable(route = homeRoute) {
-        HomeScreen(onCategorySelected = navigateToDifficulty)
+        HomeScreen(
+            onCategorySelected = navigateToDifficulty,
+            navigateToDictionary = navigateToDictionary
+        )
     }
 }
 
@@ -93,4 +98,14 @@ fun NavGraphBuilder.resultScreen(
     ) {
         ResultScreen(navigateToHome = navigateToHome)
     }
+}
+
+fun NavGraphBuilder.dictionaryScreen() {
+    composable(route = dictionaryRoute) {
+        DictionaryScreen()
+    }
+}
+
+fun NavController.navigateToDictionary(navOptions: NavOptions? = null) {
+    this.navigate(dictionaryRoute)
 }

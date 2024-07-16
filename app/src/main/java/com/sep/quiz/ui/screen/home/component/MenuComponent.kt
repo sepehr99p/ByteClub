@@ -35,10 +35,13 @@ internal fun MenuComponent(
     modifier: Modifier = Modifier,
     score: State<Int>,
     onStartClick: () -> Unit,
-    onAboutClick: () -> Unit
+    onAboutClick: () -> Unit,
+    navigateToDictionary: () -> Unit
 ) {
     Column(
-        modifier = modifier.fillMaxSize().padding(padding_16),
+        modifier = modifier
+            .fillMaxSize()
+            .padding(padding_16),
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -46,13 +49,20 @@ internal fun MenuComponent(
         MenuComponentItem(title = stringResource(id = R.string.start), onClick = onStartClick)
         MenuComponentItem(title = stringResource(id = R.string.settings), onClick = {})
         MenuComponentItem(title = stringResource(id = R.string.shop), onClick = {})
+        MenuComponentItem(
+            title = stringResource(id = R.string.dictionary),
+            onClick = navigateToDictionary
+        )
         MenuComponentItem(title = stringResource(id = R.string.about), onClick = onAboutClick)
     }
 }
 
 @Composable
 private fun MenuScoreComponent(modifier: Modifier = Modifier, score: State<Int>) {
-    Row(modifier = Modifier.padding(bottom = padding_8),verticalAlignment = Alignment.CenterVertically) {
+    Row(
+        modifier = Modifier.padding(bottom = padding_8),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Text(
             modifier = modifier.padding(padding_8),
             text = "Score : ${score.value}",
@@ -75,7 +85,9 @@ private fun MenuComponentItem(modifier: Modifier = Modifier, title: String, onCl
             .padding(vertical = padding_8)
             .clip(RoundedCornerShape(corner_8))
             .background(color = MaterialTheme.colorScheme.primaryContainer)
-            .bounceClick { onClick.invoke() }
+            .bounceClick {
+                onClick.invoke()
+            }
             .padding(padding_16),
         text = title,
         style = Bold_20,
@@ -94,7 +106,7 @@ private fun MenuComponentItemPreview(modifier: Modifier = Modifier) {
 @Composable
 private fun MenuComponentPreview() {
     val score = remember { mutableIntStateOf(30) }
-    MenuComponent(onAboutClick = {}, onStartClick = {}, score = score)
+    MenuComponent(onAboutClick = {}, onStartClick = {}, score = score, navigateToDictionary = {})
 }
 
 @Preview
