@@ -1,4 +1,4 @@
-package com.sep.quiz.data.model.response
+package com.sep.quiz.data.model.response.quiz
 
 import com.sep.quiz.domain.entiry.CategoryInfo
 import com.sep.quiz.utils.callAdapter.BaseNetworkResponse

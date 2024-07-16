@@ -2,11 +2,13 @@ package com.sep.quiz.di
 
 import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.sep.quiz.data.remote.DictionaryApiService
 import com.sep.quiz.data.remote.QuizApiService
+import com.sep.quiz.domain.BASE_URL
+import com.sep.quiz.domain.DICTIONARY_BASE_URL
 import com.sep.quiz.utils.NetworkConnection
 import com.sep.quiz.utils.callAdapter.NetworkResponseAdapterFactory
 import com.sep.quiz.utils.interceptor.ForceCacheInterceptor
-import com.sep.quiz.domain.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,6 +23,7 @@ import okhttp3.TlsVersion
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 
@@ -31,6 +34,14 @@ object NetworkModule {
     private const val READ_TIMEOUT = 30L
     private const val WRITE_TIMEOUT = 30L
     private const val CONNECTION_TIMEOUT = 10L
+
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class QuizRetrofit
+
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class DictionaryRetrofit
 
 
     @Provides
@@ -69,7 +80,7 @@ object NetworkModule {
     fun provideOkHttpClient(
         forceCacheInterceptor: Interceptor,
         connectionSpecList: List<ConnectionSpec>,
-        interceptor : HttpLoggingInterceptor
+        interceptor: HttpLoggingInterceptor
     ): OkHttpClient = OkHttpClient.Builder()
         .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
         .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
@@ -80,6 +91,7 @@ object NetworkModule {
         .build()
 
 
+    @QuizRetrofit
     @Provides
     @Singleton
     fun provideRetrofit(
@@ -93,9 +105,28 @@ object NetworkModule {
         .build()
 
     @Provides
-    fun provideApiService(retrofit: Retrofit): QuizApiService = retrofit.create(
+    fun provideQuizApiService(@QuizRetrofit retrofit: Retrofit): QuizApiService = retrofit.create(
         QuizApiService::class.java
     )
+
+    @DictionaryRetrofit
+    @Provides
+    @Singleton
+    fun provideDictionaryRetrofit(
+        okHttpClient: OkHttpClient,
+        json: Json,
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl(DICTIONARY_BASE_URL)
+        .client(okHttpClient)
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        .addCallAdapterFactory(NetworkResponseAdapterFactory())
+        .build()
+
+    @Provides
+    fun provideDictionaryApiService(@DictionaryRetrofit retrofit: Retrofit): DictionaryApiService =
+        retrofit.create(
+            DictionaryApiService::class.java
+        )
 
 
 }

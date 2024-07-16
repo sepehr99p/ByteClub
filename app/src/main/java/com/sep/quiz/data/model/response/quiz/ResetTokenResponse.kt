@@ -1,10 +1,10 @@
-package com.sep.quiz.data.model.response
+package com.sep.quiz.data.model.response.quiz
 
 import com.sep.quiz.utils.callAdapter.BaseNetworkResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class RetrieveTokenResponse(
-    @SerialName("token") val token : String
+data class ResetTokenResponse(
+    @SerialName("token") val token: String
 ) : BaseNetworkResponse()

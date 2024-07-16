@@ -1,12 +1,16 @@
 package com.sep.quiz.di
 
 import com.sep.quiz.data.local.database.QuestionDatabase
+import com.sep.quiz.data.remote.DictionaryApiService
 import com.sep.quiz.data.remote.QuizApiService
+import com.sep.quiz.data.repository.DictionaryRepositoryImpl
 import com.sep.quiz.data.repository.QuizRepositoryImpl
+import com.sep.quiz.domain.repository.DictionaryRepository
 import com.sep.quiz.domain.repository.QuizRepository
 import com.sep.quiz.domain.usecase.CategoryInfoUseCase
 import com.sep.quiz.domain.usecase.FetchCategoriesUseCase
 import com.sep.quiz.domain.usecase.InquiryUseCase
+import com.sep.quiz.domain.usecase.dictionary.GetWordUseCase
 import com.sep.quiz.utils.NetworkConnection
 import dagger.Module
 import dagger.Provides
@@ -31,6 +35,14 @@ object DataModule {
             networkConnection = networkConnection
         )
 
+    @Singleton
+    @Provides
+    fun provideDictionaryRepository(
+        dictionaryApiService: DictionaryApiService
+    ): DictionaryRepository = DictionaryRepositoryImpl(
+        dictionaryApiService = dictionaryApiService
+    )
+
     @Provides
     fun provideCategoryInfoUseCase(
         quizRepository: QuizRepository
@@ -45,5 +57,12 @@ object DataModule {
     fun provideInquiryUseCase(
         quizRepository: QuizRepository
     ): InquiryUseCase = InquiryUseCase(quizRepository = quizRepository)
+
+    @Provides
+    fun provideWordUseCase(
+        dictionaryRepository: DictionaryRepository
+    ): GetWordUseCase = GetWordUseCase(
+        dictionaryRepository = dictionaryRepository
+    )
 
 }

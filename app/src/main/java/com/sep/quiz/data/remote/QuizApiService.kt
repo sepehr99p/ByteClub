@@ -1,12 +1,11 @@
 package com.sep.quiz.data.remote
 
-import com.sep.quiz.data.model.response.CategoryResponse
-import com.sep.quiz.data.model.response.QuestionCountResponse
-import com.sep.quiz.data.model.response.QuestionResponse
-import com.sep.quiz.data.model.response.ResetTokenResponse
-import com.sep.quiz.data.model.response.RetrieveTokenResponse
+import com.sep.quiz.data.model.response.quiz.CategoryResponse
+import com.sep.quiz.data.model.response.quiz.QuestionCountResponse
+import com.sep.quiz.data.model.response.quiz.QuestionResponse
+import com.sep.quiz.data.model.response.quiz.ResetTokenResponse
+import com.sep.quiz.data.model.response.quiz.RetrieveTokenResponse
 import com.sep.quiz.utils.callAdapter.NetworkResponse
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
