@@ -2,6 +2,7 @@ package com.sep.quiz.di
 
 import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.sep.quiz.data.remote.DadJokesApiService
 import com.sep.quiz.data.remote.DictionaryApiService
 import com.sep.quiz.data.remote.QuizApiService
 import com.sep.quiz.domain.BASE_URL
@@ -41,7 +42,7 @@ object NetworkModule {
 
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
-    annotation class DictionaryRetrofit
+    annotation class NinjasRetrofit
 
 
     @Provides
@@ -109,7 +110,7 @@ object NetworkModule {
         QuizApiService::class.java
     )
 
-    @DictionaryRetrofit
+    @NinjasRetrofit
     @Provides
     @Singleton
     fun provideDictionaryRetrofit(
@@ -123,10 +124,15 @@ object NetworkModule {
         .build()
 
     @Provides
-    fun provideDictionaryApiService(@DictionaryRetrofit retrofit: Retrofit): DictionaryApiService =
+    fun provideDictionaryApiService(@NinjasRetrofit retrofit: Retrofit): DictionaryApiService =
         retrofit.create(
             DictionaryApiService::class.java
         )
 
+    @Provides
+    fun provideDadJokeApiService(@NinjasRetrofit retrofit: Retrofit): DadJokesApiService =
+        retrofit.create(
+            DadJokesApiService::class.java
+        )
 
 }
