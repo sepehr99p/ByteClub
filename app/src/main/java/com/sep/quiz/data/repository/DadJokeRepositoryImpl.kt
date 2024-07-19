@@ -10,8 +10,13 @@ import javax.inject.Inject
 class DadJokeRepositoryImpl @Inject constructor(
     private val dadJokesApiService: DadJokesApiService
 ) : DadJokeRepository {
-    override suspend fun getJoke(): ResultState<DadJokeEntity> =
-        dadJokesApiService.getJoke().toResultState(onSuccess = {
-            ResultState.Success(it.toDomainModel())
-        })
+    override suspend fun getJoke(): ResultState<DadJokeEntity> {
+        val result = dadJokesApiService.getJoke()
+        if (result.isSuccessful) {
+            result.body()?.let {
+                return ResultState.Success(it.first().toDomainModel())
+            }
+        }
+        return ResultState.Failure(result.message())
+    }
 }

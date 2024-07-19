@@ -36,7 +36,8 @@ internal fun MenuComponent(
     score: State<Int>,
     onStartClick: () -> Unit,
     onAboutClick: () -> Unit,
-    navigateToDictionary: () -> Unit
+    navigateToDictionary: () -> Unit,
+    onDadJokeClicked: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -49,6 +50,7 @@ internal fun MenuComponent(
         MenuComponentItem(title = stringResource(id = R.string.start), onClick = onStartClick)
         MenuComponentItem(title = stringResource(id = R.string.settings), onClick = {})
         MenuComponentItem(title = stringResource(id = R.string.shop), onClick = {})
+        MenuComponentItem(title = stringResource(id = R.string.dadJoke), onClick = onDadJokeClicked)
         MenuComponentItem(
             title = stringResource(id = R.string.dictionary),
             onClick = navigateToDictionary
@@ -106,7 +108,12 @@ private fun MenuComponentItemPreview(modifier: Modifier = Modifier) {
 @Composable
 private fun MenuComponentPreview() {
     val score = remember { mutableIntStateOf(30) }
-    MenuComponent(onAboutClick = {}, onStartClick = {}, score = score, navigateToDictionary = {})
+    MenuComponent(
+        onAboutClick = {},
+        onStartClick = {},
+        score = score,
+        navigateToDictionary = {},
+        onDadJokeClicked = {})
 }
 
 @Preview

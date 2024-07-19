@@ -7,8 +7,13 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DadJokeResponse(
+    val jokes: List<DadJokeDto>
+)
+
+@Serializable
+data class DadJokeDto(
     @SerialName("joke") val joke: String
-) : BaseNetworkResponse() {
+) {
     fun toDomainModel(): DadJokeEntity = DadJokeEntity(
         joke = joke
     )
