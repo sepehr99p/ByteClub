@@ -120,6 +120,11 @@ dependencies {
         testImplementation("com.google.dagger:hilt-android-testing:2.51.1")
         kaptTest("com.google.dagger:hilt-compiler:2.51.1")
 
+        implementation("com.patrykandpatrick.vico:compose:2.0.0-alpha.19")
+        implementation("com.patrykandpatrick.vico:compose-m3:2.0.0-alpha.19")
+        implementation("com.patrykandpatrick.vico:core:2.0.0-alpha.19")
+        implementation("com.patrykandpatrick.vico:views:2.0.0-alpha.19")
+
 
         implementation(platform(firebase))
         implementation(firebase.analytic)

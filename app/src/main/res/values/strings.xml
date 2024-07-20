@@ -20,4 +20,18 @@
     <string name="dadJoke">Dad Joke :)</string>
     <string name="dictionary">Dictionary</string>
     <string name="settings">Settings</string>
+
+
+    <string name="error_ticker_list">ticker list error</string>
+    <string name="error_ticker_search">failed to fetch ticker</string>
+    <string name="error_candles">Failed to fetch candles</string>
+    <string name="search_ticker_place_holder">BTC-USDT</string>
+    <string name="high">High</string>
+    <string name="low">Low</string>
+    <string name="last">Last</string>
+    <string name="size">Size</string>
+    <string name="price">Price</string>
+    <string name="ticker">Ticker</string>
+    <string name="currency">Currency</string>
+    <string name="markets">Markets</string>
 </resources>
