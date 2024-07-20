@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.screen.difficulty.components
+package com.sep.quiz.ui.screen.trivia.difficulty.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

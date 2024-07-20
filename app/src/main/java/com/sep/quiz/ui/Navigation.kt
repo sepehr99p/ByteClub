@@ -7,10 +7,10 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.sep.quiz.ui.screen.dictionary.DictionaryScreen
-import com.sep.quiz.ui.screen.difficulty.DifficultyScreen
+import com.sep.quiz.ui.screen.trivia.difficulty.DifficultyScreen
 import com.sep.quiz.ui.screen.home.HomeScreen
-import com.sep.quiz.ui.screen.questions.QuestionsScreen
-import com.sep.quiz.ui.screen.result.ResultScreen
+import com.sep.quiz.ui.screen.trivia.questions.QuestionsScreen
+import com.sep.quiz.ui.screen.trivia.result.ResultScreen
 
 const val idArg = "id"
 const val difficultyArg = "difficulty"

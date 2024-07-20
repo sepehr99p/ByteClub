@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.screen.questions
+package com.sep.quiz.ui.screen.trivia.questions
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -7,7 +7,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.sep.quiz.ui.designSystem.components.ErrorComponent
 import com.sep.quiz.ui.designSystem.components.LoadingComponent
-import com.sep.quiz.ui.screen.questions.components.QuestionsPager
+import com.sep.quiz.ui.screen.trivia.questions.components.QuestionsPager
 import com.sep.quiz.ui.utils.UiState
 
 @Composable

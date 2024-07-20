@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.screen.questions.components
+package com.sep.quiz.ui.screen.trivia.questions.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Slider

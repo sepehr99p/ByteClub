@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.screen.difficulty
+package com.sep.quiz.ui.screen.trivia.difficulty
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

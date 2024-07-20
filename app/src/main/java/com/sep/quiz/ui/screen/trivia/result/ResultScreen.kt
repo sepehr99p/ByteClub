@@ -1,4 +1,4 @@
-package com.sep.quiz.ui.screen.result
+package com.sep.quiz.ui.screen.trivia.result
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
