@@ -4,11 +4,14 @@ import com.sep.quiz.data.local.database.QuestionDatabase
 import com.sep.quiz.data.remote.DadJokesApiService
 import com.sep.quiz.data.remote.DictionaryApiService
 import com.sep.quiz.data.remote.QuizApiService
+import com.sep.quiz.data.remote.crypto.KucoinApiService
 import com.sep.quiz.data.repository.DadJokeRepositoryImpl
 import com.sep.quiz.data.repository.DictionaryRepositoryImpl
+import com.sep.quiz.data.repository.KucoinRepositoryImpl
 import com.sep.quiz.data.repository.QuizRepositoryImpl
 import com.sep.quiz.domain.repository.DadJokeRepository
 import com.sep.quiz.domain.repository.DictionaryRepository
+import com.sep.quiz.domain.repository.KucoinRepository
 import com.sep.quiz.domain.repository.QuizRepository
 import com.sep.quiz.domain.usecase.CategoryInfoUseCase
 import com.sep.quiz.domain.usecase.FetchCategoriesUseCase
@@ -54,6 +57,12 @@ object DataModule {
     ): DadJokeRepository = DadJokeRepositoryImpl(
         dadJokesApiService = dadJokesApiService
     )
+
+    @Singleton
+    @Provides
+    fun provideKucoinRepository(
+        kucoinApiService: KucoinApiService
+    ): KucoinRepository = KucoinRepositoryImpl(kucoinApiService = kucoinApiService)
 
 
     @Provides

@@ -5,8 +5,10 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.sep.quiz.data.remote.DadJokesApiService
 import com.sep.quiz.data.remote.DictionaryApiService
 import com.sep.quiz.data.remote.QuizApiService
+import com.sep.quiz.data.remote.crypto.KucoinApiService
 import com.sep.quiz.domain.BASE_URL
 import com.sep.quiz.domain.DICTIONARY_BASE_URL
+import com.sep.quiz.domain.KUCOIN_BASE_URL
 import com.sep.quiz.utils.NetworkConnection
 import com.sep.quiz.utils.callAdapter.NetworkResponseAdapterFactory
 import com.sep.quiz.utils.interceptor.ForceCacheInterceptor
@@ -43,6 +45,10 @@ object NetworkModule {
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
     annotation class NinjasRetrofit
+
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class KucoinRetrofit
 
 
     @Provides
@@ -123,6 +129,19 @@ object NetworkModule {
         .addCallAdapterFactory(NetworkResponseAdapterFactory())
         .build()
 
+    @KucoinRetrofit
+    @Provides
+    @Singleton
+    fun provideKucoinRetrofit(
+        okHttpClient: OkHttpClient,
+        json: Json,
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl(KUCOIN_BASE_URL)
+        .client(okHttpClient)
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        .addCallAdapterFactory(NetworkResponseAdapterFactory())
+        .build()
+
     @Provides
     fun provideDictionaryApiService(@NinjasRetrofit retrofit: Retrofit): DictionaryApiService =
         retrofit.create(
@@ -133,6 +152,12 @@ object NetworkModule {
     fun provideDadJokeApiService(@NinjasRetrofit retrofit: Retrofit): DadJokesApiService =
         retrofit.create(
             DadJokesApiService::class.java
+        )
+
+    @Provides
+    fun provideKucoinApiService(@KucoinRetrofit retrofit: Retrofit): KucoinApiService =
+        retrofit.create(
+            KucoinApiService::class.java
         )
 
 }

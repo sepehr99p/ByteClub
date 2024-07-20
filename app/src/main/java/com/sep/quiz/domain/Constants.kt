@@ -2,6 +2,7 @@ package com.sep.quiz.domain
 
 const val BASE_URL = "https://opentdb.com/"
 const val DICTIONARY_BASE_URL = "https://api.api-ninjas.com"
+const val KUCOIN_BASE_URL = "https://api.kucoin.com"
 
 const val DEFAULT_ERROR = "default error message"
 const val EMPTY_BODY_ERROR = "response body is empty"
