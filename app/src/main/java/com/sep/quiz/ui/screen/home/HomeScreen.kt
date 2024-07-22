@@ -31,7 +31,8 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
     onCategorySelected: (id: String) -> Unit,
-    navigateToDictionary: () -> Unit
+    navigateToDictionary: () -> Unit,
+    navigateToCrypto: () -> Unit
 ) {
     val categoryState = viewModel.categories.collectAsState()
     val showCategory = remember { mutableStateOf(false) }
@@ -70,7 +71,8 @@ fun HomeScreen(
                 navigateToDictionary = {
                     navigateToDictionary.invoke()
                 },
-                onDadJokeClicked = viewModel::getDadJoke
+                onDadJokeClicked = viewModel::getDadJoke,
+                onCryptoClicked = navigateToCrypto
             )
         }
         if (showAbout.value) {
@@ -106,6 +108,7 @@ fun HomeScreen(
 private fun HomeScreenPreview() {
     HomeScreen(
         onCategorySelected = {},
-        navigateToDictionary = {}
+        navigateToDictionary = {},
+        navigateToCrypto = {}
     )
 }

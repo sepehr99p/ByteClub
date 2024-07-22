@@ -52,12 +52,14 @@ fun NavController.navigateToHome() {
 
 fun NavGraphBuilder.homeScreen(
     navigateToDifficulty: (id: String) -> Unit,
-    navigateToDictionary: () -> Unit
+    navigateToDictionary: () -> Unit,
+    navigateToCrypto: () -> Unit
 ) {
     composable(route = homeRoute) {
         HomeScreen(
             onCategorySelected = navigateToDifficulty,
-            navigateToDictionary = navigateToDictionary
+            navigateToDictionary = navigateToDictionary,
+            navigateToCrypto = navigateToCrypto
         )
     }
 }

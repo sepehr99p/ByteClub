@@ -13,6 +13,16 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.sep.quiz.ui.designSystem.theme.QuizTheme
+import com.sep.quiz.ui.screen.crypto.candlesScreen
+import com.sep.quiz.ui.screen.crypto.cryptoHomeScreen
+import com.sep.quiz.ui.screen.crypto.currencyScreen
+import com.sep.quiz.ui.screen.crypto.marketScreen
+import com.sep.quiz.ui.screen.crypto.navigateToCandles
+import com.sep.quiz.ui.screen.crypto.navigateToCryptoHome
+import com.sep.quiz.ui.screen.crypto.navigateToCurrency
+import com.sep.quiz.ui.screen.crypto.navigateToMarket
+import com.sep.quiz.ui.screen.crypto.navigateToTicker
+import com.sep.quiz.ui.screen.crypto.tickerScreen
 import com.sep.quiz.utils.NetworkConnection
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -63,7 +73,8 @@ class MainActivity : ComponentActivity() {
                                 },
                                 navigateToDictionary = {
                                     navController.navigateToDictionary()
-                                }
+                                },
+                                navigateToCrypto = navController::navigateToCryptoHome
                             )
                             difficultyScreen(
                                 navigateToQuestions = { id, difficulty, count ->
@@ -80,6 +91,19 @@ class MainActivity : ComponentActivity() {
                             )
                             resultScreen(navigateToHome = navController::navigateToHome)
                             dictionaryScreen()
+
+                            cryptoHomeScreen(
+                                navigateToCurrency = navController::navigateToCurrency,
+                                navigateToTicker = navController::navigateToTicker,
+                                navigateToMarket = navController::navigateToMarket
+                            )
+                            tickerScreen(
+                                navigateToCandles = navController::navigateToCandles
+                            )
+                            currencyScreen()
+                            candlesScreen()
+                            marketScreen()
+
                         }
                     })
             }
