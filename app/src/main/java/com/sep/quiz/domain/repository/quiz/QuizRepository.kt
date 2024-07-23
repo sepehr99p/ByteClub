@@ -1,4 +1,4 @@
-package com.sep.quiz.domain.repository
+package com.sep.quiz.domain.repository.quiz
 
 import com.sep.quiz.domain.entiry.CategoryEntity
 import com.sep.quiz.domain.entiry.CategoryInfo

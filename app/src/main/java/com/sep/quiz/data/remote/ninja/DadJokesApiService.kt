@@ -1,4 +1,4 @@
-package com.sep.quiz.data.remote
+package com.sep.quiz.data.remote.ninja
 
 import com.sep.quiz.data.model.response.dadJokes.DadJokeDto
 import com.sep.quiz.data.model.response.dadJokes.DadJokeResponse

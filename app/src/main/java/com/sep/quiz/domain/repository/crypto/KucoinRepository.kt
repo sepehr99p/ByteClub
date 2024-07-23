@@ -1,4 +1,4 @@
-package com.sep.quiz.domain.repository
+package com.sep.quiz.domain.repository.crypto
 
 import com.sep.quiz.domain.entiry.crypto.CandleEntity
 import com.sep.quiz.domain.entiry.crypto.CurrencyEntity

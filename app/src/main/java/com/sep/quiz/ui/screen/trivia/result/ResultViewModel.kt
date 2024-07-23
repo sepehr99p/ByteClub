@@ -3,8 +3,8 @@ package com.sep.quiz.ui.screen.trivia.result
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sep.quiz.domain.usecase.score.GetScoreUseCase
-import com.sep.quiz.domain.usecase.score.IncreaseScoreUseCase
+import com.sep.quiz.domain.usecase.quiz.score.GetScoreUseCase
+import com.sep.quiz.domain.usecase.quiz.score.IncreaseScoreUseCase
 import com.sep.quiz.ui.scoreArg
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

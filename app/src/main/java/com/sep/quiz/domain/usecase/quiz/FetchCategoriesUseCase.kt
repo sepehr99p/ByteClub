@@ -1,6 +1,6 @@
-package com.sep.quiz.domain.usecase
+package com.sep.quiz.domain.usecase.quiz
 
-import com.sep.quiz.domain.repository.QuizRepository
+import com.sep.quiz.domain.repository.quiz.QuizRepository
 import javax.inject.Inject
 
 class FetchCategoriesUseCase @Inject constructor(

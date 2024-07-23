@@ -2,9 +2,9 @@ package com.sep.quiz.di
 
 import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.sep.quiz.data.remote.DadJokesApiService
-import com.sep.quiz.data.remote.DictionaryApiService
-import com.sep.quiz.data.remote.QuizApiService
+import com.sep.quiz.data.remote.ninja.DadJokesApiService
+import com.sep.quiz.data.remote.ninja.DictionaryApiService
+import com.sep.quiz.data.remote.quiz.QuizApiService
 import com.sep.quiz.data.remote.crypto.KucoinApiService
 import com.sep.quiz.domain.BASE_URL
 import com.sep.quiz.domain.DICTIONARY_BASE_URL

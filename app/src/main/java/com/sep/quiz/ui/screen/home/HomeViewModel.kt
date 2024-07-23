@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sep.quiz.domain.entiry.CategoryEntity
 import com.sep.quiz.domain.entiry.dadJoke.DadJokeEntity
-import com.sep.quiz.domain.usecase.FetchCategoriesUseCase
+import com.sep.quiz.domain.usecase.quiz.FetchCategoriesUseCase
 import com.sep.quiz.domain.usecase.joke.DadJokeUseCase
-import com.sep.quiz.domain.usecase.score.GetScoreUseCase
+import com.sep.quiz.domain.usecase.quiz.score.GetScoreUseCase
 import com.sep.quiz.ui.utils.UiState
 import com.sep.quiz.utils.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel

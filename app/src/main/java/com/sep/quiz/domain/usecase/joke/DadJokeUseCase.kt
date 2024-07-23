@@ -1,6 +1,6 @@
 package com.sep.quiz.domain.usecase.joke
 
-import com.sep.quiz.domain.repository.DadJokeRepository
+import com.sep.quiz.domain.repository.ninja.DadJokeRepository
 import javax.inject.Inject
 
 class DadJokeUseCase @Inject constructor(

@@ -10,8 +10,8 @@ import com.sep.quiz.Score
 import com.sep.quiz.data.local.database.QuestionDatabase
 import com.sep.quiz.data.local.datastore.ScoreDataSource
 import com.sep.quiz.data.local.datastore.ScoreSerializer
-import com.sep.quiz.data.repository.ScoreRepositoryImpl
-import com.sep.quiz.domain.repository.ScoreRepository
+import com.sep.quiz.data.repository.quiz.ScoreRepositoryImpl
+import com.sep.quiz.domain.repository.quiz.ScoreRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

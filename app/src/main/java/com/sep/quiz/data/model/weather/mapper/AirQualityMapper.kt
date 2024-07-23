@@ -1,6 +1,5 @@
 package com.sep.quiz.data.model.weather.mapper
 
-import com.example.data.mapper.MapperCallback
 import com.sep.quiz.data.model.weather.airQuality.AirQualityDto
 import com.sep.quiz.data.model.weather.airQuality.HourlyAirQuality
 import com.sep.quiz.domain.entiry.weather.AirQualityEntity
@@ -31,15 +30,10 @@ fun AirQualityDto.toDomainModel(): AirQualityEntity =
         daily = getDailyAirQuality(this.hourly)
     )
 
-val airQualityMapperImpl = object : MapperCallback<AirQualityDto, AirQualityEntity> {
-    override fun map(value: AirQualityDto): AirQualityEntity {
-        return value.toDomainModel()
-    }
-}
 
 fun getDailyAirQuality(hourly: HourlyAirQuality): DailyAirQualityEntity {
-    val newList = arrayListOf<Pair<String,Float>>()
-    val daily = arrayListOf<Pair<String,Double>>()
+    val newList = arrayListOf<Pair<String, Float>>()
+    val daily = arrayListOf<Pair<String, Double>>()
 
     hourly.time.zip(hourly.pm10).forEach {
         newList.add(Pair(first = it.first.dayOfWeek(), second = it.second))
@@ -48,7 +42,7 @@ fun getDailyAirQuality(hourly: HourlyAirQuality): DailyAirQualityEntity {
     newList.groupBy {
         it.first
     }.forEach {
-        daily.add(Pair(it.key,it.value.map { it.second }.average()))
+        daily.add(Pair(it.key, it.value.map { it.second }.average()))
     }
 
     return DailyAirQualityEntity(
@@ -57,6 +51,6 @@ fun getDailyAirQuality(hourly: HourlyAirQuality): DailyAirQualityEntity {
 }
 
 
-fun String.dayOfWeek() : String {
+fun String.dayOfWeek(): String {
     return SimpleDateFormat("EEE").format(SimpleDateFormat("yyyy-MM-dd").parse(this))
 }

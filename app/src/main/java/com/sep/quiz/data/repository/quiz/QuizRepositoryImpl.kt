@@ -1,11 +1,11 @@
-package com.sep.quiz.data.repository
+package com.sep.quiz.data.repository.quiz
 
 import com.sep.quiz.data.local.database.QuestionDatabase
-import com.sep.quiz.data.remote.QuizApiService
+import com.sep.quiz.data.remote.quiz.QuizApiService
 import com.sep.quiz.domain.entiry.CategoryEntity
 import com.sep.quiz.domain.entiry.CategoryInfo
 import com.sep.quiz.domain.entiry.QuestionEntity
-import com.sep.quiz.domain.repository.QuizRepository
+import com.sep.quiz.domain.repository.quiz.QuizRepository
 import com.sep.quiz.utils.NetworkConnection
 import com.sep.quiz.utils.ResultState
 import com.sep.quiz.utils.toResultState

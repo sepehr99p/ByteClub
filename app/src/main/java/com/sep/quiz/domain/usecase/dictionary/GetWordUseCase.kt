@@ -1,6 +1,6 @@
 package com.sep.quiz.domain.usecase.dictionary
 
-import com.sep.quiz.domain.repository.DictionaryRepository
+import com.sep.quiz.domain.repository.ninja.DictionaryRepository
 import javax.inject.Inject
 
 class GetWordUseCase @Inject constructor(

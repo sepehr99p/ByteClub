@@ -1,8 +1,8 @@
-package com.sep.quiz.data.repository
+package com.sep.quiz.data.repository.ninja
 
-import com.sep.quiz.data.remote.DictionaryApiService
+import com.sep.quiz.data.remote.ninja.DictionaryApiService
 import com.sep.quiz.domain.entiry.dictionary.WordEntity
-import com.sep.quiz.domain.repository.DictionaryRepository
+import com.sep.quiz.domain.repository.ninja.DictionaryRepository
 import com.sep.quiz.utils.ResultState
 import com.sep.quiz.utils.toResultState
 import javax.inject.Inject

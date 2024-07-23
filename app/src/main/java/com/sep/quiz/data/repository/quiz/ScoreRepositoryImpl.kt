@@ -1,8 +1,8 @@
-package com.sep.quiz.data.repository
+package com.sep.quiz.data.repository.quiz
 
 import com.sep.quiz.Score
 import com.sep.quiz.data.local.datastore.ScoreDataSource
-import com.sep.quiz.domain.repository.ScoreRepository
+import com.sep.quiz.domain.repository.quiz.ScoreRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

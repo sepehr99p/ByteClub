@@ -1,4 +1,4 @@
-package com.sep.quiz.data.remote
+package com.sep.quiz.data.remote.quiz
 
 import com.sep.quiz.data.model.response.quiz.CategoryResponse
 import com.sep.quiz.data.model.response.quiz.QuestionCountResponse

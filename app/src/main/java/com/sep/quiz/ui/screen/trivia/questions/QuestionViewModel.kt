@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.sep.quiz.domain.entiry.QuestionDifficulty
 import com.sep.quiz.domain.entiry.QuestionEntity
 import com.sep.quiz.domain.entiry.QuestionType
-import com.sep.quiz.domain.usecase.InquiryUseCase
+import com.sep.quiz.domain.usecase.quiz.InquiryUseCase
 import com.sep.quiz.ui.countArg
 import com.sep.quiz.ui.difficultyArg
 import com.sep.quiz.ui.idArg

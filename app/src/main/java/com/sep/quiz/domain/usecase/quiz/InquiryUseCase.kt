@@ -1,8 +1,8 @@
-package com.sep.quiz.domain.usecase
+package com.sep.quiz.domain.usecase.quiz
 
 import com.sep.quiz.domain.entiry.QuestionDifficulty
 import com.sep.quiz.domain.entiry.QuestionType
-import com.sep.quiz.domain.repository.QuizRepository
+import com.sep.quiz.domain.repository.quiz.QuizRepository
 import javax.inject.Inject
 
 class InquiryUseCase @Inject constructor(

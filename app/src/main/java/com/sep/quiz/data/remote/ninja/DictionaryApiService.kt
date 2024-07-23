@@ -1,4 +1,4 @@
-package com.sep.quiz.data.remote
+package com.sep.quiz.data.remote.ninja
 
 import com.sep.quiz.data.model.response.dictionary.WordResponse
 import com.sep.quiz.utils.callAdapter.NetworkResponse

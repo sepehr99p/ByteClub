@@ -1,6 +1,5 @@
 package com.sep.quiz.data.model.weather.mapper
 
-import com.example.data.mapper.MapperCallback
 import com.sep.quiz.data.model.weather.ForecastDto
 import com.sep.quiz.data.model.weather.WeatherDataDto
 import com.sep.quiz.data.model.weather.WeatherDto
@@ -63,16 +62,3 @@ fun ForecastDto.toDomainModel(): ForecastInfo = ForecastInfo(
 )
 
 
-
-val weatherMapperImpl = object : MapperCallback<WeatherDto, WeatherInfo> {
-    override fun map(value: WeatherDto): WeatherInfo {
-        return value.toDomainModel()
-    }
-}
-
-val foreCastMapperImpl = object : MapperCallback<ForecastDto, ForecastInfo> {
-    override fun map(value: ForecastDto): ForecastInfo {
-        return value.toDomainModel()
-    }
-
-}

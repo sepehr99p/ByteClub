@@ -1,6 +1,6 @@
-package com.sep.quiz.domain.usecase.score
+package com.sep.quiz.domain.usecase.quiz.score
 
-import com.sep.quiz.domain.repository.ScoreRepository
+import com.sep.quiz.domain.repository.quiz.ScoreRepository
 import javax.inject.Inject
 
 class DecreaseScoreUseCase @Inject constructor(

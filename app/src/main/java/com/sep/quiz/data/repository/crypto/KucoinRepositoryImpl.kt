@@ -1,4 +1,4 @@
-package com.sep.quiz.data.repository
+package com.sep.quiz.data.repository.crypto
 
 import com.sep.quiz.data.remote.crypto.KucoinApiService
 import com.sep.quiz.domain.DEFAULT_ERROR
@@ -6,7 +6,7 @@ import com.sep.quiz.domain.entiry.crypto.CandleEntity
 import com.sep.quiz.domain.entiry.crypto.CurrencyEntity
 import com.sep.quiz.domain.entiry.crypto.SingleTickerEntity
 import com.sep.quiz.domain.entiry.crypto.TickerEntity
-import com.sep.quiz.domain.repository.KucoinRepository
+import com.sep.quiz.domain.repository.crypto.KucoinRepository
 import com.sep.quiz.utils.ResultState
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.sep.quiz.domain.repository
+package com.sep.quiz.domain.repository.quiz
 
 import com.sep.quiz.Score
 import kotlinx.coroutines.flow.Flow
