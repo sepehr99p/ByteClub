@@ -1,5 +1,6 @@
 package com.sep.quiz.di
 
+import android.content.Context
 import com.sep.quiz.data.local.database.QuestionDatabase
 import com.sep.quiz.data.remote.crypto.KucoinApiService
 import com.sep.quiz.data.remote.ninja.DadJokesApiService
@@ -27,10 +28,12 @@ import com.sep.quiz.domain.usecase.quiz.InquiryUseCase
 import com.sep.quiz.domain.usecase.weather.AirQualityUseCase
 import com.sep.quiz.domain.usecase.weather.CurrentWeatherUseCase
 import com.sep.quiz.domain.usecase.weather.ForecastWeatherUseCase
+import com.sep.quiz.ui.utils.GPSHelper
 import com.sep.quiz.utils.NetworkConnection
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -135,5 +138,11 @@ object DataModule {
     ): ForecastWeatherUseCase = ForecastWeatherUseCase(
         weatherRepository = weatherRepository
     )
+
+    @Singleton
+    @Provides
+    fun provideGpsHelper(
+        @ApplicationContext appContext: Context
+    ): GPSHelper = GPSHelper(appContext)
 
 }

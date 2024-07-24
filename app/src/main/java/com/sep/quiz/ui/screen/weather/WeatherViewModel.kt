@@ -30,7 +30,8 @@ import javax.inject.Inject
 class WeatherViewModel @Inject constructor(
     private val forecastWeatherUseCase: ForecastWeatherUseCase,
     private val currentWeatherUseCase: CurrentWeatherUseCase,
-    private val airQualityUseCase: AirQualityUseCase
+    private val airQualityUseCase: AirQualityUseCase,
+    private val gpsHelper: GPSHelper
 ) : ViewModel() {
 
     companion object {
@@ -42,7 +43,9 @@ class WeatherViewModel @Inject constructor(
         Log.e(TAG, "ceh", t)
     }
 
-    lateinit var gpsHelper: GPSHelper
+
+
+
     private val scope =
         CoroutineScope(Job() + viewModelScope.coroutineContext + SupervisorJob() + ceh)
 
@@ -63,7 +66,9 @@ class WeatherViewModel @Inject constructor(
     val airQuality: StateFlow<UiState<AirQualityEntity?>> = _airQuality
 
     init {
-
+        fetchAirQuality()
+        getCurrentWeather()
+        getForecast()
     }
 
     fun fetchAirQuality() {

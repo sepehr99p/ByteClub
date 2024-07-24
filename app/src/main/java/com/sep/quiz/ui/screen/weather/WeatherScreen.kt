@@ -21,6 +21,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.sep.quiz.R
 import com.sep.quiz.domain.entiry.weather.ForecastInfo
 import com.sep.quiz.domain.entiry.weather.WeatherInfo
@@ -38,14 +39,16 @@ import com.sep.quiz.ui.utils.UiState
 
 
 @Composable
-fun WeatherScreen(viewModel: WeatherViewModel) {
+fun WeatherScreen(
+    modifier: Modifier = Modifier,
+    viewModel: WeatherViewModel = hiltViewModel()
+) {
     val currentWeatherState = viewModel.currentWeather.collectAsState()
     val forecastState = viewModel.forecast.collectAsState()
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .fillMaxHeight()
-            .background(MaterialTheme.colorScheme.primary),
+            .fillMaxHeight(),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {

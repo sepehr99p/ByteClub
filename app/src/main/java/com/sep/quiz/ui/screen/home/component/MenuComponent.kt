@@ -38,6 +38,7 @@ internal fun MenuComponent(
     onAboutClick: () -> Unit,
     navigateToDictionary: () -> Unit,
     onDadJokeClicked: () -> Unit,
+    onWeatherClicked: () -> Unit,
     onCryptoClicked: () -> Unit
 ) {
     Column(
@@ -53,6 +54,7 @@ internal fun MenuComponent(
         MenuComponentItem(title = stringResource(id = R.string.shop), onClick = {})
         MenuComponentItem(title = stringResource(id = R.string.dadJoke), onClick = onDadJokeClicked)
         MenuComponentItem(title = stringResource(id = R.string.crypt), onClick = onCryptoClicked)
+        MenuComponentItem(title = stringResource(id = R.string.weather), onClick = onWeatherClicked)
         MenuComponentItem(
             title = stringResource(id = R.string.dictionary),
             onClick = navigateToDictionary
@@ -116,7 +118,8 @@ private fun MenuComponentPreview() {
         score = score,
         navigateToDictionary = {},
         onDadJokeClicked = {},
-        onCryptoClicked = {}
+        onCryptoClicked = {},
+        onWeatherClicked = {}
     )
 }
 

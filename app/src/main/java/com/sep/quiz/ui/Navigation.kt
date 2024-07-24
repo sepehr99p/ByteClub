@@ -7,10 +7,11 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.sep.quiz.ui.screen.dictionary.DictionaryScreen
-import com.sep.quiz.ui.screen.trivia.difficulty.DifficultyScreen
 import com.sep.quiz.ui.screen.home.HomeScreen
+import com.sep.quiz.ui.screen.trivia.difficulty.DifficultyScreen
 import com.sep.quiz.ui.screen.trivia.questions.QuestionsScreen
 import com.sep.quiz.ui.screen.trivia.result.ResultScreen
+import com.sep.quiz.ui.screen.weather.WeatherScreen
 
 const val idArg = "id"
 const val difficultyArg = "difficulty"
@@ -22,6 +23,8 @@ const val difficultyRoute = "difficulty_route/{$idArg}"
 const val questionsRoute = "questions_route/{$idArg}/{$difficultyArg}/{$countArg}"
 const val resultRoute = "result/{$scoreArg}"
 const val dictionaryRoute = "dictionary"
+
+const val weatherRoute = "weather"
 
 
 fun NavController.navigateToResult(score: String) {
@@ -53,13 +56,15 @@ fun NavController.navigateToHome() {
 fun NavGraphBuilder.homeScreen(
     navigateToDifficulty: (id: String) -> Unit,
     navigateToDictionary: () -> Unit,
-    navigateToCrypto: () -> Unit
+    navigateToCrypto: () -> Unit,
+    navigateToWeather: () -> Unit
 ) {
     composable(route = homeRoute) {
         HomeScreen(
             onCategorySelected = navigateToDifficulty,
             navigateToDictionary = navigateToDictionary,
-            navigateToCrypto = navigateToCrypto
+            navigateToCrypto = navigateToCrypto,
+            navigateToWeather = navigateToWeather
         )
     }
 }
@@ -110,4 +115,14 @@ fun NavGraphBuilder.dictionaryScreen() {
 
 fun NavController.navigateToDictionary(navOptions: NavOptions? = null) {
     this.navigate(dictionaryRoute)
+}
+
+fun NavGraphBuilder.weatherScreen() {
+    composable(route = weatherRoute) {
+        WeatherScreen()
+    }
+}
+
+fun NavController.navigateToWeather(navOptions: NavOptions? = null) {
+    this.navigate(weatherRoute)
 }

@@ -1,5 +1,10 @@
 package com.sep.quiz.ui
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.location.Geocoder
+import android.location.Location
+import android.location.LocationListener
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,6 +15,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.core.app.ActivityCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.sep.quiz.ui.designSystem.theme.QuizTheme
@@ -23,17 +29,28 @@ import com.sep.quiz.ui.screen.crypto.navigateToCurrency
 import com.sep.quiz.ui.screen.crypto.navigateToMarket
 import com.sep.quiz.ui.screen.crypto.navigateToTicker
 import com.sep.quiz.ui.screen.crypto.tickerScreen
+import com.sep.quiz.ui.utils.GPSHelper
 import com.sep.quiz.utils.NetworkConnection
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), LocationListener {
 
     @Inject
     lateinit var networkConnection: NetworkConnection
+
+    @Inject
+    lateinit var gpsHelper: GPSHelper
+
+    private var latitude = 0.0
+    private var longitude = 0.0
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
         setContent {
             QuizTheme {
@@ -74,7 +91,8 @@ class MainActivity : ComponentActivity() {
                                 navigateToDictionary = {
                                     navController.navigateToDictionary()
                                 },
-                                navigateToCrypto = navController::navigateToCryptoHome
+                                navigateToCrypto = navController::navigateToCryptoHome,
+                                navigateToWeather = navController::navigateToWeather
                             )
                             difficultyScreen(
                                 navigateToQuestions = { id, difficulty, count ->
@@ -104,9 +122,60 @@ class MainActivity : ComponentActivity() {
                             candlesScreen()
                             marketScreen()
 
+                            weatherScreen()
+
                         }
                     })
             }
         }
     }
+
+    private fun getLocationPermission() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissions(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ), 102
+            )
+            return
+        } else {
+            updateLocation()
+        }
+    }
+
+    private fun updateLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissions(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ), 102
+            )
+            //
+        } else {
+            gpsHelper.getMyLocation()
+        }
+    }
+
+    override fun onLocationChanged(location: Location) {
+        latitude = location.latitude
+        longitude = location.longitude
+        val geoCoder = Geocoder(this, Locale.getDefault())
+    }
+
 }
