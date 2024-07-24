@@ -18,13 +18,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.sep.quiz.ui.designSystem.ex.airQualityBackground
 import com.sep.quiz.ui.screen.weather.components.CustomText
 import com.sep.quiz.ui.designSystem.theme.dimen.corner_8
 import com.sep.quiz.ui.designSystem.theme.dimen.image_36
 import com.sep.quiz.ui.designSystem.theme.dimen.padding_16
 import com.sep.quiz.ui.designSystem.theme.dimen.padding_4
 import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
-import com.sep.quiz.ui.utils.extensions.airQualityBackground
 
 @Composable
 fun DailyForecastItem(

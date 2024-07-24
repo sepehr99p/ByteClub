@@ -19,12 +19,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.sep.quiz.R
 import com.sep.quiz.domain.entiry.weather.AirQualityEntity
+import com.sep.quiz.ui.designSystem.ex.airQualityBackground
 import com.sep.quiz.ui.designSystem.theme.dimen.corner_8
 import com.sep.quiz.ui.designSystem.theme.dimen.padding_16
 import com.sep.quiz.ui.designSystem.theme.dimen.padding_2
 import com.sep.quiz.ui.designSystem.theme.dimen.padding_4
 import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
-import com.sep.quiz.ui.utils.extensions.airQualityBackground
 import kotlin.math.roundToLong
 
 @Composable

@@ -121,3 +121,27 @@ fun Modifier.bounceClick(
             onClick()
         }
 }
+
+fun Modifier.airQualityBackground(): Modifier =
+    composed {
+        background(
+            brush = Brush.horizontalGradient(
+                colors = listOf(
+                    MaterialTheme.colorScheme.primary,
+                    MaterialTheme.colorScheme.background
+                )
+            )
+        )
+    }
+
+fun Modifier.dailyDetailsBackground(): Modifier =
+    composed {
+        background(
+            brush = Brush.horizontalGradient(
+                colors = listOf(
+                    MaterialTheme.colorScheme.primary,
+                    MaterialTheme.colorScheme.background
+                )
+            )
+        )
+    }

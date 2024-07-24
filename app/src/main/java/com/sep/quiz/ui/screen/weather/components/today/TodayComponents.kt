@@ -32,6 +32,7 @@ import com.sep.quiz.ui.screen.weather.components.SimpleText
 import com.sep.quiz.R
 import com.sep.quiz.domain.entiry.weather.WeatherData
 import com.sep.quiz.domain.entiry.weather.WeatherInfo
+import com.sep.quiz.ui.designSystem.ex.dailyDetailsBackground
 import com.sep.quiz.ui.designSystem.theme.dimen.corner_16
 import com.sep.quiz.ui.designSystem.theme.dimen.corner_8
 import com.sep.quiz.ui.designSystem.theme.dimen.image_24
@@ -41,7 +42,6 @@ import com.sep.quiz.ui.designSystem.theme.dimen.padding_4
 import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
 import com.sep.quiz.ui.utils.WeatherType
 import com.sep.quiz.ui.utils.dayOfWeek
-import com.sep.quiz.ui.utils.extensions.dailyDetailsBackground
 import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
