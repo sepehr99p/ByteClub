@@ -2,12 +2,16 @@ package com.sep.quiz.di
 
 import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.sep.quiz.data.remote.crypto.KucoinApiService
 import com.sep.quiz.data.remote.ninja.DadJokesApiService
 import com.sep.quiz.data.remote.ninja.DictionaryApiService
 import com.sep.quiz.data.remote.quiz.QuizApiService
-import com.sep.quiz.data.remote.crypto.KucoinApiService
+import com.sep.quiz.data.remote.weather.AirQualityApi
+import com.sep.quiz.data.remote.weather.WeatherApiService
+import com.sep.quiz.domain.AIR_QUALITY_BASE_URL
 import com.sep.quiz.domain.BASE_URL
 import com.sep.quiz.domain.DICTIONARY_BASE_URL
+import com.sep.quiz.domain.FORECAST_BASE_URL
 import com.sep.quiz.domain.KUCOIN_BASE_URL
 import com.sep.quiz.utils.NetworkConnection
 import com.sep.quiz.utils.callAdapter.NetworkResponseAdapterFactory
@@ -49,6 +53,14 @@ object NetworkModule {
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
     annotation class KucoinRetrofit
+
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class ForecastRetrofit
+
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class AirQualityRetrofit
 
 
     @Provides
@@ -142,6 +154,32 @@ object NetworkModule {
         .addCallAdapterFactory(NetworkResponseAdapterFactory())
         .build()
 
+    @ForecastRetrofit
+    @Provides
+    @Singleton
+    fun provideForecastRetrofit(
+        okHttpClient: OkHttpClient,
+        json: Json,
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl(FORECAST_BASE_URL)
+        .client(okHttpClient)
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        .addCallAdapterFactory(NetworkResponseAdapterFactory())
+        .build()
+
+    @AirQualityRetrofit
+    @Provides
+    @Singleton
+    fun provideAirQualityRetrofit(
+        okHttpClient: OkHttpClient,
+        json: Json,
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl(AIR_QUALITY_BASE_URL)
+        .client(okHttpClient)
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        .addCallAdapterFactory(NetworkResponseAdapterFactory())
+        .build()
+
     @Provides
     fun provideDictionaryApiService(@NinjasRetrofit retrofit: Retrofit): DictionaryApiService =
         retrofit.create(
@@ -158,6 +196,18 @@ object NetworkModule {
     fun provideKucoinApiService(@KucoinRetrofit retrofit: Retrofit): KucoinApiService =
         retrofit.create(
             KucoinApiService::class.java
+        )
+
+    @Provides
+    fun provideForecastApiService(@ForecastRetrofit retrofit: Retrofit): WeatherApiService =
+        retrofit.create(
+            WeatherApiService::class.java
+        )
+
+    @Provides
+    fun provideAirQualityApiService(@AirQualityRetrofit retrofit: Retrofit): AirQualityApi =
+        retrofit.create(
+            AirQualityApi::class.java
         )
 
 }

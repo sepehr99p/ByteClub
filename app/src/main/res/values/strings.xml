@@ -35,4 +35,36 @@
     <string name="ticker">Ticker</string>
     <string name="currency">Currency</string>
     <string name="markets">Markets</string>
+
+    <string name="close">close</string>
+
+    <string name="accessDenied">accessDenied</string>
+    <string name="requestCanceled">requestCanceled</string>
+    <string name="networkError">networkError</string>
+    <string name="notFound">notFound</string>
+    <string name="serviceUnavailable">serviceUnavailable</string>
+    <string name="unknownError">unknownError</string>
+    <string name="invalidInput">invalidInput</string>
+    <string name="noLocationProvided">noLocationProvided</string>
+
+    <string name="requiredField">requiredField</string>
+    <string name="invalid_auth">invalid auth</string>
+    <string name="serverError">server error</string>
+    <string name="tooManyRequest">too many requests</string>
+    <string name="codeIsExpired">code is expired</string>
+    <string name="codeIsInvalid">code is invalid</string>
+    <string name="codeIsUsed">code is used</string>
+    <string name="notAllowed">not allowed</string>
+
+    <string name="hpa_unit">hpa</string>
+    <string name="humidity_unit">%</string>
+    <string name="wind_speed_unit">km/h</string>
+    <string name="temperature_unit">°C</string>
+
+    <string name="failed_forecast">failed to fetch forecast</string>
+    <string name="failed_to_fetch">Failed to fetch data</string>
+    <string name="air_quality">Air Quality</string>
+    <string name="hourly_air_quality">Hourly Air Quality</string>
+    <string name="daily_air_quality">Daily Air Quality</string>
+    <string name="daily_detail">Daily Details</string>
 </resources>
