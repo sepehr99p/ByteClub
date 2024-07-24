@@ -36,7 +36,7 @@ fun ColumnScope.DailyForecast(forecast: UiState<ForecastInfo?>, viewModel: Weath
             LazyRow(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(MaterialTheme.colorScheme.primary), state = rememberLazyListState()
+                    , state = rememberLazyListState()
             ) {
                 for (i in 0 until forecast.data!!.time.size) {
                     if (isNotToday(forecast.data.time[i])) {
