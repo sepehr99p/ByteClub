@@ -11,7 +11,7 @@ fun Modifier.airQualityBackground(): Modifier =
         background(
             brush = Brush.horizontalGradient(
                 colors = listOf(
-                    MaterialTheme.colorScheme.primaryContainer,
+                    MaterialTheme.colorScheme.primary,
                     MaterialTheme.colorScheme.background
                 )
             )
@@ -23,7 +23,7 @@ fun Modifier.dailyDetailsBackground(): Modifier =
         background(
             brush = Brush.horizontalGradient(
                 colors = listOf(
-                    MaterialTheme.colorScheme.primaryContainer,
+                    MaterialTheme.colorScheme.primary,
                     MaterialTheme.colorScheme.background
                 )
             )
