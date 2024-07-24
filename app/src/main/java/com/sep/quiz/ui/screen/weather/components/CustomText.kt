@@ -61,7 +61,6 @@ internal fun SimpleText(modifier: Modifier = Modifier, value: String?) {
 
 @Composable
 internal fun OnboardingScreen(modifier: Modifier = Modifier) {
-    // TODO: This state should be hoisted
     var shouldShowOnboarding by remember { mutableStateOf(true) }
 
     Column(

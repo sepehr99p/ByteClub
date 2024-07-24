@@ -5,25 +5,25 @@ import com.sep.quiz.R
 
 sealed class BaseError {
 
-    object Network : BaseError()
-    object NotFound : BaseError()
-    object AccessDenied : BaseError()
-    object ServiceUnavailable : BaseError()
-    object Canceled : BaseError()
+    data object Network : BaseError()
+    data object NotFound : BaseError()
+    data object AccessDenied : BaseError()
+    data object ServiceUnavailable : BaseError()
+    data object Canceled : BaseError()
 
-    object NoLocationProvided : BaseError()
+    data object NoLocationProvided : BaseError()
 
     data class Unknown(val message: String?) : BaseError()
 
 
-    object InvalidInput : BaseError()
-    object InvalidAuth:  BaseError()
-    object ServerError: BaseError()
-    object TooManyRequest: BaseError()
-    object CodeIsUsed: BaseError()
-    object CodeIsInvalid: BaseError()
-    object CodeIsExpired: BaseError()
-    object NoteAllowed: BaseError()
+    data object InvalidInput : BaseError()
+    data object InvalidAuth:  BaseError()
+    data object ServerError: BaseError()
+    data object TooManyRequest: BaseError()
+    data object CodeIsUsed: BaseError()
+    data object CodeIsInvalid: BaseError()
+    data object CodeIsExpired: BaseError()
+    data object NoteAllowed: BaseError()
 
     fun toErrorMessage(context: Context): String {
         return when (this) {

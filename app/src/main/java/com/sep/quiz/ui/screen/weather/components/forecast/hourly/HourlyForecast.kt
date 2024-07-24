@@ -2,7 +2,6 @@ package com.sep.quiz.ui.screen.weather.components.forecast.hourly
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,7 +16,7 @@ import java.text.SimpleDateFormat
 
 @SuppressLint("SimpleDateFormat")
 @Composable
-fun ColumnScope.HourlyForecast(
+fun HourlyForecast(
     weatherInfo: WeatherInfo,
     modifier: Modifier = Modifier
 ) {
