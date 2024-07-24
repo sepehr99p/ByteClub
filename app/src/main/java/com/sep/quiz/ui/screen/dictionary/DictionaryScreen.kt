@@ -2,10 +2,14 @@ package com.sep.quiz.ui.screen.dictionary
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
+import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
@@ -15,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.sep.quiz.ui.designSystem.components.ErrorComponent
 import com.sep.quiz.ui.designSystem.components.LoadingComponent
+import com.sep.quiz.ui.designSystem.theme.dimen.padding_8
 import com.sep.quiz.ui.utils.UiState
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -27,6 +32,10 @@ fun DictionaryScreen(
     val wordDefinition = viewModel.wordDefinition.collectAsState()
     Column(modifier = modifier.fillMaxSize()) {
         SearchBar(
+            colors = SearchBarDefaults.colors(
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                dividerColor = MaterialTheme.colorScheme.primary,
+            ),
             modifier = Modifier.fillMaxSize(),
             query = searchWord.value,
             onQueryChange = { searchWord.value = it },
@@ -50,7 +59,7 @@ fun DictionaryScreen(
                 }
 
                 is UiState.Success -> {
-                    Column {
+                    Column(modifier = Modifier.padding(padding_8)) {
                         Text(
                             text = (wordDefinition.value as UiState.Success).data.definition,
                             color = MaterialTheme.colorScheme.onPrimary
