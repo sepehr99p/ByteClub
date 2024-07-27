@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sep.quiz.domain.usecase.quiz.score.GetScoreUseCase
 import com.sep.quiz.domain.usecase.quiz.score.IncreaseScoreUseCase
-import com.sep.quiz.ui.scoreArg
+import com.sep.quiz.ui.navigation.scoreArg
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

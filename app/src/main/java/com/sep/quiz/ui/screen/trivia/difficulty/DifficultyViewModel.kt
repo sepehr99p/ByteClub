@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sep.quiz.domain.entiry.CategoryInfo
 import com.sep.quiz.domain.usecase.quiz.CategoryInfoUseCase
-import com.sep.quiz.ui.idArg
+import com.sep.quiz.ui.navigation.idArg
 import com.sep.quiz.ui.utils.UiState
 import com.sep.quiz.utils.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel

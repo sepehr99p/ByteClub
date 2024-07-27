@@ -1,4 +1,4 @@
-package com.sep.quiz.ui
+package com.sep.quiz.ui.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder

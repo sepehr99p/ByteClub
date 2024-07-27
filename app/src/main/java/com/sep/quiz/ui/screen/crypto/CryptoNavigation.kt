@@ -5,8 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.sep.quiz.ui.homeRoute
-import com.sep.quiz.ui.idArg
+import com.sep.quiz.ui.navigation.homeRoute
 import com.sep.quiz.ui.screen.crypto.candles.CandlesScreen
 import com.sep.quiz.ui.screen.crypto.currency.CurrencyScreen
 import com.sep.quiz.ui.screen.crypto.home.CryptoHomeScreen

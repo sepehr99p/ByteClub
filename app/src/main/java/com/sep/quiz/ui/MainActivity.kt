@@ -19,6 +19,23 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.sep.quiz.ui.designSystem.theme.QuizTheme
+import com.sep.quiz.ui.navigation.BottomBarEntity
+import com.sep.quiz.ui.navigation.BottomBarScreen
+import com.sep.quiz.ui.navigation.BottomBarType
+import com.sep.quiz.ui.navigation.dictionaryScreen
+import com.sep.quiz.ui.navigation.difficultyScreen
+import com.sep.quiz.ui.navigation.homeRoute
+import com.sep.quiz.ui.navigation.homeScreen
+import com.sep.quiz.ui.navigation.navigateToDictionary
+import com.sep.quiz.ui.navigation.navigateToDifficulty
+import com.sep.quiz.ui.navigation.navigateToHome
+import com.sep.quiz.ui.navigation.navigateToQuestions
+import com.sep.quiz.ui.navigation.navigateToResult
+import com.sep.quiz.ui.navigation.navigateToWeather
+import com.sep.quiz.ui.navigation.questionsScreen
+import com.sep.quiz.ui.navigation.resultScreen
+import com.sep.quiz.ui.navigation.state.rememberBottomBarAppStatus
+import com.sep.quiz.ui.navigation.weatherScreen
 import com.sep.quiz.ui.screen.crypto.candlesScreen
 import com.sep.quiz.ui.screen.crypto.cryptoHomeScreen
 import com.sep.quiz.ui.screen.crypto.currencyScreen
@@ -58,74 +75,11 @@ class MainActivity : ComponentActivity(), LocationListener {
                 val connection = remember {
                     mutableStateOf(networkConnection.isInternetOn())
                 }
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    topBar = {
-//                        if (connection.value.not()) {
-//                            Box(
-//                                modifier = Modifier
-//                                    .fillMaxWidth()
-//                                    .padding(top = padding_8)
-//                                    .background(color = MaterialTheme.colorScheme.errorContainer)
-//                            ) {
-//                                Text(
-//                                    modifier = Modifier
-//                                        .align(Alignment.Center)
-//                                        .padding(top = padding_16),
-//                                    text = stringResource(id = R.string.local_mode),
-//                                    color = MaterialTheme.colorScheme.error
-//                                )
-//                            }
-//                        }
-                    },
-                    content = { innerPadding ->
-                        NavHost(
-                            modifier = Modifier.padding(top = innerPadding.calculateTopPadding()),
-                            navController = navController,
-                            startDestination = homeRoute
-                        ) {
-                            homeScreen(
-                                navigateToDifficulty = {
-                                    navController.navigateToDifficulty(categoryId = it)
-                                },
-                                navigateToDictionary = {
-                                    navController.navigateToDictionary()
-                                },
-                                navigateToCrypto = navController::navigateToCryptoHome,
-                                navigateToWeather = navController::navigateToWeather
-                            )
-                            difficultyScreen(
-                                navigateToQuestions = { id, difficulty, count ->
-                                    navController.navigateToQuestions(
-                                        categoryId = id,
-                                        difficulty = difficulty,
-                                        count = count
-                                    )
-                                }
-                            )
-                            questionsScreen(
-                                navigateToHome = navController::navigateToHome,
-                                navigateToResult = navController::navigateToResult
-                            )
-                            resultScreen(navigateToHome = navController::navigateToHome)
-                            dictionaryScreen()
-
-                            cryptoHomeScreen(
-                                navigateToCurrency = navController::navigateToCurrency,
-                                navigateToTicker = navController::navigateToTicker,
-                                navigateToMarket = navController::navigateToMarket
-                            )
-                            tickerScreen(
-                                navigateToCandles = navController::navigateToCandles
-                            )
-                            currencyScreen()
-                            candlesScreen()
-                            marketScreen()
-
-                            weatherScreen()
-
-                        }
-                    })
+                BottomBarScreen(appState = rememberBottomBarAppStatus(bottomBarList = listOf(
+                    BottomBarEntity(BottomBarType.CRYPTO, title = "crypto", destination = "crypto"),
+                    BottomBarEntity(BottomBarType.WEATHER, title = "weather", destination = "weather"),
+                    BottomBarEntity(BottomBarType.GAME, title = "game", destination = "game"),
+                )))
             }
         }
     }
