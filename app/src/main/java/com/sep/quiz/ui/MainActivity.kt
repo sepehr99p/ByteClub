@@ -9,12 +9,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.ui.res.stringResource
 import androidx.core.app.ActivityCompat
+import com.sep.quiz.R
 import com.sep.quiz.ui.designSystem.theme.QuizTheme
 import com.sep.quiz.ui.navigation.BottomBarEntity
 import com.sep.quiz.ui.navigation.BottomBarScreen
 import com.sep.quiz.ui.navigation.BottomBarType
+import com.sep.quiz.ui.navigation.homeRoute
 import com.sep.quiz.ui.navigation.state.rememberBottomBarAppStatus
+import com.sep.quiz.ui.navigation.weatherRoute
+import com.sep.quiz.ui.screen.crypto.cryptoHomeRoute
 import com.sep.quiz.ui.utils.GPSHelper
 import com.sep.quiz.utils.NetworkConnection
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,18 +50,18 @@ class MainActivity : ComponentActivity(), LocationListener {
                         bottomBarList = listOf(
                             BottomBarEntity(
                                 BottomBarType.CRYPTO,
-                                title = "crypto",
-                                destination = "crypto"
+                                title = stringResource(id = R.string.crypt),
+                                destination = cryptoHomeRoute
                             ),
                             BottomBarEntity(
                                 BottomBarType.WEATHER,
-                                title = "weather",
-                                destination = "weather"
+                                title = stringResource(id = R.string.weather),
+                                destination = weatherRoute
                             ),
                             BottomBarEntity(
                                 BottomBarType.HOME,
-                                title = "Home",
-                                destination = "home"
+                                title = stringResource(id = R.string.home),
+                                destination = homeRoute
                             ),
                         )
                     )

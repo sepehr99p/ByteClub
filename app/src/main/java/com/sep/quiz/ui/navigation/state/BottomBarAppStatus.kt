@@ -38,14 +38,6 @@ class BottomBarAppStatus(
     val currentDestination: NavDestination?
         @Composable get() = navController.currentBackStackEntryAsState().value?.destination
 
-    val currentNBottomBarDestination: BottomBarType?
-        @Composable get() = when (currentDestination?.route) {
-            cryptoHomeRoute -> BottomBarType.CRYPTO
-            weatherRoute -> BottomBarType.WEATHER
-            homeRoute -> BottomBarType.HOME
-            else -> null
-        }
-
     fun navigateToBottomBarDestination(bottomNavBarDestination: BottomBarEntity) {
         val bottomBarNavOptions = navOptions {
             popUpTo(navController.graph.findStartDestination().id) {
@@ -57,10 +49,7 @@ class BottomBarAppStatus(
 
         when (bottomNavBarDestination.id) {
             BottomBarType.CRYPTO -> navController.navigateToCryptoHome()
-            BottomBarType.WEATHER -> navController.navigateToWeather(
-                bottomBarNavOptions
-            )
-
+            BottomBarType.WEATHER -> navController.navigateToWeather(bottomBarNavOptions)
             BottomBarType.HOME -> navController.navigateToHome()
             BottomBarType.SETTING -> TODO()
             BottomBarType.OTHER -> TODO()

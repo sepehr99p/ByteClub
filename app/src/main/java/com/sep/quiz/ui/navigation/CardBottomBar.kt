@@ -32,7 +32,8 @@ internal fun QuizBottomBar(
     ) {
 
         destinations.forEach { destination ->
-            val selected = currentDestination.isSelectedDestinationInHierarchy(destination)
+            val selected =
+                (currentDestination.isSelectedDestinationInHierarchy(destination) && (currentDestination?.route == destination.destination))
             if (selected) {
                 needToShowTopBar.value = destination.id.needTopBar
             }
