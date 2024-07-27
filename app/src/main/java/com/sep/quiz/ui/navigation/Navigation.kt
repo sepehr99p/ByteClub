@@ -56,15 +56,11 @@ fun NavController.navigateToHome() {
 fun NavGraphBuilder.homeScreen(
     navigateToDifficulty: (id: String) -> Unit,
     navigateToDictionary: () -> Unit,
-    navigateToCrypto: () -> Unit,
-    navigateToWeather: () -> Unit
 ) {
     composable(route = homeRoute) {
         HomeScreen(
             onCategorySelected = navigateToDifficulty,
             navigateToDictionary = navigateToDictionary,
-            navigateToCrypto = navigateToCrypto,
-            navigateToWeather = navigateToWeather
         )
     }
 }

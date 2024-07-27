@@ -15,7 +15,6 @@ import com.sep.quiz.ui.screen.crypto.cryptoHomeScreen
 import com.sep.quiz.ui.screen.crypto.currencyScreen
 import com.sep.quiz.ui.screen.crypto.marketScreen
 import com.sep.quiz.ui.screen.crypto.navigateToCandles
-import com.sep.quiz.ui.screen.crypto.navigateToCryptoHome
 import com.sep.quiz.ui.screen.crypto.navigateToCurrency
 import com.sep.quiz.ui.screen.crypto.navigateToMarket
 import com.sep.quiz.ui.screen.crypto.navigateToTicker
@@ -56,11 +55,7 @@ fun BottomBarScreen(
                     navigateToDifficulty = {
                         navController.navigateToDifficulty(categoryId = it)
                     },
-                    navigateToDictionary = {
-                        navController.navigateToDictionary()
-                    },
-                    navigateToCrypto = navController::navigateToCryptoHome,
-                    navigateToWeather = navController::navigateToWeather
+                    navigateToDictionary = navController::navigateToDictionary,
                 )
                 difficultyScreen(
                     navigateToQuestions = { id, difficulty, count ->

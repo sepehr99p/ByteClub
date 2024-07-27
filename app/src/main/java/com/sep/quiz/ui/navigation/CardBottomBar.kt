@@ -1,9 +1,7 @@
 package com.sep.quiz.ui.navigation
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -19,15 +17,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import com.sep.quiz.ui.designSystem.theme.Regular_10
-import com.sep.quiz.ui.designSystem.theme.dimen.padding_16
-import com.sep.quiz.ui.designSystem.theme.dimen.padding_4
 
 
 @Composable
 internal fun QuizBottomBar(
     modifier: Modifier = Modifier,
     destinations: List<BottomBarEntity>,
-    destinationsWithUnreadResources: Set<BottomBarEntity> = emptySet(),
     onNavigateToDestination: (BottomBarEntity) -> Unit,
     currentDestination: NavDestination?,
     needToShowTopBar: MutableState<Boolean>,
@@ -37,7 +32,6 @@ internal fun QuizBottomBar(
     ) {
 
         destinations.forEach { destination ->
-            val hasUnread = destinationsWithUnreadResources.contains(destination)
             val selected = currentDestination.isSelectedDestinationInHierarchy(destination)
             if (selected) {
                 needToShowTopBar.value = destination.id.needTopBar
