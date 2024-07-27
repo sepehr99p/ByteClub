@@ -3,6 +3,7 @@ package com.sep.quiz.ui.navigation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -18,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import com.sep.quiz.ui.designSystem.theme.Regular_10
+import com.sep.quiz.ui.designSystem.theme.dimen.padding_16
+import com.sep.quiz.ui.designSystem.theme.dimen.padding_4
 
 
 @Composable
@@ -73,6 +76,7 @@ fun QuizNavigationBar(
     NavigationBar(
         modifier = modifier,
         contentColor = QuizNavigationDefaults.navigationContentColor(),
+        containerColor = MaterialTheme.colorScheme.primaryContainer,
         tonalElevation = 0.dp,
         content = content,
     )
