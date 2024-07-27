@@ -14,6 +14,8 @@
 
     <string name="api_details">used https://opentdb.com as question database</string>
     <string name="api_dictionary_details">used https://api-ninjas.com as Dictionary database</string>
+    <string name="api_kucoin_details">used https://kucoin.com as Crypto database</string>
+    <string name="api_weather_details">used https://open-meteo.com as Weather database</string>
     <string name="project_detail">this project is open source at https://github.com/sepehr99p/Quiz</string>
     <string name="about">About</string>
     <string name="shop">Shop</string>
