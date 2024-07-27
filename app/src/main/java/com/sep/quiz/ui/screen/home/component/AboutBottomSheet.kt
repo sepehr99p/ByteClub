@@ -72,7 +72,7 @@ fun AboutBottomSheet(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
                         modifier = Modifier
                             .size(image_36)
                             .clip(CircleShape),
-                        painter = painterResource(id = R.drawable.logo_no_background),
+                        painter = painterResource(id = R.drawable.logo),
                         contentDescription = "app logo",
                         contentScale = ContentScale.Crop
                     )
