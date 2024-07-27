@@ -46,7 +46,6 @@ fun HomeScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .verticalScroll(scrollState)
     ) {
         if (showCategory.value) {
             when (categoryState.value) {

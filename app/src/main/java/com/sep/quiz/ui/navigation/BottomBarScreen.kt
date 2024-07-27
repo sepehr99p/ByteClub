@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import com.sep.quiz.ui.navigation.state.BottomBarAppStatus
 import com.sep.quiz.ui.screen.crypto.candlesScreen
@@ -47,7 +48,10 @@ fun BottomBarScreen(
         },
         content = { innerPadding ->
             NavHost(
-                modifier = Modifier.padding(top = innerPadding.calculateTopPadding()),
+                modifier = Modifier.padding(
+                    top = innerPadding.calculateTopPadding(),
+                    bottom = 70.dp
+                ),
                 navController = navController,
                 startDestination = homeRoute
             ) {
