@@ -24,9 +24,9 @@ enum class BottomBarType(
         outlinedIconRes = R.drawable.ic_weather_outline,
         needTopBar = false
     ),
-    GAME(
-        filledIconRes = R.drawable.ic_game_filled,
-        outlinedIconRes = R.drawable.ic_game_filled,
+    HOME(
+        filledIconRes = R.drawable.ic_home_filled,
+        outlinedIconRes = R.drawable.ic_home_outline,
         needTopBar = false
     ),
     SETTING(

@@ -1,5 +1,6 @@
 package com.sep.quiz.ui.navigation
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Icon
@@ -28,7 +29,7 @@ internal fun QuizBottomBar(
     currentDestination: NavDestination?,
     needToShowTopBar: MutableState<Boolean>,
 ) {
-    HamrahCardNavigationBar(
+    QuizNavigationBar(
         modifier = modifier.height(70.dp),
     ) {
 
@@ -39,7 +40,7 @@ internal fun QuizBottomBar(
                 needToShowTopBar.value = destination.id.needTopBar
             }
 
-            HamrahCardNavigationBarItem(
+            QuizNavigationBarItem(
                 selected = selected,
                 onClick = {
                     onNavigateToDestination(destination)
@@ -65,13 +66,13 @@ internal fun QuizBottomBar(
 
 
 @Composable
-fun HamrahCardNavigationBar(
+fun QuizNavigationBar(
     modifier: Modifier = Modifier,
     content: @Composable RowScope.() -> Unit,
 ) {
     NavigationBar(
         modifier = modifier,
-        contentColor = HamrahCardNavigationDefaults.navigationContentColor(),
+        contentColor = QuizNavigationDefaults.navigationContentColor(),
         tonalElevation = 0.dp,
         content = content,
     )
@@ -79,7 +80,7 @@ fun HamrahCardNavigationBar(
 
 
 @Composable
-fun RowScope.HamrahCardNavigationBarItem(
+fun RowScope.QuizNavigationBarItem(
     selected: Boolean,
     onClick: () -> Unit,
     icon: @Composable () -> Unit,
@@ -98,11 +99,11 @@ fun RowScope.HamrahCardNavigationBarItem(
         label = label,
         alwaysShowLabel = alwaysShowLabel,
         colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = HamrahCardNavigationDefaults.navigationSelectedItemColor(),
-            unselectedIconColor = HamrahCardNavigationDefaults.navigationUnselectedContentColor(),
-            selectedTextColor = HamrahCardNavigationDefaults.navigationSelectedItemColor(),
-            unselectedTextColor = HamrahCardNavigationDefaults.navigationUnselectedContentColor(),
-            indicatorColor = HamrahCardNavigationDefaults.navigationIndicatorColor(),
+            selectedIconColor = QuizNavigationDefaults.navigationSelectedItemColor(),
+            unselectedIconColor = QuizNavigationDefaults.navigationUnselectedContentColor(),
+            selectedTextColor = QuizNavigationDefaults.navigationSelectedItemColor(),
+            unselectedTextColor = QuizNavigationDefaults.navigationUnselectedContentColor(),
+            indicatorColor = QuizNavigationDefaults.navigationIndicatorColor(),
         ),
     )
 }
@@ -114,7 +115,7 @@ private fun NavDestination?.isSelectedDestinationInHierarchy(destination: Bottom
     } ?: false
 
 
-object HamrahCardNavigationDefaults {
+object QuizNavigationDefaults {
     @Composable
     fun navigationContentColor() = Color.Transparent
 
@@ -122,7 +123,7 @@ object HamrahCardNavigationDefaults {
     fun navigationUnselectedContentColor() = Color.White
 
     @Composable
-    fun navigationSelectedItemColor() = MaterialTheme.colorScheme.secondary
+    fun navigationSelectedItemColor() = MaterialTheme.colorScheme.primary
 
     @Composable
     fun navigationIndicatorColor() = Color.Transparent

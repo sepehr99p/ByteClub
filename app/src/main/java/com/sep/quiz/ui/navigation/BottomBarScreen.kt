@@ -2,7 +2,6 @@ package com.sep.quiz.ui.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -22,7 +21,7 @@ import com.sep.quiz.ui.screen.crypto.navigateToMarket
 import com.sep.quiz.ui.screen.crypto.navigateToTicker
 import com.sep.quiz.ui.screen.crypto.tickerScreen
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun BottomBarScreen(
     appState: BottomBarAppStatus,
@@ -44,7 +43,7 @@ fun BottomBarScreen(
                 onNavigateToDestination = appState::navigateToBottomBarDestination,
                 currentDestination = appState.currentDestination,
                 needToShowTopBar = showTopBar,
-                modifier = Modifier.testTag("HamrahCardBottomBar"),
+                modifier = Modifier.testTag("QuizBottomBar"),
             )
         },
         content = { innerPadding ->
