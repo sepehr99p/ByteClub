@@ -50,7 +50,7 @@ class CandlesViewModel @Inject constructor(
         fetchCandles()
     }
 
-    fun fetchCandles(symbol: String = navigationParam ?: "") {
+    fun fetchCandles(symbol: String = navigationParam ?: "BTC-USDT") {
         scope.launch {
             when (val result = candlesUseCase.invoke(interval = interval.value, symbol = symbol)) {
                 is ResultState.Exception -> {

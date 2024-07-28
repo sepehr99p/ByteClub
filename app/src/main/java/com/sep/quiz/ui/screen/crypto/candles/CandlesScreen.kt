@@ -101,7 +101,8 @@ fun CandlesScreen(
 
             is UiState.Success -> {
                 CandlesList(
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier.fillMaxHeight()
+                    ,
                     candles = (candlesState.value as UiState.Success).data ?: listOf()
                 )
             }
