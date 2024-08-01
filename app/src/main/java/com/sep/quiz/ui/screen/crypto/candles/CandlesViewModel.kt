@@ -15,6 +15,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -38,7 +39,7 @@ class CandlesViewModel @Inject constructor(
 
     private val _candles =
         MutableStateFlow<UiState<List<CandleEntity>?>>(UiState.Initialize)
-    val candles: StateFlow<UiState<List<CandleEntity>?>> = _candles
+    val candles: StateFlow<UiState<List<CandleEntity>?>> = _candles.asStateFlow()
 
     private val navigationParam = savedStateHandle.get<String>("symbol")
 

@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.patrykandpatrick.vico.compose.cartesian.CartesianChartHost
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberBottomAxis
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberStartAxis
@@ -51,7 +52,7 @@ import com.sep.quiz.ui.utils.UiState
 fun CandlesScreen(
     viewModel: CandlesViewModel = hiltViewModel()
 ) {
-    val candlesState = viewModel.candles.collectAsState()
+    val candlesState = viewModel.candles.collectAsStateWithLifecycle()
     val selectedInterval = viewModel.interval.collectAsState()
     Column(
         modifier = Modifier
