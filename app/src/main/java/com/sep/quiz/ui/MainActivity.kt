@@ -115,7 +115,7 @@ class MainActivity : ComponentActivity(), LocationListener {
     override fun onLocationChanged(location: Location) {
         latitude = location.latitude
         longitude = location.longitude
-        val geoCoder = Geocoder(this, Locale.getDefault())
+//        val geoCoder = Geocoder(this, Locale.getDefault())
     }
 
 }

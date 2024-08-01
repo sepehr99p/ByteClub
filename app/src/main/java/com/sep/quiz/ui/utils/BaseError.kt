@@ -44,7 +44,7 @@ sealed class BaseError {
             NoteAllowed -> context.getString(R.string.notAllowed)
 
             is Unknown -> message ?: context.getString(R.string.unknownError)
-            else -> "Unknown"
+//            else -> "Unknown"
         }
     }
 }

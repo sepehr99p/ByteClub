@@ -42,7 +42,7 @@ fun HomeScreen(
     val dadJoke = viewModel.dadJoke.collectAsState()
 
 
-    val scrollState = rememberScrollState()
+//    val scrollState = rememberScrollState()
     Column(
         modifier = modifier
             .fillMaxSize()

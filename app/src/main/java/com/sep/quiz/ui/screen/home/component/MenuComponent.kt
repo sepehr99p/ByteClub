@@ -98,7 +98,7 @@ private fun MenuComponentItem(modifier: Modifier = Modifier, title: String, onCl
 
 @Preview
 @Composable
-private fun MenuComponentItemPreview(modifier: Modifier = Modifier) {
+private fun MenuComponentItemPreview() {
     MenuComponentItem(title = "Title") {}
 }
 
