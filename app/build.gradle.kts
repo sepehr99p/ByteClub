@@ -67,13 +67,14 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.profileinstaller)
     "baselineProfile"(project(":baselineprofile"))
     with(libs) {
         with(androidx) {
             implementation(core.ktx)
             implementation(lifecycle.runtime.ktx)
+            implementation(lifecycle.runtime.compose.android)
             implementation(activity.compose)
+            implementation(profileinstaller)
             implementation(platform(compose.bom))
             implementation(ui)
             implementation(ui.graphics)

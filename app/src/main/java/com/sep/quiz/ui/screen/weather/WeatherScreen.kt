@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sep.quiz.R
 import com.sep.quiz.domain.entiry.weather.ForecastInfo
 import com.sep.quiz.domain.entiry.weather.WeatherInfo
@@ -41,8 +42,8 @@ fun WeatherScreen(
     modifier: Modifier = Modifier,
     viewModel: WeatherViewModel = hiltViewModel()
 ) {
-    val currentWeatherState = viewModel.currentWeather.collectAsState()
-    val forecastState = viewModel.forecast.collectAsState()
+    val currentWeatherState = viewModel.currentWeather.collectAsStateWithLifecycle()
+    val forecastState = viewModel.forecast.collectAsStateWithLifecycle()
     Column(
         modifier = modifier
             .fillMaxWidth()

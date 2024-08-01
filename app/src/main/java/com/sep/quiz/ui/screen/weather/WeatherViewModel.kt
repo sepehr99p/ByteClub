@@ -22,6 +22,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -43,27 +44,24 @@ class WeatherViewModel @Inject constructor(
         Log.e(TAG, "ceh", t)
     }
 
-
-
-
     private val scope =
         CoroutineScope(Job() + viewModelScope.coroutineContext + SupervisorJob() + ceh)
 
     private val _currentWeather = MutableStateFlow<UiState<WeatherInfo?>>(
         UiState.Initialize
     )
-    val currentWeather: StateFlow<UiState<WeatherInfo?>> = _currentWeather
+    val currentWeather: StateFlow<UiState<WeatherInfo?>> = _currentWeather.asStateFlow()
 
     private val _forecast = MutableStateFlow<UiState<ForecastInfo?>>(
         UiState.Initialize
     )
-    val forecast: StateFlow<UiState<ForecastInfo?>> = _forecast
+    val forecast: StateFlow<UiState<ForecastInfo?>> = _forecast.asStateFlow()
 
     private val _airQuality = MutableStateFlow<UiState<AirQualityEntity?>>(
         UiState.Initialize
     )
 
-    val airQuality: StateFlow<UiState<AirQualityEntity?>> = _airQuality
+    val airQuality: StateFlow<UiState<AirQualityEntity?>> = _airQuality.asStateFlow()
 
     init {
         fetchAirQuality()
