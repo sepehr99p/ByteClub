@@ -55,7 +55,7 @@ fun AboutBottomSheet(modifier: Modifier = Modifier, onDismiss: () -> Unit) {
             modifier = Modifier.padding(padding_8),
             border = BorderStroke(width = 0.5.dp, color = Color.Black),
             shape = RoundedCornerShape(corner_24),
-            colors = CardDefaults.elevatedCardColors(containerColor = Color(0xFF232526))
+            colors = CardDefaults.elevatedCardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
         ) {
             Column(
                 modifier = Modifier
