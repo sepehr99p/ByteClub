@@ -19,6 +19,8 @@ benchmarkMacroJunit4 = "1.2.4"
 baselineprofile = "1.2.3"
 profileinstaller = "1.3.1"
 
+customactivityoncrash = "2.4.0"
+
 androidxDataStore = "1.1.1"
 googleProtobuf = "3.24.4"
 protobuf = "0.9.4"
@@ -34,6 +36,7 @@ firebase-crashlytics = "3.0.2"
 serialization = "1.6.10"
 kapt = "1.8.0"
 lifecycleRuntimeComposeAndroid = "2.8.4"
+ui-constraint = "1.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -52,6 +55,7 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
 
+customactivityoncrash = { group = "cat.ereza" , name = "customactivityoncrash" , version.ref = "customactivityoncrash"}
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "kotlinx-serialization-converter" }
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "loggingInterceptor" }
@@ -76,6 +80,8 @@ firebase-analytic = { group = "com.google.firebase", name = "firebase-analytics"
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
+
+androidx-compose-ui-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "ui-constraint" }
 
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }

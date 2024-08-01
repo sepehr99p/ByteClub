@@ -71,4 +71,7 @@
     <string name="hourly_air_quality">Hourly Air Quality</string>
     <string name="daily_air_quality">Daily Air Quality</string>
     <string name="daily_detail">Daily Details</string>
+
+    <string name="crashed">Something went wrong :/</string>
+
 </resources>

@@ -70,6 +70,8 @@ dependencies {
     "baselineProfile"(project(":baselineprofile"))
     with(libs) {
         with(androidx) {
+            implementation(compose.ui.constraintlayout)
+            implementation(customactivityoncrash)
             implementation(core.ktx)
             implementation(lifecycle.runtime.ktx)
             implementation(lifecycle.runtime.compose.android)
