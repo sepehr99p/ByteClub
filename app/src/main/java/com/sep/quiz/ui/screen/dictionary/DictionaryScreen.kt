@@ -3,6 +3,8 @@ package com.sep.quiz.ui.screen.dictionary
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
@@ -57,7 +59,10 @@ fun DictionaryScreen(
                 }
 
                 is UiState.Success -> {
-                    Column(modifier = Modifier.padding(padding_8)) {
+                    val scrollState = rememberScrollState()
+                    Column(modifier = Modifier
+                        .padding(padding_8)
+                        .verticalScroll(scrollState)) {
                         Text(
                             text = (wordDefinition.value as UiState.Success).data.definition,
                             color = MaterialTheme.colorScheme.onPrimary
