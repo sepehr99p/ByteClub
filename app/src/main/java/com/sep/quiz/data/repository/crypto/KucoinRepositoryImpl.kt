@@ -5,6 +5,7 @@ import com.sep.quiz.domain.DEFAULT_ERROR
 import com.sep.quiz.domain.entiry.crypto.CandleEntity
 import com.sep.quiz.domain.entiry.crypto.CurrencyEntity
 import com.sep.quiz.domain.entiry.crypto.SingleTickerEntity
+import com.sep.quiz.domain.entiry.crypto.Ticker24hEntity
 import com.sep.quiz.domain.entiry.crypto.TickerEntity
 import com.sep.quiz.domain.repository.crypto.KucoinRepository
 import com.sep.quiz.utils.ResultState
@@ -93,6 +94,16 @@ class KucoinRepositoryImpl @Inject constructor(
         if (result.code == "200000") {
             result.let { responses ->
                 return ResultState.Success(responses.data.BTC)
+            }
+        }
+        return ResultState.Failure(DEFAULT_ERROR)
+    }
+
+    override suspend fun fetch24HTicker(symbol : String): ResultState<Ticker24hEntity> {
+        val result = kucoinApiService.fetch24h(symbol)
+        if (result.code == "200000") {
+            result.let {response ->
+                return ResultState.Success(result.data.toDomainModel())
             }
         }
         return ResultState.Failure(DEFAULT_ERROR)

@@ -7,6 +7,7 @@ import com.sep.quiz.data.model.response.crypto.CryptoBaseResponse
 import com.sep.quiz.data.model.response.crypto.CurrencyResponse
 import com.sep.quiz.data.model.response.crypto.PriceResponse
 import com.sep.quiz.data.model.response.crypto.SingleTickerResponse
+import com.sep.quiz.data.model.response.crypto.Ticker24hResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -18,6 +19,9 @@ interface KucoinApiService {
 
     @GET(fetchTicker)
     suspend fun fetchTicker(@Query("symbol") symbol: String): CryptoBaseResponse<SingleTickerResponse>
+
+    @GET(fetch24h)
+    suspend fun fetch24h(@Query("symbol") symbol: String): CryptoBaseResponse<Ticker24hResponse>
 
     @GET(fetchAllTickers)
     suspend fun fetchAllTickers(): CryptoBaseResponse<AllTickersResponse>
@@ -38,9 +42,9 @@ interface KucoinApiService {
     suspend fun getPrices(): CryptoBaseResponse<PriceResponse>
 
     @GET(accountSummary)
-    suspend fun getAccountSummery() : Response<AccountSummeryResponse>
+    suspend fun getAccountSummery(): Response<AccountSummeryResponse>
 
     @GET(accounts)
-    suspend fun fetchAccount() : Response<List<AccountResponse>>
+    suspend fun fetchAccount(): Response<List<AccountResponse>>
 
 }
