@@ -11,7 +11,6 @@ import com.sep.quiz.ui.screen.home.HomeScreen
 import com.sep.quiz.ui.screen.trivia.difficulty.DifficultyScreen
 import com.sep.quiz.ui.screen.trivia.questions.QuestionsScreen
 import com.sep.quiz.ui.screen.trivia.result.ResultScreen
-import com.sep.quiz.ui.screen.weather.WeatherScreen
 
 const val idArg = "id"
 const val difficultyArg = "difficulty"
@@ -23,8 +22,6 @@ const val difficultyRoute = "difficulty_route/{$idArg}"
 const val questionsRoute = "questions_route/{$idArg}/{$difficultyArg}/{$countArg}"
 const val resultRoute = "result/{$scoreArg}"
 const val dictionaryRoute = "dictionary"
-
-const val weatherRoute = "weather"
 
 
 fun NavController.navigateToResult(score: String) {
@@ -53,9 +50,53 @@ fun NavController.navigateToHome() {
     this.navigate(homeRoute)
 }
 
+fun NavGraphBuilder.triviaScreen(
+    navController: NavController
+) {
+    composable(
+        route = difficultyRoute,
+        arguments = listOf(navArgument(idArg) { type = NavType.StringType })
+    ) {
+        DifficultyScreen(
+            navigateToQuestions = { categoryId, difficulty, count ->
+                navController.navigateToQuestions(
+                    categoryId = categoryId,
+                    difficulty = difficulty,
+                    count = count
+                )
+            }
+        )
+    }
+
+    composable(
+        route = questionsRoute,
+        arguments = listOf(
+            navArgument(idArg) { type = NavType.StringType },
+            navArgument(difficultyArg) { type = NavType.StringType },
+            navArgument(countArg) { type = NavType.StringType },
+        )
+    ) {
+        QuestionsScreen(
+            navigateToHome = navController::navigateToHome,
+            navigateToResult = navController::navigateToResult
+        )
+    }
+
+    composable(
+        route = resultRoute,
+        arguments = listOf(navArgument(scoreArg) { type = NavType.StringType })
+    ) {
+        ResultScreen(navigateToHome = navController::navigateToHome)
+    }
+
+    composable(route = dictionaryRoute) {
+        DictionaryScreen()
+    }
+}
+
 fun NavGraphBuilder.homeScreen(
     navigateToDifficulty: (id: String) -> Unit,
-    navigateToDictionary: () -> Unit,
+    navigateToDictionary: () -> Unit
 ) {
     composable(route = homeRoute) {
         HomeScreen(
@@ -65,60 +106,4 @@ fun NavGraphBuilder.homeScreen(
     }
 }
 
-fun NavGraphBuilder.difficultyScreen(
-    navigateToQuestions: (id: String, difficulty: String, count: Int) -> Unit
-) {
-    composable(
-        route = difficultyRoute,
-        arguments = listOf(navArgument(idArg) { type = NavType.StringType })
-    ) {
-        DifficultyScreen(navigateToQuestions = navigateToQuestions)
-    }
-}
 
-fun NavGraphBuilder.questionsScreen(
-    navigateToHome: () -> Unit,
-    navigateToResult: (score: String) -> Unit
-) {
-    composable(
-        route = questionsRoute,
-        arguments = listOf(
-            navArgument(idArg) { type = NavType.StringType },
-            navArgument(difficultyArg) { type = NavType.StringType },
-            navArgument(countArg) { type = NavType.StringType },
-        )
-    ) {
-        QuestionsScreen(navigateToHome = navigateToHome, navigateToResult = navigateToResult)
-    }
-}
-
-fun NavGraphBuilder.resultScreen(
-    navigateToHome: () -> Unit,
-) {
-    composable(
-        route = resultRoute,
-        arguments = listOf(navArgument(scoreArg) { type = NavType.StringType })
-    ) {
-        ResultScreen(navigateToHome = navigateToHome)
-    }
-}
-
-fun NavGraphBuilder.dictionaryScreen() {
-    composable(route = dictionaryRoute) {
-        DictionaryScreen()
-    }
-}
-
-fun NavController.navigateToDictionary(navOptions: NavOptions? = null) {
-    this.navigate(dictionaryRoute)
-}
-
-fun NavGraphBuilder.weatherScreen() {
-    composable(route = weatherRoute) {
-        WeatherScreen()
-    }
-}
-
-fun NavController.navigateToWeather(navOptions: NavOptions? = null) {
-    this.navigate(weatherRoute)
-}

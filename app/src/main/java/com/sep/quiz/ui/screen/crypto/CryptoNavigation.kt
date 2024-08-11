@@ -19,17 +19,35 @@ const val marketRoute = "marketRoute"
 const val currencyRoute = "currencyRoute"
 
 fun NavGraphBuilder.cryptoHomeScreen(
-    navigateToMarket: () -> Unit,
-    navigateToTicker: () -> Unit,
-    navigateToCurrency: () -> Unit
+    navController: NavController,
 ) {
     composable(route = cryptoHomeRoute) {
         CryptoHomeScreen(
-            navigateToMarket = navigateToMarket,
-            navigateToTicker = navigateToTicker,
-            navigateToCurrency = navigateToCurrency
+            navigateToMarket = navController::navigateToMarket,
+            navigateToTicker = navController::navigateToTicker,
+            navigateToCurrency = navController::navigateToCurrency
         )
     }
+
+    composable(route = tickerRoute) {
+        TickerScreen(onTickerClicked = navController::navigateToCandles)
+    }
+
+    composable(
+        route = candlesRoute,
+        arguments = listOf(navArgument("symbol") { type = NavType.StringType })
+    ) {
+        CandlesScreen()
+    }
+
+    composable(route = marketRoute) {
+        MarketScreen()
+    }
+
+    composable(route = currencyRoute) {
+        CurrencyScreen()
+    }
+
 }
 
 fun NavController.navigateToCryptoHome() {
@@ -38,48 +56,22 @@ fun NavController.navigateToCryptoHome() {
 }
 
 
-fun NavGraphBuilder.tickerScreen(
-    navigateToCandles : (symbol : String) -> Unit
-) {
-    composable(route = tickerRoute) {
-        TickerScreen(onTickerClicked = navigateToCandles)
-    }
-}
 
 fun NavController.navigateToTicker() {
     this.popBackStack(cryptoHomeRoute, inclusive = false)
     this.navigate(tickerRoute)
 }
 
-fun NavGraphBuilder.candlesScreen() {
-    composable(
-        route = candlesRoute,
-        arguments = listOf(navArgument("symbol") { type = NavType.StringType })
-    ) {
-        CandlesScreen()
-    }
-}
 
 fun NavController.navigateToCandles(pair: String) {
     this.popBackStack(tickerRoute, inclusive = false)
     this.navigate(candlesRoute.replace("{symbol}", pair))
 }
 
-fun NavGraphBuilder.marketScreen() {
-    composable(route = marketRoute) {
-        MarketScreen()
-    }
-}
 
 fun NavController.navigateToMarket() {
     this.popBackStack(cryptoHomeRoute, inclusive = false)
     this.navigate(marketRoute)
-}
-
-fun NavGraphBuilder.currencyScreen() {
-    composable(route = currencyRoute) {
-        CurrencyScreen()
-    }
 }
 
 fun NavController.navigateToCurrency() {

@@ -11,12 +11,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.sep.quiz.ui.navigation.BottomBarEntity
 import com.sep.quiz.ui.navigation.BottomBarType
-import com.sep.quiz.ui.navigation.homeRoute
 import com.sep.quiz.ui.navigation.navigateToHome
-import com.sep.quiz.ui.navigation.navigateToWeather
-import com.sep.quiz.ui.navigation.weatherRoute
-import com.sep.quiz.ui.screen.crypto.cryptoHomeRoute
 import com.sep.quiz.ui.screen.crypto.navigateToCryptoHome
+import com.sep.quiz.ui.screen.weather.navigateToWeather
 
 @Composable
 fun rememberBottomBarAppStatus(

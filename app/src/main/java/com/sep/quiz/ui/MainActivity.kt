@@ -2,28 +2,37 @@ package com.sep.quiz.ui
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.sep.quiz.R
 import com.sep.quiz.ui.designSystem.theme.QuizTheme
 import com.sep.quiz.ui.navigation.BottomBarEntity
 import com.sep.quiz.ui.navigation.BottomBarScreen
 import com.sep.quiz.ui.navigation.BottomBarType
+import com.sep.quiz.ui.navigation.dictionaryRoute
 import com.sep.quiz.ui.navigation.homeRoute
+import com.sep.quiz.ui.navigation.navigateToDifficulty
 import com.sep.quiz.ui.navigation.state.rememberBottomBarAppStatus
-import com.sep.quiz.ui.navigation.weatherRoute
+import com.sep.quiz.ui.navigation.triviaScreen
 import com.sep.quiz.ui.screen.crypto.cryptoHomeRoute
+import com.sep.quiz.ui.screen.weather.weatherRoute
 import com.sep.quiz.ui.utils.GPSHelper
 import com.sep.quiz.utils.NetworkConnection
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Locale
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -45,27 +54,55 @@ class MainActivity : ComponentActivity(), LocationListener {
         enableEdgeToEdge()
         setContent {
             QuizTheme {
-                BottomBarScreen(
-                    appState = rememberBottomBarAppStatus(
-                        bottomBarList = listOf(
-                            BottomBarEntity(
-                                BottomBarType.CRYPTO,
-                                title = stringResource(id = R.string.crypt),
-                                destination = cryptoHomeRoute
-                            ),
-                            BottomBarEntity(
-                                BottomBarType.WEATHER,
-                                title = stringResource(id = R.string.weather),
-                                destination = weatherRoute
-                            ),
-                            BottomBarEntity(
-                                BottomBarType.HOME,
-                                title = stringResource(id = R.string.home),
-                                destination = homeRoute
-                            ),
-                        )
+                val appState = rememberBottomBarAppStatus(
+                    bottomBarList = listOf(
+                        BottomBarEntity(
+                            BottomBarType.CRYPTO,
+                            title = stringResource(id = R.string.crypt),
+                            destination = cryptoHomeRoute
+                        ),
+                        BottomBarEntity(
+                            BottomBarType.WEATHER,
+                            title = stringResource(id = R.string.weather),
+                            destination = weatherRoute
+                        ),
+                        BottomBarEntity(
+                            BottomBarType.HOME,
+                            title = stringResource(id = R.string.home),
+                            destination = homeRoute
+                        ),
                     )
                 )
+                val navController = rememberNavController()
+
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = {
+
+                    },
+                    content = { innerPadding ->
+                        NavHost(
+                            modifier = Modifier.padding(
+                                top = innerPadding.calculateTopPadding(),
+                            ),
+                            navController = navController,
+                            startDestination = "bottom_bar"
+                        ) {
+                            composable("bottom_bar") {
+                                BottomBarScreen(
+                                    appState,
+                                    navigateToDifficulty = {
+                                        navController.navigateToDifficulty(
+                                            categoryId = it
+                                        )
+                                    },
+                                    navigateToDictionary = { navController.navigate(dictionaryRoute) }
+                                )
+                            }
+                            triviaScreen(navController)
+                        }
+                    })
+
             }
         }
     }
