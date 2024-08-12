@@ -11,19 +11,14 @@ import java.util.Locale;
 
 public class GPSHelper {
 
-    private Context context;
-    private boolean isGPSEnabled = false;
-    private boolean isNetworkEnabled = false;
-    private LocationManager locationManager;
+    private final LocationManager locationManager;
     private Location location;
     private double latitude = 0;
     private double longitude = 0;
 
     public GPSHelper(Context context) {
-        this.context = context;
 
-        locationManager = (LocationManager) context
-                .getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
     }
 
@@ -43,11 +38,11 @@ public class GPSHelper {
     }
 
     public boolean isGPSenabled() {
-        isGPSEnabled = locationManager
+        boolean isGPSEnabled = locationManager
                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
 
         // getting network status
-        isNetworkEnabled = locationManager
+        boolean isNetworkEnabled = locationManager
                 .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
         return (isGPSEnabled || isNetworkEnabled);

@@ -1,5 +1,6 @@
 package com.sep.quiz.ui.utils
 
+import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
 
 fun dayOfWeek(time: String): String {

@@ -15,5 +15,5 @@ fun NavGraphBuilder.weatherScreen() {
 }
 
 fun NavController.navigateToWeather(navOptions: NavOptions? = null) {
-    this.navigate(weatherRoute)
+    this.navigate(weatherRoute,navOptions)
 }

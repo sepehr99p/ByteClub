@@ -2,12 +2,11 @@ package com.sep.quiz.ui.screen.crypto.currency
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.sep.quiz.ui.screen.crypto.currency.component.CurrencyListComponent
 import com.sep.quiz.domain.entiry.crypto.CurrencyEntity
 import com.sep.quiz.ui.designSystem.components.LoadingComponent
+import com.sep.quiz.ui.screen.crypto.currency.component.CurrencyListComponent
 import com.sep.quiz.ui.utils.UiState
 
 @Composable
@@ -39,7 +38,7 @@ private fun CurrencyScreenPreview() {
 
 @Preview
 @Composable
-private fun CurrencyListComponentPreview(modifier: Modifier = Modifier) {
+private fun CurrencyListComponentPreview() {
     CurrencyListComponent(
         currencyEntities = listOf(
             mockCurrencyEntity,

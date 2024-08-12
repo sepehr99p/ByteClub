@@ -71,8 +71,8 @@ fun InfiniteTransition.animateScaleWithDelay(delay: Int) = this.animateFloat(
     animationSpec = infiniteRepeatable(
         animation = keyframes {
             durationMillis = delayUnit * 4
-            0f at delay with LinearEasing
-            1f at delay + delayUnit with LinearEasing
+            0f at delay using LinearEasing
+            1f at delay + delayUnit using LinearEasing
             0f at delay + delayUnit * 2
         }
     ), label = ""

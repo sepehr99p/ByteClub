@@ -1,7 +1,6 @@
 package com.sep.quiz.ui.designSystem.ex
 
 import android.annotation.SuppressLint
-import android.content.res.Resources
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -41,7 +40,6 @@ fun Modifier.shadowBackground(): Modifier =
         )
     }
 
-val Int.px: Int get() = (this * Resources.getSystem().displayMetrics.density).toInt()
 
 @Composable
 fun Modifier.shimmerLoadingAnimation(
@@ -90,7 +88,6 @@ fun Modifier.shimmerLoadingAnimation(
 
 @SuppressLint("ModifierFactoryUnreferencedReceiver")
 fun Modifier.bounceClick(
-    animationDuration: Int = 100,
     scaleDown: Float = 0.9f,
     onClick: () -> Unit
 ) : Modifier = composed {
@@ -98,19 +95,17 @@ fun Modifier.bounceClick(
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
 
-    val animatable = remember {
-        Animatable(1f)
-    }
+    val animate = remember { Animatable(1f) }
 
     LaunchedEffect(key1 = isPressed) {
         if (isPressed) {
-            animatable.animateTo(scaleDown)
-        } else animatable.animateTo(1f)
+            animate.animateTo(scaleDown)
+        } else animate.animateTo(1f)
     }
 
     Modifier
         .graphicsLayer {
-            val scale = animatable.value
+            val scale = animate.value
             scaleX = scale
             scaleY = scale
         }
