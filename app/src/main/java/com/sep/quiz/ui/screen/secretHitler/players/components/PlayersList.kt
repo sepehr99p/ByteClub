@@ -1,6 +1,7 @@
 package com.sep.quiz.ui.screen.secretHitler.players.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -30,8 +31,14 @@ internal fun PlayersList(modifier: Modifier = Modifier, players: List<String>) {
         items(players) {
             PlayersItemComponent(name = it)
         }
-        item {
-            AddNewPlayerComponent()
+        if (players.size < 10) {
+            item {
+                AddNewPlayerComponent(
+                    onAddClicked = {
+
+                    }
+                )
+            }
         }
     }
 }
@@ -56,13 +63,14 @@ internal fun PlayersItemComponent(modifier: Modifier = Modifier, name: String) {
 }
 
 @Composable
-internal fun AddNewPlayerComponent(modifier: Modifier = Modifier) {
+internal fun AddNewPlayerComponent(modifier: Modifier = Modifier, onAddClicked: () -> Unit) {
     Box(
         modifier = modifier
             .fillMaxWidth()
             .padding(padding_8)
             .clip(RoundedCornerShape(corner_8))
             .background(MaterialTheme.colorScheme.primaryContainer)
+            .clickable { onAddClicked.invoke() }
             .padding(padding_8)
     ) {
         Icon(
@@ -79,7 +87,7 @@ internal fun AddNewPlayerComponent(modifier: Modifier = Modifier) {
 @Composable
 private fun AddNewPlayerComponentPreview() {
     QuizTheme {
-        AddNewPlayerComponent()
+        AddNewPlayerComponent(onAddClicked = {})
     }
 }
 

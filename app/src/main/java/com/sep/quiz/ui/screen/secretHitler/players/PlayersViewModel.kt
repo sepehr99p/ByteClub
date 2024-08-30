@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.sep.quiz.domain.usecase.secretHitler.SecretHitlerFetchPlayersUseCase
 import com.sep.quiz.domain.usecase.secretHitler.SecretHitlerSetPlayersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,7 +16,8 @@ class PlayersViewModel @Inject constructor(
     private val setPlayersUseCase: SecretHitlerSetPlayersUseCase
 ) : ViewModel() {
 
-
+    private val _players = MutableStateFlow<List<String>>(listOf())
+    val players = _players.asStateFlow()
 
     init {
         fetchPlayers()
@@ -22,7 +25,7 @@ class PlayersViewModel @Inject constructor(
 
     private fun fetchPlayers() {
         viewModelScope.launch {
-            fetchPlayersUseCase.invoke()
+            _players.value = fetchPlayersUseCase.invoke()
         }
     }
 

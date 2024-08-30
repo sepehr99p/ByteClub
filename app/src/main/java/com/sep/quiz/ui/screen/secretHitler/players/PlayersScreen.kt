@@ -3,6 +3,7 @@ package com.sep.quiz.ui.screen.secretHitler.players
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -14,9 +15,10 @@ internal fun PlayersScreen(
     modifier: Modifier = Modifier,
     viewModel: PlayersViewModel = hiltViewModel()
 ) {
+    val players = viewModel.players.collectAsState()
     Column(modifier = modifier) {
         PlayersHeaderComponent()
-//        PlayersList()
+        PlayersList(players = players.value)
     }
 }
 
