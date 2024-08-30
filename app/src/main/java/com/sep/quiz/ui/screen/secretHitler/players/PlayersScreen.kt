@@ -40,7 +40,7 @@ private fun PlayersHeaderComponent(modifier: Modifier = Modifier) {
 @Composable
 private fun StartGameBtn(modifier: Modifier = Modifier, onClick: () -> Unit) {
     ButtonComponent(
-        modifier = modifier.fillMaxWidth().padding(vertical = padding_8),
+        modifier = modifier.fillMaxWidth().padding(padding_8),
         onclick = onClick,
         title = stringResource(id = R.string.start)
     )
