@@ -12,12 +12,14 @@ import com.sep.quiz.data.repository.crypto.KucoinRepositoryImpl
 import com.sep.quiz.data.repository.ninja.DadJokeRepositoryImpl
 import com.sep.quiz.data.repository.ninja.DictionaryRepositoryImpl
 import com.sep.quiz.data.repository.quiz.QuizRepositoryImpl
+import com.sep.quiz.data.repository.secretHitler.SecretHitlerRepositoryImpl
 import com.sep.quiz.data.repository.weather.AirQualityRepositoryImpl
 import com.sep.quiz.data.repository.weather.WeatherRepositoryImpl
 import com.sep.quiz.domain.repository.crypto.KucoinRepository
 import com.sep.quiz.domain.repository.ninja.DadJokeRepository
 import com.sep.quiz.domain.repository.ninja.DictionaryRepository
 import com.sep.quiz.domain.repository.quiz.QuizRepository
+import com.sep.quiz.domain.repository.secretHitler.SecretHitlerRepository
 import com.sep.quiz.domain.repository.weather.AirQualityRepository
 import com.sep.quiz.domain.repository.weather.WeatherRepository
 import com.sep.quiz.domain.usecase.dictionary.GetWordUseCase
@@ -88,6 +90,9 @@ object DataModule {
         airQualityApi: AirQualityApi
     ): AirQualityRepository = AirQualityRepositoryImpl(airQualityApi = airQualityApi)
 
+    @Singleton
+    @Provides
+    fun provideSecretHitlerRepository() : SecretHitlerRepository = SecretHitlerRepositoryImpl()
 
     @Provides
     fun provideCategoryInfoUseCase(
