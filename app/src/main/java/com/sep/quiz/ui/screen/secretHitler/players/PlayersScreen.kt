@@ -16,7 +16,7 @@ internal fun PlayersScreen(
 ) {
     Column(modifier = modifier) {
         PlayersHeaderComponent()
-        PlayersList()
+//        PlayersList()
     }
 }
 
