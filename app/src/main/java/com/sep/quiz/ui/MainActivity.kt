@@ -26,6 +26,7 @@ import com.sep.quiz.ui.navigation.BottomBarType
 import com.sep.quiz.ui.navigation.dictionaryRoute
 import com.sep.quiz.ui.navigation.homeRoute
 import com.sep.quiz.ui.navigation.navigateToDifficulty
+import com.sep.quiz.ui.navigation.secretHitlerRoute
 import com.sep.quiz.ui.navigation.state.rememberBottomBarAppStatus
 import com.sep.quiz.ui.navigation.triviaScreen
 import com.sep.quiz.ui.screen.crypto.cryptoHomeRoute
@@ -96,7 +97,8 @@ class MainActivity : ComponentActivity(), LocationListener {
                                             categoryId = it
                                         )
                                     },
-                                    navigateToDictionary = { navController.navigate(dictionaryRoute) }
+                                    navigateToDictionary = { navController.navigate(dictionaryRoute) },
+                                    navigateToSecretHitler = { navController.navigate(secretHitlerRoute) }
                                 )
                             }
                             triviaScreen(navController)

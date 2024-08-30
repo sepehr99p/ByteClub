@@ -11,7 +11,7 @@ import com.sep.quiz.ui.designSystem.theme.QuizTheme
 import com.sep.quiz.ui.screen.secretHitler.players.components.PlayersList
 
 @Composable
-internal fun PlayersScreen(
+fun PlayersScreen(
     modifier: Modifier = Modifier,
     viewModel: PlayersViewModel = hiltViewModel()
 ) {

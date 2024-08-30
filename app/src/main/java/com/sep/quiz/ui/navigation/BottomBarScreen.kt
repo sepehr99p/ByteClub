@@ -20,6 +20,7 @@ import com.sep.quiz.ui.screen.weather.weatherScreen
 fun BottomBarScreen(
     appState: BottomBarAppStatus,
     navigateToDifficulty: (id: String) -> Unit,
+    navigateToSecretHitler: () -> Unit,
     navigateToDictionary: () -> Unit
 ) {
     val navController = appState.navController
@@ -46,7 +47,7 @@ fun BottomBarScreen(
                 navController = navController,
                 startDestination = homeRoute
             ) {
-                homeScreen(navigateToDifficulty,navigateToDictionary)
+                homeScreen(navigateToDifficulty, navigateToDictionary,navigateToSecretHitler)
                 cryptoHomeScreen(navController)
                 weatherScreen()
             }

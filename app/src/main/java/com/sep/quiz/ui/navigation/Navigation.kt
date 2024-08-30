@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.sep.quiz.ui.screen.dictionary.DictionaryScreen
 import com.sep.quiz.ui.screen.home.HomeScreen
+import com.sep.quiz.ui.screen.secretHitler.players.PlayersScreen
 import com.sep.quiz.ui.screen.trivia.difficulty.DifficultyScreen
 import com.sep.quiz.ui.screen.trivia.questions.QuestionsScreen
 import com.sep.quiz.ui.screen.trivia.result.ResultScreen
@@ -22,6 +23,7 @@ const val difficultyRoute = "difficulty_route/{$idArg}"
 const val questionsRoute = "questions_route/{$idArg}/{$difficultyArg}/{$countArg}"
 const val resultRoute = "result/{$scoreArg}"
 const val dictionaryRoute = "dictionary"
+const val secretHitlerRoute = "secretHitler"
 
 
 fun NavController.navigateToResult(score: String) {
@@ -92,16 +94,23 @@ fun NavGraphBuilder.triviaScreen(
     composable(route = dictionaryRoute) {
         DictionaryScreen()
     }
+
+    composable(route = secretHitlerRoute) {
+        PlayersScreen()
+    }
+
 }
 
 fun NavGraphBuilder.homeScreen(
     navigateToDifficulty: (id: String) -> Unit,
-    navigateToDictionary: () -> Unit
+    navigateToDictionary: () -> Unit,
+    navigateToSecretHitler: () -> Unit
 ) {
     composable(route = homeRoute) {
         HomeScreen(
             onCategorySelected = navigateToDifficulty,
             navigateToDictionary = navigateToDictionary,
+            navigateToSecretHitler = navigateToSecretHitler
         )
     }
 }

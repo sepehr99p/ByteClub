@@ -4,9 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,6 +32,7 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
     onCategorySelected: (id: String) -> Unit,
     navigateToDictionary: () -> Unit,
+    navigateToSecretHitler: () -> Unit,
 ) {
     val categoryState = viewModel.categories.collectAsState()
     val showCategory = remember { mutableStateOf(false) }
@@ -76,7 +75,8 @@ fun HomeScreen(
                 navigateToDictionary = {
                     navigateToDictionary.invoke()
                 },
-                onDadJokeClicked = viewModel::getDadJoke
+                onDadJokeClicked = viewModel::getDadJoke,
+                navigateToSecretHitler = navigateToSecretHitler
             )
         }
         if (showAbout.value) {
@@ -113,5 +113,6 @@ private fun HomeScreenPreview() {
     HomeScreen(
         onCategorySelected = {},
         navigateToDictionary = {},
+        navigateToSecretHitler = {}
     )
 }
