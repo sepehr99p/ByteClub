@@ -25,7 +25,9 @@ class PlayersViewModel @Inject constructor(
 
     private fun fetchPlayers() {
         viewModelScope.launch {
-            _players.value = fetchPlayersUseCase.invoke()
+            fetchPlayersUseCase.invoke().collect { hitlerPlayerEntities ->
+                _players.value = hitlerPlayerEntities.map { it.name }
+            }
         }
     }
 
