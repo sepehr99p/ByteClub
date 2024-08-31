@@ -26,6 +26,7 @@ import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
 import com.sep.byteClub.ui.designSystem.theme.Medium_12
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_8
 import com.sep.byteClub.ui.designSystem.theme.dimen.image_16
+import com.sep.byteClub.ui.designSystem.theme.dimen.image_24
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 
 @Composable
@@ -80,10 +81,11 @@ internal fun AddNewPlayerComponent(modifier: Modifier = Modifier, onAddClicked: 
     ) {
         Icon(
             modifier = Modifier
-                .size(image_16)
+                .size(image_24)
                 .align(Alignment.Center),
             imageVector = Icons.Default.Add,
-            contentDescription = "add new player"
+            contentDescription = "add new player",
+            tint = MaterialTheme.colorScheme.primary
         )
     }
 }

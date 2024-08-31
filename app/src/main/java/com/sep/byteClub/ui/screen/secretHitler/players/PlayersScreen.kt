@@ -67,7 +67,7 @@ private fun StartGameBtn(
             .fillMaxWidth()
             .padding(padding_8),
         onclick = onClick,
-        isDisabled = players.value.size > 4,
+        isDisabled = players.value.size < 5,
         title = stringResource(id = R.string.start)
     )
 }
