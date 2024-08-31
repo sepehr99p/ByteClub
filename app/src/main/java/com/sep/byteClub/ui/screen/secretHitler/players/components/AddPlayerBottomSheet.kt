@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -25,6 +27,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.sep.byteClub.R
 import com.sep.byteClub.ui.designSystem.components.button.ButtonComponent
@@ -90,7 +94,17 @@ internal fun AddPlayerBottomSheet(
                     value = playerName.value,
                     onValueChange = {
                         playerName.value = it
-                    }
+                    },
+                    keyboardActions = KeyboardActions(onDone = {
+                        if (playerName.value.isNotEmpty()) {
+                            onPlayerAdded.invoke(playerName.value)
+                            showBottomSheet.value = false
+                        }
+                    }),
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Done
+                    )
                 )
                 ButtonComponent(
                     modifier = Modifier

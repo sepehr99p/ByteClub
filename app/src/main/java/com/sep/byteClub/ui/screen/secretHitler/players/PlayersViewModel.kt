@@ -19,8 +19,10 @@ class PlayersViewModel @Inject constructor(
     private val _players = MutableStateFlow<ArrayList<String>>(arrayListOf())
     val players = _players.asStateFlow()
 
-    fun addPlayer(name : String) {
-        _players.value.add(name)
+    fun addPlayer(name: String) {
+        val temp = arrayListOf(name)
+        temp.addAll(_players.value)
+        _players.value = temp
     }
 
     init {
