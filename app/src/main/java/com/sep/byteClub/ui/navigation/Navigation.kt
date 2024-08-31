@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.sep.byteClub.ui.screen.dictionary.DictionaryScreen
 import com.sep.byteClub.ui.screen.home.HomeScreen
+import com.sep.byteClub.ui.screen.secretHitler.board.BoardScreen
 import com.sep.byteClub.ui.screen.secretHitler.players.PlayersScreen
 import com.sep.byteClub.ui.screen.trivia.difficulty.DifficultyScreen
 import com.sep.byteClub.ui.screen.trivia.questions.QuestionsScreen
@@ -24,7 +25,12 @@ const val questionsRoute = "questions_route/{$idArg}/{$difficultyArg}/{$countArg
 const val resultRoute = "result/{$scoreArg}"
 const val dictionaryRoute = "dictionary"
 const val secretHitlerRoute = "secretHitler"
+const val secretHitlerBoardRoute = "secretHitlerBoard"
 
+fun NavController.navigateToBoard() {
+    this.popBackStack(homeRoute, inclusive = false)
+    this.navigate(secretHitlerBoardRoute)
+}
 
 fun NavController.navigateToResult(score: String) {
     this.popBackStack(homeRoute, inclusive = false)
@@ -96,7 +102,11 @@ fun NavGraphBuilder.triviaScreen(
     }
 
     composable(route = secretHitlerRoute) {
-        PlayersScreen()
+        PlayersScreen(onNavigateToBoard = navController::navigateToBoard)
+    }
+
+    composable(route = secretHitlerBoardRoute) {
+        BoardScreen()
     }
 
 }

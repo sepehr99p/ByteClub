@@ -82,7 +82,7 @@ internal fun AddPlayerBottomSheet(
                     )
                     Text(
                         modifier = Modifier.padding(vertical = padding_8),
-                        text = "Add new player",
+                        text = stringResource(id = R.string.add_new_player),
                         color = MaterialTheme.colorScheme.onSecondaryContainer,
                         style = Medium_12
                     )
@@ -93,8 +93,11 @@ internal fun AddPlayerBottomSheet(
                         .padding(vertical = padding_8),
                     value = playerName.value,
                     onValueChange = {
-                        playerName.value = it
+                        if (it.length < 20) {
+                            playerName.value = it
+                        }
                     },
+                    singleLine = true,
                     keyboardActions = KeyboardActions(onDone = {
                         if (playerName.value.isNotEmpty()) {
                             onPlayerAdded.invoke(playerName.value)

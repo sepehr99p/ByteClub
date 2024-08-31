@@ -38,7 +38,9 @@ class PlayersViewModel @Inject constructor(
     }
 
     fun setPlayers() {
-
+        viewModelScope.launch {
+            setPlayersUseCase.invoke(players.value)
+        }
     }
 
 }

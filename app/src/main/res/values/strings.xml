@@ -76,4 +76,6 @@
 
     <string name="crashed">Something went wrong :/</string>
 
+    <string name="add_new_player">Add new player</string>
+
 </resources>
