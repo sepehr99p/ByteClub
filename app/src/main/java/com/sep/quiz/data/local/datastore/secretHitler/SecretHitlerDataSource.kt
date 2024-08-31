@@ -1,20 +1,20 @@
 package com.sep.quiz.data.local.datastore.secretHitler
 
 import androidx.datastore.core.DataStore
-import com.sep.quiz.Score
 import com.sep.quiz.SecretHitlerPlayer
+import com.sep.quiz.SecretHitlerPlayerListPreferences
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class SecretHitlerDataSource @Inject constructor(
-    private val dataStore: DataStore<SecretHitlerPlayer>
+    private val dataStore: DataStore<SecretHitlerPlayerListPreferences>
 ) {
 
-    fun getPlayers(): Flow<SecretHitlerPlayer> = dataStore.data
+    fun getPlayers(): Flow<SecretHitlerPlayerListPreferences> = dataStore.data
 
-    suspend fun addPlateList(playersListPreferences: SecretHitlerPlayer) {
+    suspend fun addPlayersList(playersListPreferences: SecretHitlerPlayerListPreferences) {
         dataStore.updateData {
-            SecretHitlerPlayer.newBuilder(playersListPreferences).build()
+            SecretHitlerPlayerListPreferences.newBuilder(playersListPreferences).build()
         }
     }
 

@@ -1,7 +1,14 @@
 package com.sep.quiz.di
 
 import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.core.DataStoreFactory
+import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
+import androidx.datastore.dataStoreFile
+import com.sep.quiz.SecretHitlerPlayerListPreferences
 import com.sep.quiz.data.local.database.QuestionDatabase
+import com.sep.quiz.data.local.datastore.secretHitler.SecretHitlerDataSource
+import com.sep.quiz.data.local.datastore.secretHitler.SecretHitlerSerializer
 import com.sep.quiz.data.remote.crypto.KucoinApiService
 import com.sep.quiz.data.remote.ninja.DadJokesApiService
 import com.sep.quiz.data.remote.ninja.DictionaryApiService
@@ -37,6 +44,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import javax.inject.Singleton
 
 @Module
@@ -92,7 +102,9 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun provideSecretHitlerRepository() : SecretHitlerRepository = SecretHitlerRepositoryImpl()
+    fun provideSecretHitlerRepository(
+        dataSource : SecretHitlerDataSource
+    ): SecretHitlerRepository = SecretHitlerRepositoryImpl(dataSource = dataSource)
 
     @Provides
     fun provideCategoryInfoUseCase(
@@ -149,5 +161,22 @@ object DataModule {
     fun provideGpsHelper(
         @ApplicationContext appContext: Context
     ): GPSHelper = GPSHelper(appContext)
+
+    @Singleton
+    @Provides
+    fun provideMyPlayersPreferencesDataStore(
+        @ApplicationContext context: Context,
+    ): DataStore<SecretHitlerPlayerListPreferences> {
+        return DataStoreFactory.create(
+            serializer = SecretHitlerSerializer,
+            produceFile = { context.dataStoreFile("secretHitlerPlayer.pb") },
+            corruptionHandler =
+            ReplaceFileCorruptionHandler(
+                produceNewData = { SecretHitlerPlayerListPreferences.getDefaultInstance() },
+            ),
+            scope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
+        )
+
+    }
 
 }
