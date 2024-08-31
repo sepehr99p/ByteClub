@@ -15,28 +15,33 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
-import com.sep.byteClub.ui.designSystem.theme.Medium_12
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
+import com.sep.byteClub.ui.designSystem.theme.Medium_12
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_8
 import com.sep.byteClub.ui.designSystem.theme.dimen.image_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 
 @Composable
-internal fun PlayersList(modifier: Modifier = Modifier, players: List<String>) {
+internal fun PlayersList(
+    modifier: Modifier = Modifier,
+    players: State<List<String>>,
+    onAddPlayerClicked: () -> Unit
+) {
     LazyColumn(modifier = modifier) {
-        items(players) {
+        items(players.value) {
             PlayersItemComponent(name = it)
         }
-        if (players.size < 10) {
+        if (players.value.size < 10) {
             item {
                 AddNewPlayerComponent(
-                    onAddClicked = {
-
-                    }
+                    onAddClicked = onAddPlayerClicked
                 )
             }
         }
@@ -103,6 +108,7 @@ private fun PlayersItemComponentPreview() {
 @Composable
 private fun PlayersListPreview() {
     ByteClubTheme {
-        PlayersList(players = listOf("sepi", "mosi"))
+        val test = remember { mutableStateOf(listOf("sepi", "mosi")) }
+        PlayersList(players = test, onAddPlayerClicked = {})
     }
 }

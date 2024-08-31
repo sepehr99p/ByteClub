@@ -16,8 +16,12 @@ class PlayersViewModel @Inject constructor(
     private val setPlayersUseCase: SecretHitlerSetPlayersUseCase
 ) : ViewModel() {
 
-    private val _players = MutableStateFlow<List<String>>(listOf())
+    private val _players = MutableStateFlow<ArrayList<String>>(arrayListOf())
     val players = _players.asStateFlow()
+
+    fun addPlayer(name : String) {
+        _players.value.add(name)
+    }
 
     init {
         fetchPlayers()
@@ -26,7 +30,7 @@ class PlayersViewModel @Inject constructor(
     private fun fetchPlayers() {
         viewModelScope.launch {
             fetchPlayersUseCase.invoke().collect { hitlerPlayerEntities ->
-                _players.value = hitlerPlayerEntities.map { it.name }
+                _players.value = hitlerPlayerEntities.map { it.name } as ArrayList<String>
             }
         }
     }
