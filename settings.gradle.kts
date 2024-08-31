@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Quiz"
+rootProject.name = "ByteClub"
 include(":app")
 include(":baselineprofile")

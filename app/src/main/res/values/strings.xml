@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Quiz</string>
+    <string name="app_name">ByteClub</string>
     <string name="select_category">Select category</string>
     <string name="questions">Questions</string>
     <string name="start">Start</string>
@@ -16,7 +16,7 @@
     <string name="api_dictionary_details">used https://api-ninjas.com as Dictionary database</string>
     <string name="api_kucoin_details">used https://kucoin.com as Crypto database</string>
     <string name="api_weather_details">used https://open-meteo.com as Weather database</string>
-    <string name="project_detail">this project is open source at https://github.com/sepehr99p/Quiz</string>
+    <string name="project_detail">this project is open source at https://github.com/sepehr99p/ByteClub</string>
     <string name="about">About</string>
     <string name="shop">Shop</string>
     <string name="dadJoke">Dad Joke :)</string>

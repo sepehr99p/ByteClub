@@ -12,11 +12,11 @@ plugins {
 }
 
 android {
-    namespace = "com.sep.quiz"
+    namespace = "com.sep.byteClub"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.sep.quiz"
+        applicationId = "com.sep.byteClub"
         minSdk = 26
         targetSdk = 34
         versionCode = 201
