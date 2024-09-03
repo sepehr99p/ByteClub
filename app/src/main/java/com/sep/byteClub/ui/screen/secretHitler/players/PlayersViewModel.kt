@@ -25,6 +25,12 @@ class PlayersViewModel @Inject constructor(
         _players.value = temp
     }
 
+    fun removePlayer(name: String) {
+        val temp = _players.value
+        temp.remove(name)
+        _players.value = temp
+    }
+
     init {
         fetchPlayers()
     }

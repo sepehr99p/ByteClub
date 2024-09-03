@@ -30,9 +30,15 @@ fun PlayersScreen(
     val showAddPlayerBS = remember { mutableStateOf(false) }
     Column(modifier = modifier) {
         PlayersHeaderComponent()
-        PlayersList(players = players, onAddPlayerClicked = {
-            showAddPlayerBS.value = true
-        })
+        PlayersList(
+            players = players,
+            onAddPlayerClicked = {
+                showAddPlayerBS.value = true
+            },
+            onPlayerRemoved = {
+                viewModel.removePlayer(it)
+            }
+        )
         StartGameBtn(players = players, onClick = {
             viewModel.setPlayers()
             onNavigateToBoard.invoke()
