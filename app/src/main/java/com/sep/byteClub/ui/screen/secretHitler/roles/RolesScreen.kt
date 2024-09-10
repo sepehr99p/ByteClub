@@ -4,11 +4,13 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.TweenSpec
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.height
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -19,18 +21,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sep.byteClub.R
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerRole
-import com.sep.byteClub.ui.designSystem.components.button.ButtonComponent
-import com.sep.byteClub.ui.designSystem.components.button.ButtonStyle
 import com.sep.byteClub.ui.designSystem.theme.Bold_20
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
-import com.sep.byteClub.ui.designSystem.theme.Medium_12
-import com.sep.byteClub.ui.designSystem.theme.dimen.padding_16
+import com.sep.byteClub.ui.designSystem.theme.dimen.padding_32
 import kotlinx.coroutines.delay
 
 @Composable
@@ -83,19 +83,15 @@ private fun HiddenRoleComponent(
     onClick: () -> Unit
 ) {
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize()
+            .clickable { onClick.invoke() },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = player.name, style = Medium_12)
-        ButtonComponent(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(padding_16),
-            onclick = onClick,
-            titleRes = R.string.hidden_player,
-            buttonStyle = ButtonStyle.Dismiss
-        )
+        Text(text = player.name, style = Bold_20, color = MaterialTheme.colorScheme.primary)
+        Spacer(modifier = Modifier.height(padding_32))
+        Text(text = stringResource(id = R.string.hidden_player))
     }
 }
 
@@ -106,7 +102,9 @@ private fun RevealRoleComponent(
     onClick: () -> Unit
 ) {
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize()
+            .clickable { onClick.invoke() },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -132,14 +130,8 @@ private fun RevealRoleComponent(
                 color = player.role.color,
             )
         }
-        ButtonComponent(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(padding_16),
-            onclick = onClick,
-            titleRes = R.string.revealed_player,
-            buttonStyle = ButtonStyle.Dismiss
-        )
+        Spacer(modifier = Modifier.height(padding_32))
+        Text(text = stringResource(id = R.string.revealed_player))
     }
 }
 
