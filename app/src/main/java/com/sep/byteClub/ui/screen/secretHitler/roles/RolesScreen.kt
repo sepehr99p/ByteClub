@@ -4,7 +4,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.TweenSpec
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -48,6 +47,9 @@ fun RolesScreen(
         val players = viewModel.players.collectAsStateWithLifecycle()
         val currentPlayerIndex = remember { mutableIntStateOf(0) }
         val roleState = remember { mutableStateOf(RoleRevealState.NOT_REVEALED) }
+        if (currentPlayerIndex.intValue == players.value.size - 1) {
+            onNavigateToBoard.invoke()
+        }
         if (players.value.isNotEmpty()) {
             when (roleState.value) {
                 RoleRevealState.NOT_REVEALED -> {
