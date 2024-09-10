@@ -77,5 +77,6 @@
     <string name="crashed">Something went wrong :/</string>
 
     <string name="add_new_player">Add new player</string>
+    <string name="hidden_player">Click to reveal your role</string>
 
 </resources>
