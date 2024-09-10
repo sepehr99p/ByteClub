@@ -30,6 +30,7 @@ import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerRole
 import com.sep.byteClub.ui.designSystem.theme.Bold_20
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
+import com.sep.byteClub.ui.designSystem.theme.Medium_12
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_32
 import kotlinx.coroutines.delay
 
@@ -91,7 +92,11 @@ private fun HiddenRoleComponent(
     ) {
         Text(text = player.name, style = Bold_20, color = MaterialTheme.colorScheme.primary)
         Spacer(modifier = Modifier.height(padding_32))
-        Text(text = stringResource(id = R.string.hidden_player))
+        Text(
+            text = stringResource(id = R.string.hidden_player),
+            style = Medium_12,
+            color = MaterialTheme.colorScheme.secondary
+        )
     }
 }
 
@@ -131,7 +136,11 @@ private fun RevealRoleComponent(
             )
         }
         Spacer(modifier = Modifier.height(padding_32))
-        Text(text = stringResource(id = R.string.revealed_player))
+        Text(
+            text = stringResource(id = R.string.revealed_player),
+            style = Medium_12,
+            color = MaterialTheme.colorScheme.secondary
+        )
     }
 }
 
