@@ -24,7 +24,7 @@ import com.sep.byteClub.ui.screen.secretHitler.players.components.PlayersList
 fun PlayersScreen(
     modifier: Modifier = Modifier,
     viewModel: PlayersViewModel = hiltViewModel(),
-    onNavigateToBoard: () -> Unit
+    onNavigateToRole: () -> Unit
 ) {
     val players = viewModel.players.collectAsState()
     val showAddPlayerBS = remember { mutableStateOf(false) }
@@ -41,7 +41,7 @@ fun PlayersScreen(
         )
         StartGameBtn(players = players, onClick = {
             viewModel.setPlayers()
-            onNavigateToBoard.invoke()
+            onNavigateToRole.invoke()
         })
     }
     if (showAddPlayerBS.value) {
@@ -99,6 +99,6 @@ private fun PlayersHeaderComponentPreview() {
 @Composable
 private fun PlayersScreenPreview() {
     ByteClubTheme {
-        PlayersScreen(onNavigateToBoard = {})
+        PlayersScreen(onNavigateToRole = {})
     }
 }

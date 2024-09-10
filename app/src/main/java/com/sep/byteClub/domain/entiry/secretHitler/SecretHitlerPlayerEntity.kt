@@ -11,7 +11,7 @@ data class SecretHitlerPlayerEntity(
 
 
 enum class SecretHitlerRole(val color: Color) {
-    FASCISM(Color.Red),
-    LIBERAL(Color.Blue),
-    HITLER(Color.Red)
+    FASCISM(Color(0xFF630101)),
+    LIBERAL(Color(0xFF3BB7CC)),
+    HITLER(Color(0xFF630101))
 }

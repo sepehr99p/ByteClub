@@ -10,6 +10,7 @@ import com.sep.byteClub.ui.screen.dictionary.DictionaryScreen
 import com.sep.byteClub.ui.screen.home.HomeScreen
 import com.sep.byteClub.ui.screen.secretHitler.board.BoardScreen
 import com.sep.byteClub.ui.screen.secretHitler.players.PlayersScreen
+import com.sep.byteClub.ui.screen.secretHitler.roles.RolesScreen
 import com.sep.byteClub.ui.screen.trivia.difficulty.DifficultyScreen
 import com.sep.byteClub.ui.screen.trivia.questions.QuestionsScreen
 import com.sep.byteClub.ui.screen.trivia.result.ResultScreen
@@ -25,11 +26,17 @@ const val questionsRoute = "questions_route/{$idArg}/{$difficultyArg}/{$countArg
 const val resultRoute = "result/{$scoreArg}"
 const val dictionaryRoute = "dictionary"
 const val secretHitlerRoute = "secretHitler"
+const val secretHitlerRoleRoute = "secretHitlerRoleRoute"
 const val secretHitlerBoardRoute = "secretHitlerBoard"
 
 fun NavController.navigateToBoard() {
     this.popBackStack(homeRoute, inclusive = false)
     this.navigate(secretHitlerBoardRoute)
+}
+
+fun NavController.navigateToRoles() {
+    this.popBackStack(homeRoute, inclusive = false)
+    this.navigate(secretHitlerRoleRoute)
 }
 
 fun NavController.navigateToResult(score: String) {
@@ -102,7 +109,11 @@ fun NavGraphBuilder.triviaScreen(
     }
 
     composable(route = secretHitlerRoute) {
-        PlayersScreen(onNavigateToBoard = navController::navigateToBoard)
+        PlayersScreen(onNavigateToRole = navController::navigateToRoles)
+    }
+
+    composable(route = secretHitlerRoleRoute) {
+        RolesScreen(onNavigateToBoard = navController::navigateToBoard)
     }
 
     composable(route = secretHitlerBoardRoute) {

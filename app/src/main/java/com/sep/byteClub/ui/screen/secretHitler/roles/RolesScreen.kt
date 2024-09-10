@@ -1,5 +1,9 @@
 package com.sep.byteClub.ui.screen.secretHitler.roles
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.TweenSpec
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,9 +12,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,11 +32,13 @@ import com.sep.byteClub.ui.designSystem.theme.Bold_20
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
 import com.sep.byteClub.ui.designSystem.theme.Medium_12
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_16
+import kotlinx.coroutines.delay
 
 @Composable
 fun RolesScreen(
     modifier: Modifier = Modifier,
-    viewModel: RolesViewModel = hiltViewModel()
+    viewModel: RolesViewModel = hiltViewModel(),
+    onNavigateToBoard: () -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
@@ -39,25 +48,27 @@ fun RolesScreen(
         val players = viewModel.players.collectAsStateWithLifecycle()
         val currentPlayerIndex = remember { mutableIntStateOf(0) }
         val roleState = remember { mutableStateOf(RoleRevealState.NOT_REVEALED) }
-        when (roleState.value) {
-            RoleRevealState.NOT_REVEALED -> {
-                HiddenRoleComponent(
-                    player = players.value[currentPlayerIndex.intValue],
-                    onClick = {
-                        roleState.value = RoleRevealState.REVEALED
-                    })
-            }
+        if (players.value.isNotEmpty()) {
+            when (roleState.value) {
+                RoleRevealState.NOT_REVEALED -> {
+                    HiddenRoleComponent(
+                        player = players.value[currentPlayerIndex.intValue],
+                        onClick = {
+                            roleState.value = RoleRevealState.REVEALED
+                        })
+                }
 
-            RoleRevealState.REVEALED -> {
-                RevealRoleComponent(
-                    player = players.value[currentPlayerIndex.intValue],
-                    onClick = {
-                        roleState.value = RoleRevealState.NOT_REVEALED
-                        currentPlayerIndex.intValue += 1
-                    }
-                )
-            }
+                RoleRevealState.REVEALED -> {
+                    RevealRoleComponent(
+                        player = players.value[currentPlayerIndex.intValue],
+                        onClick = {
+                            roleState.value = RoleRevealState.NOT_REVEALED
+                            currentPlayerIndex.intValue += 1
+                        }
+                    )
+                }
 
+            }
         }
     }
 }
@@ -97,11 +108,35 @@ private fun RevealRoleComponent(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(
-            modifier = Modifier.clickable { onClick.invoke() },
-            text = player.role.name,
-            style = Bold_20,
-            color = player.role.color
+        var visible by remember { mutableStateOf(true) }
+
+        LaunchedEffect(key1 = player.role.name) {
+            while (true) {
+                visible = false
+                delay(500)
+                visible = true
+                delay(500)
+            }
+        }
+
+        AnimatedVisibility(
+            visible = visible,
+            enter = fadeIn(animationSpec = TweenSpec(durationMillis = 1000)),
+            exit = fadeOut(animationSpec = TweenSpec(durationMillis = 1000))
+        ) {
+            Text(
+                text = player.role.name,
+                style = Bold_20,
+                color = player.role.color,
+            )
+        }
+        ButtonComponent(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(padding_16),
+            onclick = onClick,
+            titleRes = R.string.revealed_player,
+            buttonStyle = ButtonStyle.Dismiss
         )
     }
 }
@@ -131,6 +166,6 @@ private fun HiddenRoleComponentPreview() {
 @Composable
 private fun RolesScreenPreview() {
     ByteClubTheme {
-        RolesScreen()
+        RolesScreen(onNavigateToBoard = {})
     }
 }

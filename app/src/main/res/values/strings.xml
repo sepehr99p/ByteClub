@@ -78,5 +78,6 @@
 
     <string name="add_new_player">Add new player</string>
     <string name="hidden_player">Click to reveal your role</string>
+    <string name="revealed_player">Click to hide your role</string>
 
 </resources>
