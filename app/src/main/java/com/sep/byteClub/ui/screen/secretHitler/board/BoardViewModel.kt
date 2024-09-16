@@ -21,18 +21,29 @@ class BoardViewModel @Inject constructor(
 
     val usedCards = MutableStateFlow<ArrayList<SecretHitlerCardEntity>>(arrayListOf())
     val unUsedCards = MutableStateFlow<ArrayList<SecretHitlerCardEntity>>(arrayListOf())
+    val fascismScore = MutableStateFlow(0)
+    val liberalScore = MutableStateFlow(0)
 
     init {
         fetchPlayers()
         initCardsToPlay()
     }
 
-    fun removeCard(card : SecretHitlerCardEntity) {
+    fun submitCard(card: SecretHitlerCardEntity) {
+        if (card == SecretHitlerCardEntity.LIBERAL) {
+            liberalScore.value += 1
+        } else {
+            fascismScore.value += 1
+        }
+        unUsedCards.value.remove(card)
+    }
+
+    fun removeCard(card: SecretHitlerCardEntity) {
         usedCards.value.add(card)
         usedCards.value.remove(card)
     }
 
-    fun getCardForPresident() : List<SecretHitlerCardEntity> {
+    fun getCardForPresident(): List<SecretHitlerCardEntity> {
         if (unUsedCards.value.isEmpty()) {
             shuffleUsedCards()
         }
