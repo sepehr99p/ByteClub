@@ -27,6 +27,26 @@ class BoardViewModel @Inject constructor(
         initCardsToPlay()
     }
 
+    fun removeCard(card : SecretHitlerCardEntity) {
+        usedCards.value.add(card)
+        usedCards.value.remove(card)
+    }
+
+    fun getCardForPresident() : List<SecretHitlerCardEntity> {
+        if (unUsedCards.value.isEmpty()) {
+            shuffleUsedCards()
+        }
+        val newList = arrayListOf<SecretHitlerCardEntity>()
+        for (i in 0 until 3) {
+            newList.add(unUsedCards.value[i])
+        }
+        return newList
+    }
+
+    private fun shuffleUsedCards() {
+        unUsedCards.value.addAll(usedCards.value.shuffled())
+    }
+
     private fun initCardsToPlay() {
         for (i in 0 until 13) {
             unUsedCards.value.add(SecretHitlerCardEntity.FASCISM)
