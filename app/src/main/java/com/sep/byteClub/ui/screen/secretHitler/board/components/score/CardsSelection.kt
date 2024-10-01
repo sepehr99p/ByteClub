@@ -11,25 +11,58 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerCardEntity
 import com.sep.byteClub.ui.designSystem.theme.Bold_20
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
-import com.sep.byteClub.ui.designSystem.theme.Regular_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_24
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_32
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 
 @Composable
-internal fun CardsSelection(modifier: Modifier = Modifier) {
+internal fun CardsSelection(
+    modifier: Modifier = Modifier,
+    submitCard: (card: SecretHitlerCardEntity) -> Unit,
+    removeCard: (card: SecretHitlerCardEntity) -> Unit,
+    getCardForPresident: () -> ArrayList<SecretHitlerCardEntity>
+) {
     Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(padding_8)
     ) {
-        Text(text = "Title", color = MaterialTheme.colorScheme.onPrimary, style = Regular_16)
+        val startLegislation = remember { mutableStateOf(false) }
+        if (startLegislation.value) {
+            val cards = remember {
+                mutableStateOf(getCardForPresident.invoke())
+            }
+            if (cards.value.size == 3) {
+                PresidentCardSelection(
+                    cards = cards.value,
+                    onRemoveCardSelected = {
+                        cards.value.remove(it)
+                        removeCard.invoke(it)
+                    })
+            } else {
+                PrimeMinisterCardSelection(
+                    cards = cards.value,
+                    onRemoveCardSelected = {
+                        cards.value.remove(it)
+                        removeCard.invoke(it)
+                        startLegislation.value = false
+                        submitCard.invoke(cards.value.first())
+                    })
+            }
+
+        } else {
+            Text(
+                text = "start legislation",
+                modifier = Modifier.clickable { startLegislation.value = true })
+        }
 
     }
 }
@@ -37,43 +70,41 @@ internal fun CardsSelection(modifier: Modifier = Modifier) {
 @Composable
 private fun PresidentCardSelection(
     modifier: Modifier = Modifier,
+    cards: List<SecretHitlerCardEntity>,
     onRemoveCardSelected: (card: SecretHitlerCardEntity) -> Unit
 ) {
-    Row(modifier = modifier.fillMaxWidth()) {
-        CardItemComponent(
-            modifier = Modifier.weight(1f),
-            cardEntity = SecretHitlerCardEntity.FASCISM,
-            onRemoveCardSelected = onRemoveCardSelected
-        )
-        CardItemComponent(
-            modifier = Modifier.weight(1f),
-            cardEntity = SecretHitlerCardEntity.FASCISM,
-            onRemoveCardSelected = onRemoveCardSelected
-        )
-        CardItemComponent(
-            modifier = Modifier.weight(1f),
-            cardEntity = SecretHitlerCardEntity.FASCISM,
-            onRemoveCardSelected = onRemoveCardSelected
-        )
+    Column(modifier = modifier) {
+        Text(text = "President", color = MaterialTheme.colorScheme.onPrimary)
+        Row(modifier = Modifier.fillMaxWidth()) {
+            cards.forEach {
+                CardItemComponent(
+                    modifier = Modifier.weight(1f),
+                    cardEntity = it,
+                    onRemoveCardSelected = onRemoveCardSelected
+                )
+            }
+        }
+
     }
 }
 
 @Composable
 private fun PrimeMinisterCardSelection(
     modifier: Modifier = Modifier,
+    cards: List<SecretHitlerCardEntity>,
     onRemoveCardSelected: (card: SecretHitlerCardEntity) -> Unit
 ) {
-    Row(modifier = modifier.fillMaxWidth()) {
-        CardItemComponent(
-            modifier = Modifier.weight(1f),
-            cardEntity = SecretHitlerCardEntity.FASCISM,
-            onRemoveCardSelected = onRemoveCardSelected
-        )
-        CardItemComponent(
-            modifier = Modifier.weight(1f),
-            cardEntity = SecretHitlerCardEntity.FASCISM,
-            onRemoveCardSelected = onRemoveCardSelected
-        )
+    Column(modifier = modifier) {
+        Text(text = "PrimeMinister", color = MaterialTheme.colorScheme.onPrimary)
+        Row(modifier = Modifier.fillMaxWidth()) {
+            cards.forEach {
+                CardItemComponent(
+                    modifier = Modifier.weight(1f),
+                    cardEntity = it,
+                    onRemoveCardSelected = onRemoveCardSelected
+                )
+            }
+        }
     }
 }
 
@@ -102,6 +133,6 @@ fun CardItemComponent(
 @Composable
 private fun CardsSelectionPreview() {
     ByteClubTheme {
-        CardsSelection()
+//        CardsSelection()
     }
 }

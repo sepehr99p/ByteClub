@@ -43,7 +43,7 @@ class BoardViewModel @Inject constructor(
         usedCards.value.remove(card)
     }
 
-    fun getCardForPresident(): List<SecretHitlerCardEntity> {
+    fun getCardForPresident(): ArrayList<SecretHitlerCardEntity> {
         if (unUsedCards.value.isEmpty()) {
             shuffleUsedCards()
         }

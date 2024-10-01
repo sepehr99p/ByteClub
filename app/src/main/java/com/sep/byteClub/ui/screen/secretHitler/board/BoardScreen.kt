@@ -17,9 +17,15 @@ fun BoardScreen(
 ) {
     val liberalScore = viewModel.liberalScore.collectAsStateWithLifecycle()
     val fascismScore = viewModel.fascismScore.collectAsStateWithLifecycle()
+    val cards = viewModel.unUsedCards.collectAsStateWithLifecycle()
     Column(modifier = modifier) {
         ScoreLayout(modifier = Modifier, liberalScore, fascismScore)
-        CardsSelection()
+        CardsSelection(
+            modifier = Modifier,
+            getCardForPresident = viewModel::getCardForPresident,
+            submitCard = viewModel::submitCard,
+            removeCard = viewModel::removeCard
+        )
     }
 }
 
