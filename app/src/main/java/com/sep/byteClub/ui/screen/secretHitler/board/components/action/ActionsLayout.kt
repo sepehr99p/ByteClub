@@ -8,7 +8,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
-import com.sep.byteClub.ui.screen.secretHitler.board.components.PresidentRolesWatching
 
 @Composable
 fun ActionsLayout(

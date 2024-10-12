@@ -19,7 +19,7 @@ class BoardViewModel @Inject constructor(
     private val _players = MutableStateFlow<ArrayList<SecretHitlerPlayerEntity>>(arrayListOf())
     val players = _players.asStateFlow()
 
-    val usedCards = MutableStateFlow<ArrayList<SecretHitlerCardEntity>>(arrayListOf())
+    private val usedCards = MutableStateFlow<ArrayList<SecretHitlerCardEntity>>(arrayListOf())
     val unUsedCards = MutableStateFlow<ArrayList<SecretHitlerCardEntity>>(arrayListOf())
     val fascismScore = MutableStateFlow(0)
     val liberalScore = MutableStateFlow(0)

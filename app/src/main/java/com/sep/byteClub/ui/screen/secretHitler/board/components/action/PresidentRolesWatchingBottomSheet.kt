@@ -1,4 +1,4 @@
-package com.sep.byteClub.ui.screen.secretHitler.board.components
+package com.sep.byteClub.ui.screen.secretHitler.board.components.action
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
