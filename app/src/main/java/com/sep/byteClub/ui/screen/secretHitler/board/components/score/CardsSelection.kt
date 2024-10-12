@@ -15,7 +15,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.sep.byteClub.R
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerCardEntity
 import com.sep.byteClub.ui.designSystem.theme.Bold_20
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
@@ -37,9 +39,7 @@ internal fun CardsSelection(
     ) {
         val startLegislation = remember { mutableStateOf(false) }
         if (startLegislation.value) {
-            val cards = remember {
-                mutableStateOf(getCardForPresident.invoke())
-            }
+            val cards = remember { mutableStateOf(getCardForPresident.invoke()) }
             if (cards.value.size == 3) {
                 PresidentCardSelection(
                     cards = cards.value,
@@ -60,8 +60,10 @@ internal fun CardsSelection(
 
         } else {
             Text(
-                text = "start legislation",
-                modifier = Modifier.clickable { startLegislation.value = true })
+                modifier = Modifier.clickable { startLegislation.value = true },
+                text = stringResource(id = R.string.start_legislation),
+                color = MaterialTheme.colorScheme.onPrimary
+            )
         }
 
     }
@@ -74,7 +76,10 @@ private fun PresidentCardSelection(
     onRemoveCardSelected: (card: SecretHitlerCardEntity) -> Unit
 ) {
     Column(modifier = modifier) {
-        Text(text = "President", color = MaterialTheme.colorScheme.onPrimary)
+        Text(
+            text = stringResource(id = R.string.president),
+            color = MaterialTheme.colorScheme.onPrimary
+        )
         Row(modifier = Modifier.fillMaxWidth()) {
             cards.forEach {
                 CardItemComponent(
@@ -95,7 +100,10 @@ private fun PrimeMinisterCardSelection(
     onRemoveCardSelected: (card: SecretHitlerCardEntity) -> Unit
 ) {
     Column(modifier = modifier) {
-        Text(text = "PrimeMinister", color = MaterialTheme.colorScheme.onPrimary)
+        Text(
+            text = stringResource(id = R.string.prime_minister),
+            color = MaterialTheme.colorScheme.onPrimary
+        )
         Row(modifier = Modifier.fillMaxWidth()) {
             cards.forEach {
                 CardItemComponent(
