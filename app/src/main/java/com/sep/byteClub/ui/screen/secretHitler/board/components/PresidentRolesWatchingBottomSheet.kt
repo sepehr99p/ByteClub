@@ -16,6 +16,7 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -31,13 +32,17 @@ import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PresidentRolesWatching(modifier: Modifier = Modifier, players: List<SecretHitlerPlayerEntity>) {
+fun PresidentRolesWatching(
+    modifier: Modifier = Modifier,
+    players: List<SecretHitlerPlayerEntity>,
+    showBottomSheet: MutableState<Boolean>,
+) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     ModalBottomSheet(
         modifier = modifier.padding(start = padding_8, end = padding_8, bottom = padding_8),
         sheetState = sheetState,
         onDismissRequest = {
-
+            showBottomSheet.value = false
         },
         dragHandle = {},
         containerColor = Color.Transparent,
@@ -51,6 +56,7 @@ fun PresidentRolesWatching(modifier: Modifier = Modifier, players: List<SecretHi
             shape = RoundedCornerShape(corner_24),
             colors = CardDefaults.elevatedCardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
         ) {
+            val seen = remember { mutableStateOf(false) }
             LazyColumn {
                 items(players) { player ->
                     Row(
@@ -61,7 +67,12 @@ fun PresidentRolesWatching(modifier: Modifier = Modifier, players: List<SecretHi
                         Text(
                             modifier = Modifier
                                 .weight(1f)
-                                .clickable { showRole.value = true },
+                                .clickable {
+                                    if (seen.value.not()) {
+                                        showRole.value = true
+                                        seen.value = true
+                                    }
+                                },
                             text = player.name,
                             color = MaterialTheme.colorScheme.onPrimary,
                             style = Regular_12
