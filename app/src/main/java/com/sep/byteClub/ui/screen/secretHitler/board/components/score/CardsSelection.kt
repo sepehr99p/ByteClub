@@ -26,9 +26,13 @@ import com.sep.byteClub.ui.designSystem.theme.Bold_14
 import com.sep.byteClub.ui.designSystem.theme.Bold_20
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
 import com.sep.byteClub.ui.designSystem.theme.Regular_12
+import com.sep.byteClub.ui.designSystem.theme.dimen.corner_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_24
+import com.sep.byteClub.ui.designSystem.theme.dimen.corner_8
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_32
+import com.sep.byteClub.ui.designSystem.theme.dimen.padding_4
+import com.sep.byteClub.ui.designSystem.theme.dimen.padding_40
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 import kotlinx.coroutines.flow.MutableStateFlow
 
@@ -43,10 +47,11 @@ internal fun CardsSelection(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(padding_8)
+            .padding(padding_8),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (startLegislation.value) {
-            val cards = remember { getCardForPresident.invoke().toMutableStateList()}
+            val cards = remember { getCardForPresident.invoke().toMutableStateList() }
             if (cards.size == 3) {
                 PresidentCardSelection(
                     cards = cards,
@@ -67,7 +72,11 @@ internal fun CardsSelection(
 
         } else {
             Text(
-                modifier = Modifier.clickable { startLegislation.value = true },
+                modifier = Modifier
+                    .clip(RoundedCornerShape(corner_16))
+                    .background(MaterialTheme.colorScheme.primaryContainer)
+                    .padding(padding_8)
+                    .clickable { startLegislation.value = true },
                 text = stringResource(id = R.string.start_legislation),
                 color = MaterialTheme.colorScheme.onPrimary
             )
@@ -82,7 +91,7 @@ private fun PresidentCardSelection(
     cards: List<SecretHitlerCardEntity>,
     onRemoveCardSelected: (card: SecretHitlerCardEntity) -> Unit
 ) {
-    Column(modifier = modifier) {
+    Column(modifier = modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
             text = stringResource(id = R.string.president),
             color = MaterialTheme.colorScheme.onPrimary
@@ -106,7 +115,7 @@ private fun PrimeMinisterCardSelection(
     cards: List<SecretHitlerCardEntity>,
     onRemoveCardSelected: (card: SecretHitlerCardEntity) -> Unit
 ) {
-    Column(modifier = modifier) {
+    Column(modifier = modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
             text = stringResource(id = R.string.prime_minister),
             color = MaterialTheme.colorScheme.onPrimary

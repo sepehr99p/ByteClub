@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -20,7 +19,6 @@ import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerCardEntity
 import com.sep.byteClub.ui.designSystem.theme.Bold_18
 import com.sep.byteClub.ui.designSystem.theme.Bold_20
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
-import com.sep.byteClub.ui.designSystem.theme.dimen.padding_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 
 @Composable
@@ -30,9 +28,7 @@ internal fun ScoreLayout(
     fascismScore: State<Int>
 ) {
     Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(padding_8),
+        modifier = modifier.fillMaxWidth().padding(padding_8),
         verticalAlignment = Alignment.CenterVertically
     ) {
         ScoreItemComponent(cardEntity = SecretHitlerCardEntity.LIBERAL, score = liberalScore)
@@ -47,15 +43,14 @@ private fun RowScope.ScoreItemComponent(
     score: State<Int>
 ) {
     Column(
-        modifier = modifier
-            .weight(1f)
-            .padding(padding_8)
+        modifier = modifier.weight(1f).padding(padding_8),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = cardEntity.name, color = cardEntity.color, style = Bold_20)
-        Spacer(modifier = Modifier.height(padding_16))
+        Spacer(modifier = Modifier.height(padding_8))
         Text(
             text = score.value.toString(),
-            color = MaterialTheme.colorScheme.primary,
+            color = cardEntity.color,
             style = Bold_18
         )
     }
