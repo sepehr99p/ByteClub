@@ -13,17 +13,24 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.toMutableStateList
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.sep.byteClub.R
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerCardEntity
+import com.sep.byteClub.ui.designSystem.theme.Bold_12
+import com.sep.byteClub.ui.designSystem.theme.Bold_14
 import com.sep.byteClub.ui.designSystem.theme.Bold_20
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
+import com.sep.byteClub.ui.designSystem.theme.Regular_12
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_24
+import com.sep.byteClub.ui.designSystem.theme.dimen.padding_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_32
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
+import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable
 internal fun CardsSelection(
@@ -32,29 +39,29 @@ internal fun CardsSelection(
     removeCard: (card: SecretHitlerCardEntity) -> Unit,
     getCardForPresident: () -> ArrayList<SecretHitlerCardEntity>
 ) {
+    val cards = remember { getCardForPresident.invoke().toMutableStateList()}
+    val startLegislation = remember { mutableStateOf(false) }
     Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(padding_8)
     ) {
-        val startLegislation = remember { mutableStateOf(false) }
         if (startLegislation.value) {
-            val cards = remember { mutableStateOf(getCardForPresident.invoke()) }
-            if (cards.value.size == 3) {
+            if (cards.size == 3) {
                 PresidentCardSelection(
-                    cards = cards.value,
+                    cards = cards,
                     onRemoveCardSelected = {
-                        cards.value.remove(it)
+                        cards.remove(it)
                         removeCard.invoke(it)
                     })
             } else {
                 PrimeMinisterCardSelection(
-                    cards = cards.value,
+                    cards = cards,
                     onRemoveCardSelected = {
-                        cards.value.remove(it)
+                        cards.remove(it)
                         removeCard.invoke(it)
                         startLegislation.value = false
-                        submitCard.invoke(cards.value.first())
+                        submitCard.invoke(cards.first())
                     })
             }
 
@@ -124,15 +131,17 @@ fun CardItemComponent(
 ) {
     Box(
         modifier = modifier
+            .padding(padding_8)
             .clip(RoundedCornerShape(corner_24))
             .background(cardEntity.color)
             .clickable { onRemoveCardSelected.invoke(cardEntity) }
-            .padding(padding_32)
+            .padding(vertical = padding_32, horizontal = padding_8)
     ) {
         Text(
+            modifier = Modifier.align(Alignment.Center),
             text = cardEntity.name,
             color = MaterialTheme.colorScheme.onPrimary,
-            style = Bold_20
+            style = Regular_12
         )
     }
 }
