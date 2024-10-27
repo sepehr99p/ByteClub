@@ -37,7 +37,9 @@ internal fun CardsSelection(
 ) {
     val startLegislation = remember { mutableStateOf(false) }
     Column(
-        modifier = modifier.fillMaxWidth().padding(padding_8),
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(padding_8),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (startLegislation.value) {
@@ -123,7 +125,7 @@ private fun PrimeMinisterCardSelection(
 }
 
 @Composable
-fun CardItemComponent(
+private fun CardItemComponent(
     modifier: Modifier = Modifier,
     cardEntity: SecretHitlerCardEntity,
     onRemoveCardSelected: (card: SecretHitlerCardEntity) -> Unit
@@ -147,19 +149,41 @@ fun CardItemComponent(
 
 @Preview
 @Composable
+private fun CardItemComponentPreview() {
+    ByteClubTheme {
+        CardItemComponent(
+            cardEntity = SecretHitlerCardEntity.FASCISM,
+            onRemoveCardSelected = {}
+        )
+    }
+}
+
+@Preview
+@Composable
 private fun CardsSelectionPreview() {
     ByteClubTheme {
         CardsSelection(
             modifier = Modifier,
-            submitCard = {
-
-            },
-            removeCard = {
-
-            },
+            submitCard = {},
+            removeCard = {},
             getCardForPresident = {
                 arrayListOf(SecretHitlerCardEntity.FASCISM)
             }
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun PresidentCardSelectionPreview() {
+    ByteClubTheme {
+        PresidentCardSelection(
+            onRemoveCardSelected = {},
+            cards = listOf(
+                SecretHitlerCardEntity.FASCISM,
+                SecretHitlerCardEntity.LIBERAL,
+                SecretHitlerCardEntity.FASCISM
+            )
         )
     }
 }
