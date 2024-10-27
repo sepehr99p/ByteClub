@@ -1,5 +1,6 @@
 package com.sep.byteClub.ui.screen.secretHitler.board
 
+import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.toMutableStateList
@@ -38,22 +39,22 @@ class BoardViewModel @Inject constructor(
         } else {
             fascismScore.value += 1
         }
-        unUsedCards.value.remove(card)
+        usedCards.value.add(card)
     }
 
     fun removeCard(card: SecretHitlerCardEntity) {
         usedCards.value.add(card)
-        usedCards.value.remove(card)
     }
 
     fun getCardForPresident(): ArrayList<SecretHitlerCardEntity> {
-        if (unUsedCards.value.isEmpty()) {
+        if (unUsedCards.value.isEmpty() || unUsedCards.value.size < 3) {
             shuffleUsedCards()
         }
         val newList = arrayListOf<SecretHitlerCardEntity>()
         for (i in 0 until 3) {
-            newList.add(unUsedCards.value[i])
+            newList.add(unUsedCards.value.removeFirst())
         }
+        Log.i("TAG", "getCardForPresident: ")
         return newList
     }
 

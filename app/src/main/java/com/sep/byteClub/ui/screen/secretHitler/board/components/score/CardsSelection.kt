@@ -39,7 +39,6 @@ internal fun CardsSelection(
     removeCard: (card: SecretHitlerCardEntity) -> Unit,
     getCardForPresident: () -> ArrayList<SecretHitlerCardEntity>
 ) {
-    val cards = remember { getCardForPresident.invoke().toMutableStateList()}
     val startLegislation = remember { mutableStateOf(false) }
     Column(
         modifier = modifier
@@ -47,6 +46,7 @@ internal fun CardsSelection(
             .padding(padding_8)
     ) {
         if (startLegislation.value) {
+            val cards = remember { getCardForPresident.invoke().toMutableStateList()}
             if (cards.size == 3) {
                 PresidentCardSelection(
                     cards = cards,
