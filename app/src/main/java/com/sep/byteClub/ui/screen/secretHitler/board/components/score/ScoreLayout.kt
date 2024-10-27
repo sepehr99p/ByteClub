@@ -60,7 +60,7 @@ private fun RowScope.ScoreItemComponent(
 @Composable
 private fun ScoreItemComponentPreview() {
     ByteClubTheme {
-        val test = remember { mutableIntStateOf(0) }
+        val test = remember { mutableIntStateOf(2) }
         Row {
             ScoreItemComponent(score = test, cardEntity = SecretHitlerCardEntity.FASCISM)
         }
@@ -71,7 +71,7 @@ private fun ScoreItemComponentPreview() {
 @Composable
 private fun ScoreLayoutPreview() {
     ByteClubTheme {
-        val test = remember { mutableIntStateOf(0) }
+        val test = remember { mutableIntStateOf(1) }
         ScoreLayout(liberalScore = test, fascismScore = test)
     }
 }

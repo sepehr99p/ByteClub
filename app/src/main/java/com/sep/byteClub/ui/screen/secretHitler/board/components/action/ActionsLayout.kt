@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
 
 @Composable
-fun ActionsLayout(
+internal fun ActionsLayout(
     modifier: Modifier = Modifier,
     fascismScore: State<Int>,
     players: State<ArrayList<SecretHitlerPlayerEntity>>

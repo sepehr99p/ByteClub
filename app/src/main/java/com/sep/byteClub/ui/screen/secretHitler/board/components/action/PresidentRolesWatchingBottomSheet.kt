@@ -22,9 +22,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
+import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerRole
 import com.sep.byteClub.ui.designSystem.theme.Bold_12
+import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
 import com.sep.byteClub.ui.designSystem.theme.Regular_12
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_24
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_16
@@ -32,7 +35,7 @@ import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PresidentRolesWatching(
+internal fun PresidentRolesWatching(
     modifier: Modifier = Modifier,
     players: List<SecretHitlerPlayerEntity>,
     showBottomSheet: MutableState<Boolean>,
@@ -49,9 +52,7 @@ fun PresidentRolesWatching(
     ) {
         Card(
             elevation = CardDefaults.elevatedCardElevation(defaultElevation = 5.dp),
-            modifier =
-            Modifier
-                .padding(start = padding_8, end = padding_8, bottom = padding_16),
+            modifier = Modifier.padding(start = padding_8, end = padding_8, bottom = padding_16),
             border = BorderStroke(width = 0.5.dp, color = Color.Black),
             shape = RoundedCornerShape(corner_24),
             colors = CardDefaults.elevatedCardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
@@ -59,34 +60,56 @@ fun PresidentRolesWatching(
             val seen = remember { mutableStateOf(false) }
             LazyColumn {
                 items(players) { player ->
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        val showRole = remember { mutableStateOf(false) }
-                        Text(
-                            modifier = Modifier
-                                .weight(1f)
-                                .clickable {
-                                    if (seen.value.not()) {
-                                        showRole.value = true
-                                        seen.value = true
-                                    }
-                                },
-                            text = player.name,
-                            color = MaterialTheme.colorScheme.onPrimary,
-                            style = Regular_12
-                        )
-                        if (showRole.value) {
-                            Text(
-                                text = player.role.name,
-                                color = player.role.color,
-                                style = Bold_12
-                            )
-                        }
-                    }
+                    PresidentRolesWatchingItems(modifier = Modifier, player, seen)
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun PresidentRolesWatchingItems(
+    modifier: Modifier = Modifier,
+    player: SecretHitlerPlayerEntity,
+    seen: MutableState<Boolean>,
+) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        val showRole = remember { mutableStateOf(false) }
+        Text(
+            modifier = Modifier
+                .weight(1f)
+                .clickable {
+                    if (seen.value.not()) {
+                        showRole.value = true
+                        seen.value = true
+                    }
+                },
+            text = player.name,
+            color = MaterialTheme.colorScheme.onPrimary,
+            style = Regular_12
+        )
+        if (showRole.value) {
+            Text(
+                text = player.role.name,
+                color = player.role.color,
+                style = Bold_12
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun PresidentRolesWatchingItemsPreview() {
+    ByteClubTheme {
+        val test = remember { mutableStateOf(false) }
+        PresidentRolesWatchingItems(
+            modifier = Modifier,
+            player = SecretHitlerPlayerEntity(name = "sepi", role = SecretHitlerRole.HITLER),
+            seen = test
+        )
     }
 }
