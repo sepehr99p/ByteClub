@@ -21,20 +21,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.sep.byteClub.R
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerCardEntity
-import com.sep.byteClub.ui.designSystem.theme.Bold_12
-import com.sep.byteClub.ui.designSystem.theme.Bold_14
-import com.sep.byteClub.ui.designSystem.theme.Bold_20
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
 import com.sep.byteClub.ui.designSystem.theme.Regular_12
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_24
-import com.sep.byteClub.ui.designSystem.theme.dimen.corner_8
-import com.sep.byteClub.ui.designSystem.theme.dimen.padding_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_32
-import com.sep.byteClub.ui.designSystem.theme.dimen.padding_4
-import com.sep.byteClub.ui.designSystem.theme.dimen.padding_40
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
-import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable
 internal fun CardsSelection(
@@ -45,9 +37,7 @@ internal fun CardsSelection(
 ) {
     val startLegislation = remember { mutableStateOf(false) }
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(padding_8),
+        modifier = modifier.fillMaxWidth().padding(padding_8),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (startLegislation.value) {
@@ -159,6 +149,17 @@ fun CardItemComponent(
 @Composable
 private fun CardsSelectionPreview() {
     ByteClubTheme {
-//        CardsSelection()
+        CardsSelection(
+            modifier = Modifier,
+            submitCard = {
+
+            },
+            removeCard = {
+
+            },
+            getCardForPresident = {
+                arrayListOf(SecretHitlerCardEntity.FASCISM)
+            }
+        )
     }
 }

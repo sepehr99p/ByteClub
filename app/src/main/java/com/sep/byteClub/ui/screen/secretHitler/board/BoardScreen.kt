@@ -2,7 +2,6 @@ package com.sep.byteClub.ui.screen.secretHitler.board
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -19,7 +18,6 @@ fun BoardScreen(
 ) {
     val liberalScore = viewModel.liberalScore.collectAsStateWithLifecycle()
     val fascismScore = viewModel.fascismScore.collectAsStateWithLifecycle()
-    val cards = viewModel.unUsedCards.collectAsStateWithLifecycle()
     val players = viewModel.players.collectAsStateWithLifecycle()
     Column(modifier = modifier) {
         ScoreLayout(modifier = Modifier, liberalScore, fascismScore)
