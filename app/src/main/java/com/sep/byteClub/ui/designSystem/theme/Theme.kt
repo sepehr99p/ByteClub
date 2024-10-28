@@ -20,13 +20,13 @@ val coldForecast = Color(0xFF01A9D3)
 val hotForecast = Color(0xFFC43D3D)
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFF4DD0E1),
+    primary = Color(0xFF24E5AF),
     secondary = Color(0xFFFFD54F),
     primaryContainer = Color(0xFF5C5B5B),
     onPrimaryContainer = Color(0xFFEAF1F3),
     secondaryContainer = Color(0xFF003C35),
     onSecondaryContainer = Color(0xFFAFDBE9),
-    background = Color(0xFF242424),
+    background = Color(0xFF0C0C2C),
     surface = Color(0xFF301C3B),
     onPrimary = Color(0xFFE9E9E9),
     onSecondary = Color.White,
@@ -37,7 +37,7 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Color(0xFF4DD0E1),
+    primary = Color(0xFF24E5AF),
     secondary = Color(0xFFFFD54F),
     tertiary = Color(0xFF3F51B5),
     background = Color(0xFFFFFBFE),
