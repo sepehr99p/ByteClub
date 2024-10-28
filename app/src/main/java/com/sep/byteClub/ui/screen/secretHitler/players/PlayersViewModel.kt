@@ -1,5 +1,6 @@
 package com.sep.byteClub.ui.screen.secretHitler.players
 
+import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sep.byteClub.domain.usecase.secretHitler.SecretHitlerFetchPlayersUseCase
@@ -18,17 +19,20 @@ class PlayersViewModel @Inject constructor(
 
     private val _players = MutableStateFlow<ArrayList<String>>(arrayListOf())
     val players = _players.asStateFlow()
+    val playersSnapshot = mutableStateListOf<String>()
 
     fun addPlayer(name: String) {
         val temp = arrayListOf(name)
         temp.addAll(_players.value)
         _players.value = temp
+        playersSnapshot.add(name)
     }
 
     fun removePlayer(name: String) {
         val temp = _players.value
         temp.remove(name)
         _players.value = temp
+        playersSnapshot.remove(name)
     }
 
     init {
@@ -39,6 +43,7 @@ class PlayersViewModel @Inject constructor(
         viewModelScope.launch {
             fetchPlayersUseCase.invoke().collect { hitlerPlayerEntities ->
                 _players.value = hitlerPlayerEntities.map { it.name } as ArrayList<String>
+                playersSnapshot.addAll(_players.value)
             }
         }
     }

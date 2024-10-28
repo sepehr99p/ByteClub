@@ -5,10 +5,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,7 +26,7 @@ fun PlayersScreen(
     viewModel: PlayersViewModel = hiltViewModel(),
     onNavigateToRole: () -> Unit
 ) {
-    val players = viewModel.players.collectAsState()
+    val players = viewModel.playersSnapshot
     val showAddPlayerBS = remember { mutableStateOf(false) }
     Column(modifier = modifier) {
         PlayersHeaderComponent()
@@ -65,7 +65,7 @@ private fun PlayersHeaderComponent(modifier: Modifier = Modifier) {
 @Composable
 private fun StartGameBtn(
     modifier: Modifier = Modifier,
-    players: State<List<String>>,
+    players: SnapshotStateList<String>,
     onClick: () -> Unit
 ) {
     ButtonComponent(
@@ -73,7 +73,7 @@ private fun StartGameBtn(
             .fillMaxWidth()
             .padding(padding_8),
         onclick = onClick,
-        isDisabled = players.value.size < 5,
+        isDisabled = players.toList().size < 5,
         title = stringResource(id = R.string.start)
     )
 }
@@ -82,7 +82,7 @@ private fun StartGameBtn(
 @Composable
 private fun StartGameBtnPreview() {
     ByteClubTheme {
-        val test = remember { mutableStateOf(listOf("")) }
+        val test = remember { mutableStateListOf("") }
         StartGameBtn(onClick = {}, players = test)
     }
 }

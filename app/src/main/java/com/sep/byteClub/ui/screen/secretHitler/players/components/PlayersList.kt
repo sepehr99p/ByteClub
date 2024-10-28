@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -20,11 +20,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,20 +39,20 @@ import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 @Composable
 internal fun PlayersList(
     modifier: Modifier = Modifier,
-    players: State<List<String>>,
+    players: SnapshotStateList<String>,
     onAddPlayerClicked: () -> Unit,
     onPlayerRemoved: (name: String) -> Unit
 ) {
     LazyColumn(modifier = modifier) {
-        items(players.value) {
+        itemsIndexed(players) { index, item ->
             PlayersItemComponent(
-                name = it,
+                name = item,
                 onDeleted = {
-                    onPlayerRemoved.invoke(it)
+                    onPlayerRemoved.invoke(item)
                 }
             )
         }
-        if (players.value.size < 10) {
+        if (players.toList().size < 10) {
             item {
                 AddNewPlayerComponent(
                     onAddClicked = onAddPlayerClicked
@@ -152,7 +153,7 @@ private fun PlayersItemComponentPreview() {
 @Composable
 private fun PlayersListPreview() {
     ByteClubTheme {
-        val test = remember { mutableStateOf(listOf("sepi", "mosi")) }
+        val test = remember { mutableStateListOf("sepi", "mosi") }
         PlayersList(players = test, onAddPlayerClicked = {}, onPlayerRemoved = {})
     }
 }
