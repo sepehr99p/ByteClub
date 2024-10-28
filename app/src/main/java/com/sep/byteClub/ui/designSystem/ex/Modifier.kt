@@ -123,6 +123,7 @@ fun Modifier.airQualityBackground(): Modifier =
             brush = Brush.horizontalGradient(
                 colors = listOf(
                     MaterialTheme.colorScheme.primary,
+                    MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
                     MaterialTheme.colorScheme.background
                 )
             )

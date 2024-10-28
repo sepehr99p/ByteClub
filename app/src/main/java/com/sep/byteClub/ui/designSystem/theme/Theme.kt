@@ -16,6 +16,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
+val coldForecast = Color(0xFF01A9D3)
+val hotForecast = Color(0xFFC43D3D)
+
 private val DarkColorScheme = darkColorScheme(
     primary = Color(0xFF4DD0E1),
     secondary = Color(0xFFFFD54F),

@@ -19,12 +19,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.sep.byteClub.ui.designSystem.ex.airQualityBackground
+import com.sep.byteClub.ui.designSystem.theme.coldForecast
 import com.sep.byteClub.ui.screen.weather.components.CustomText
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_8
 import com.sep.byteClub.ui.designSystem.theme.dimen.image_36
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_4
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
+import com.sep.byteClub.ui.designSystem.theme.hotForecast
 
 @Composable
 fun DailyForecastItem(
@@ -48,8 +50,8 @@ fun DailyForecastItem(
                 .height(image_36)
         )
         Spacer(modifier = Modifier.height(padding_4))
-        Temperature(state.maxTemp, Color.Red)
-        Temperature(state.minTemp, Color.Blue)
+        Temperature(state.maxTemp, hotForecast)
+        Temperature(state.minTemp, coldForecast)
         Spacer(modifier = Modifier.height(padding_4))
     }
 
