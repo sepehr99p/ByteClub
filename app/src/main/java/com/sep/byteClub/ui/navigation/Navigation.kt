@@ -10,6 +10,7 @@ import com.sep.byteClub.ui.screen.dictionary.DictionaryScreen
 import com.sep.byteClub.ui.screen.home.HomeScreen
 import com.sep.byteClub.ui.screen.secretHitler.board.BoardScreen
 import com.sep.byteClub.ui.screen.secretHitler.players.PlayersScreen
+import com.sep.byteClub.ui.screen.secretHitler.result.SecretHitlerResultScreen
 import com.sep.byteClub.ui.screen.secretHitler.roles.RolesScreen
 import com.sep.byteClub.ui.screen.trivia.difficulty.DifficultyScreen
 import com.sep.byteClub.ui.screen.trivia.questions.QuestionsScreen
@@ -28,6 +29,12 @@ const val dictionaryRoute = "dictionary"
 const val secretHitlerRoute = "secretHitler"
 const val secretHitlerRoleRoute = "secretHitlerRoleRoute"
 const val secretHitlerBoardRoute = "secretHitlerBoard"
+const val secretHitlerResultRoute = "secretHitlerResult"
+
+fun NavController.navigateToResult() {
+    this.popBackStack(homeRoute, inclusive = false)
+    this.navigate(secretHitlerResultRoute)
+}
 
 fun NavController.navigateToBoard() {
     this.popBackStack(homeRoute, inclusive = false)
@@ -117,7 +124,11 @@ fun NavGraphBuilder.triviaScreen(
     }
 
     composable(route = secretHitlerBoardRoute) {
-        BoardScreen()
+        BoardScreen(onNavigateToResult = navController::navigateToResult)
+    }
+
+    composable(route = secretHitlerResultRoute) {
+        SecretHitlerResultScreen()
     }
 
 }

@@ -2,6 +2,7 @@ package com.sep.byteClub.ui.screen.secretHitler.board
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -14,10 +15,18 @@ import com.sep.byteClub.ui.screen.secretHitler.board.components.score.ScoreLayou
 @Composable
 fun BoardScreen(
     modifier: Modifier = Modifier,
+    onNavigateToResult: (winner : String) -> Unit,
     viewModel: BoardViewModel = hiltViewModel()
 ) {
     val liberalScore = viewModel.liberalScore.collectAsStateWithLifecycle()
     val fascismScore = viewModel.fascismScore.collectAsStateWithLifecycle()
+    LaunchedEffect(liberalScore.value,fascismScore.value) {
+        if (liberalScore.value == 5) {
+            onNavigateToResult.invoke("Liberal")
+        } else if (fascismScore.value == 6) {
+            onNavigateToResult.invoke("Fascism")
+        }
+    }
     val players = viewModel.players.collectAsStateWithLifecycle()
     Column(modifier = modifier) {
         ScoreLayout(modifier = Modifier, liberalScore, fascismScore)
@@ -36,6 +45,8 @@ fun BoardScreen(
 @Composable
 private fun BoardScreenPreview() {
     ByteClubTheme {
-        BoardScreen()
+        BoardScreen(
+            onNavigateToResult = {}
+        )
     }
 }
