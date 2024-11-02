@@ -20,6 +20,7 @@ const val idArg = "id"
 const val difficultyArg = "difficulty"
 const val countArg = "count"
 const val scoreArg = "score"
+const val winnerArg = "winner"
 
 const val homeRoute = "home_route"
 const val difficultyRoute = "difficulty_route/{$idArg}"
@@ -29,7 +30,7 @@ const val dictionaryRoute = "dictionary"
 const val secretHitlerRoute = "secretHitler"
 const val secretHitlerRoleRoute = "secretHitlerRoleRoute"
 const val secretHitlerBoardRoute = "secretHitlerBoard"
-const val secretHitlerResultRoute = "secretHitlerResult"
+const val secretHitlerResultRoute = "secretHitlerResult/{$winnerArg}"
 
 fun NavController.navigateToResult() {
     this.popBackStack(homeRoute, inclusive = false)
@@ -127,7 +128,10 @@ fun NavGraphBuilder.triviaScreen(
         BoardScreen(onNavigateToResult = navController::navigateToResult)
     }
 
-    composable(route = secretHitlerResultRoute) {
+    composable(
+        route = secretHitlerResultRoute,
+        arguments = listOf(navArgument(winnerArg) { type = NavType.StringType })
+    ) {
         SecretHitlerResultScreen()
     }
 
