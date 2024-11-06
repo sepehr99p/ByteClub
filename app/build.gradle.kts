@@ -8,17 +8,18 @@ plugins {
     alias(libs.plugins.google.service)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.protobuf)
+    alias(libs.plugins.compose.compiler)
 //    id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "com.sep.byteClub"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.sep.byteClub"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 211
         versionName = "2.1.1"
 

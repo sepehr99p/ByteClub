@@ -1,42 +1,42 @@
 [versions]
-agp = "8.4.0"
-kotlin = "1.9.0"
-coreKtx = "1.13.1"
+agp = "8.7.2"
+kotlin = "2.0.20"
+coreKtx = "1.15.0"
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.8.2"
-activityCompose = "1.9.0"
-composeBom = "2023.08.00"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+lifecycleRuntimeKtx = "2.8.7"
+activityCompose = "1.9.3"
+composeBom = "2024.10.01"
 
 retrofit = "2.9.0"
 kotlinx-serialization-converter = "1.0.0"
-kotlinxSerializationJson = "1.6.0"
+kotlinxSerializationJson = "1.6.3"
 loggingInterceptor = "4.12.0"
 multidex = "2.0.1"
 uiautomator = "2.3.0"
-benchmarkMacroJunit4 = "1.2.4"
-baselineprofile = "1.2.3"
-profileinstaller = "1.3.1"
+benchmarkMacroJunit4 = "1.3.3"
+baselineprofile = "1.3.3"
+profileinstaller = "1.4.1"
 
 customactivityoncrash = "2.4.0"
 
 androidxDataStore = "1.1.1"
-googleProtobuf = "3.24.4"
+googleProtobuf = "4.26.0"
 protobuf = "0.9.4"
 
-daggerHilt = "2.51.1"
+daggerHilt = "2.52"
 hiltNavigation = "1.2.0"
-navigationCompose = "2.7.7"
-firebase = "33.1.1"
+navigationCompose = "2.8.3"
+firebase = "33.5.1"
 room = "2.6.1"
 
 google-service = "4.4.2"
 firebase-crashlytics = "3.0.2"
-serialization = "1.6.10"
+serialization = "2.0.20"
 kapt = "1.8.0"
-lifecycleRuntimeComposeAndroid = "2.8.4"
-ui-constraint = "1.0.1"
+lifecycleRuntimeComposeAndroid = "2.8.7"
+ui-constraint = "1.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -104,3 +104,5 @@ dagger-hilt = { id = "dagger.hilt.android.plugin", version.ref = "daggerHilt" }
 dagger-hilt-google = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
 google-service = { id = "com.google.gms.google-services", version.ref = "google-service" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics" }
+
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
