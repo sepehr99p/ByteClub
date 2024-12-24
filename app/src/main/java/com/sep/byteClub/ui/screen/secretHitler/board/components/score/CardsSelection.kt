@@ -29,13 +29,6 @@ import com.sep.byteClub.ui.designSystem.theme.dimen.corner_24
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_32
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 
-sealed class SelectionState {
-    data object Init : SelectionState()
-    data object PresidentSelection : SelectionState()
-    data object Pause : SelectionState()
-    data object MinisterSelection : SelectionState()
-}
-
 @Composable
 internal fun CardsSelection(
     modifier: Modifier = Modifier,
