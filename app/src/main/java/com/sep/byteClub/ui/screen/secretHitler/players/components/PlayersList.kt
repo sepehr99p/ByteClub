@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -44,11 +45,11 @@ internal fun PlayersList(
     onPlayerRemoved: (name: String) -> Unit
 ) {
     LazyColumn(modifier = modifier) {
-        itemsIndexed(players) { index, item ->
+        items(players) {
             PlayersItemComponent(
-                name = item,
+                name = it,
                 onDeleted = {
-                    onPlayerRemoved.invoke(item)
+                    onPlayerRemoved.invoke(it)
                 }
             )
         }
@@ -69,9 +70,7 @@ internal fun PlayersItemComponent(
     name: String,
     onDeleted: () -> Unit
 ) {
-    var isRemoved by remember {
-        mutableStateOf(false)
-    }
+    var isRemoved by remember { mutableStateOf(false) }
     val state = rememberSwipeToDismissBoxState(
         confirmValueChange = { value ->
             if (value == SwipeToDismissBoxValue.StartToEnd) {
@@ -85,13 +84,13 @@ internal fun PlayersItemComponent(
     LaunchedEffect(key1 = isRemoved) {
         if (isRemoved) {
             onDeleted.invoke()
+            state.snapTo(SwipeToDismissBoxValue.Settled)
         }
     }
     SwipeToDismissBox(
         state = state,
-        backgroundContent = {
-
-        }, content = {
+        backgroundContent = {},
+        content = {
             Box(
                 modifier = modifier
                     .fillMaxWidth()

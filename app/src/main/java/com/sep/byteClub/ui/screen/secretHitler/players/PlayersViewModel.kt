@@ -6,8 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.sep.byteClub.domain.usecase.secretHitler.SecretHitlerFetchPlayersUseCase
 import com.sep.byteClub.domain.usecase.secretHitler.SecretHitlerSetPlayersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,22 +15,16 @@ class PlayersViewModel @Inject constructor(
     private val setPlayersUseCase: SecretHitlerSetPlayersUseCase
 ) : ViewModel() {
 
-    private val _players = MutableStateFlow<ArrayList<String>>(arrayListOf())
-    val players = _players.asStateFlow()
-    val playersSnapshot = mutableStateListOf<String>()
+    val players = mutableStateListOf<String>()
 
     fun addPlayer(name: String) {
-        val temp = arrayListOf(name)
-        temp.addAll(_players.value)
-        _players.value = temp
-        playersSnapshot.add(name)
+        viewModelScope.launch {
+            players.add(name)
+        }
     }
 
     fun removePlayer(name: String) {
-        val temp = _players.value
-        temp.remove(name)
-        _players.value = temp
-        playersSnapshot.remove(name)
+        players.remove(name)
     }
 
     init {
@@ -42,15 +34,15 @@ class PlayersViewModel @Inject constructor(
     private fun fetchPlayers() {
         viewModelScope.launch {
             fetchPlayersUseCase.invoke().collect { hitlerPlayerEntities ->
-                _players.value = hitlerPlayerEntities.map { it.name } as ArrayList<String>
-                playersSnapshot.addAll(_players.value)
+                players.clear()
+                players.addAll(hitlerPlayerEntities.map { it.name } as ArrayList<String>)
             }
         }
     }
 
     fun setPlayers() {
         viewModelScope.launch {
-            setPlayersUseCase.invoke(players.value)
+            setPlayersUseCase.invoke(players)
         }
     }
 
