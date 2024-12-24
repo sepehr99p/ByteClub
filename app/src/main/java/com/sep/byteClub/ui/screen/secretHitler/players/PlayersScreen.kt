@@ -1,6 +1,7 @@
 package com.sep.byteClub.ui.screen.secretHitler.players
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -8,6 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
+import com.sep.byteClub.ui.designSystem.theme.dimen.padding_16
+import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 import com.sep.byteClub.ui.screen.secretHitler.players.components.AddPlayerBottomSheet
 import com.sep.byteClub.ui.screen.secretHitler.players.components.PlayersHeaderComponent
 import com.sep.byteClub.ui.screen.secretHitler.players.components.PlayersList
@@ -21,7 +24,7 @@ fun PlayersScreen(
 ) {
     val players = viewModel.players
     val showAddPlayerBS = remember { mutableStateOf(false) }
-    Column(modifier = modifier) {
+    Column(modifier = modifier.padding(vertical = padding_16, horizontal = padding_8)) {
         PlayersHeaderComponent()
         PlayersList(
             modifier = Modifier.weight(1f),

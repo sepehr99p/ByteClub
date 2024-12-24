@@ -15,7 +15,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SwipeToDismissBox
-import androidx.compose.material3.SwipeToDismissBoxDefaults
 import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberSwipeToDismissBoxState
@@ -32,7 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
-import com.sep.byteClub.ui.designSystem.theme.Medium_12
+import com.sep.byteClub.ui.designSystem.theme.Medium_14
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_8
 import com.sep.byteClub.ui.designSystem.theme.dimen.image_24
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
@@ -99,7 +98,7 @@ internal fun PlayersItemComponent(
                 Text(
                     modifier = Modifier.align(Alignment.Center),
                     text = name,
-                    style = Medium_12,
+                    style = Medium_14,
                     color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             }

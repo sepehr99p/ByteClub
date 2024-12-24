@@ -1,5 +1,6 @@
 package com.sep.byteClub.ui.screen.secretHitler.players.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,13 +15,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.sep.byteClub.R
 import com.sep.byteClub.ui.designSystem.components.button.ButtonComponent
+import com.sep.byteClub.ui.designSystem.theme.Bold_18
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 
 @Composable
 internal fun PlayersHeaderComponent(modifier: Modifier = Modifier) {
-    Row(modifier = modifier.padding(padding_8)) {
-        Text(text = "players", color = MaterialTheme.colorScheme.primary)
+    Row(modifier = modifier.fillMaxWidth().padding(padding_8), horizontalArrangement = Arrangement.Center) {
+        Text(text = "players", color = MaterialTheme.colorScheme.primary, style = Bold_18)
     }
 }
 
@@ -45,7 +47,7 @@ internal fun StartGameBtn(
 private fun StartGameBtnPreview() {
     ByteClubTheme {
         val test = remember { mutableStateListOf("") }
-//        StartGameBtn(onClick = {}, players = test)
+        StartGameBtn(onClick = {}, players = test)
     }
 }
 
