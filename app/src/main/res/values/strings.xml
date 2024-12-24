@@ -80,7 +80,7 @@
     <string name="hidden_player">Click to reveal your role</string>
     <string name="revealed_player">Click to hide your role</string>
     <string name="start_legislation">start legislation</string>
-    <string name="watch">watch</string>
+    <string name="minister_watch">Minister watch</string>
     <string name="prime_minister">PrimeMinister</string>
     <string name="president">President</string>
 

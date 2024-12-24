@@ -110,7 +110,7 @@ private fun PauseSelectionComponent(onClick: () -> Unit) {
             .background(MaterialTheme.colorScheme.primaryContainer)
             .clickable { onClick.invoke() }
             .padding(padding_8),
-        text = stringResource(id = R.string.watch),
+        text = stringResource(id = R.string.minister_watch),
         color = MaterialTheme.colorScheme.onPrimary
     )
 }
