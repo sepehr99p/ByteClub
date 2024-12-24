@@ -18,15 +18,11 @@ class PlayersViewModel @Inject constructor(
 
     val players = mutableStateListOf<String>()
 
-    fun addPlayer(name: String) {
-        viewModelScope.launch {
-            players.add(name)
-        }
+    fun addPlayer(name: String) = viewModelScope.launch {
+        players.add(name)
     }
 
-    fun removePlayer(name: String) {
-        players.remove(name)
-    }
+    fun removePlayer(name: String) = players.remove(name)
 
     init {
         fetchPlayers()
@@ -41,10 +37,9 @@ class PlayersViewModel @Inject constructor(
         }
     }
 
-    fun setPlayers() {
-        viewModelScope.launch {
-            setPlayersUseCase.invoke(players.toList())
-        }
+    fun setPlayers() = viewModelScope.launch {
+        setPlayersUseCase.invoke(players.toList())
     }
+
 
 }
