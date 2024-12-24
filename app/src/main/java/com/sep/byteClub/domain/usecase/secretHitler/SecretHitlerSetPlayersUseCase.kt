@@ -10,7 +10,8 @@ class SecretHitlerSetPlayersUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(list: List<String>) {
-        val unKnownPlayers = list as ArrayList
+        val unKnownPlayers = arrayListOf<String>()
+        unKnownPlayers.addAll(list)
         val finalPlayers = arrayListOf<SecretHitlerPlayerEntity>()
         var player = unKnownPlayers.random()
         finalPlayers.add(SecretHitlerPlayerEntity(name = player, role = SecretHitlerRole.HITLER))
