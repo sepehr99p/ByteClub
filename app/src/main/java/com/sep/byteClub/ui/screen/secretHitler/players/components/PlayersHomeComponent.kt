@@ -21,8 +21,17 @@ import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 
 @Composable
 internal fun PlayersHeaderComponent(modifier: Modifier = Modifier) {
-    Row(modifier = modifier.fillMaxWidth().padding(padding_8), horizontalArrangement = Arrangement.Center) {
-        Text(text = "players", color = MaterialTheme.colorScheme.primary, style = Bold_18)
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(padding_8),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = stringResource(R.string.players),
+            color = MaterialTheme.colorScheme.primary,
+            style = Bold_18
+        )
     }
 }
 

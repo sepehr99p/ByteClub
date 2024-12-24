@@ -84,4 +84,6 @@
     <string name="prime_minister">PrimeMinister</string>
     <string name="president">President</string>
 
+    <string name="players">players</string>
+
 </resources>
