@@ -67,8 +67,8 @@ internal fun CardsSelection(
                 modifier = Modifier
                     .clip(RoundedCornerShape(corner_16))
                     .background(MaterialTheme.colorScheme.primaryContainer)
-                    .padding(padding_8)
-                    .clickable { startLegislation.value = true },
+                    .clickable { startLegislation.value = true }
+                    .padding(padding_8),
                 text = stringResource(id = R.string.start_legislation),
                 color = MaterialTheme.colorScheme.onPrimary
             )

@@ -1,9 +1,6 @@
 package com.sep.byteClub.ui.screen.secretHitler.board
 
-import android.util.Log
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.toMutableStateList
+import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerCardEntity
@@ -24,7 +21,7 @@ class BoardViewModel @Inject constructor(
     val players = _players.asStateFlow()
 
     private val usedCards = MutableStateFlow<ArrayList<SecretHitlerCardEntity>>(arrayListOf())
-    val unUsedCards = MutableStateFlow<ArrayList<SecretHitlerCardEntity>>(arrayListOf())
+    val unUsedCards = mutableStateListOf<SecretHitlerCardEntity>()
     val fascismScore = MutableStateFlow(0)
     val liberalScore = MutableStateFlow(0)
 
@@ -47,29 +44,28 @@ class BoardViewModel @Inject constructor(
     }
 
     fun getCardForPresident(): ArrayList<SecretHitlerCardEntity> {
-        if (unUsedCards.value.isEmpty() || unUsedCards.value.size < 3) {
+        if (unUsedCards.isEmpty() || unUsedCards.size < 3) {
             shuffleUsedCards()
         }
         val newList = arrayListOf<SecretHitlerCardEntity>()
-        for (i in 0 until 3) {
-            newList.add(unUsedCards.value.removeFirst())
+        repeat(3) {
+            newList.add(unUsedCards.removeAt(0))
         }
-        Log.i("TAG", "getCardForPresident: ")
         return newList
     }
 
     private fun shuffleUsedCards() {
-        unUsedCards.value.addAll(usedCards.value.shuffled())
+        unUsedCards.addAll(usedCards.value.shuffled())
     }
 
     private fun initCardsToPlay() {
-        for (i in 0 until 13) {
-            unUsedCards.value.add(SecretHitlerCardEntity.FASCISM)
+        repeat (13) {
+            unUsedCards.add(SecretHitlerCardEntity.FASCISM)
         }
-        for (i in 0 until 7) {
-            unUsedCards.value.add(SecretHitlerCardEntity.LIBERAL)
+        repeat (7) {
+            unUsedCards.add(SecretHitlerCardEntity.LIBERAL)
         }
-        unUsedCards.value.shuffle()
+        unUsedCards.shuffle()
     }
 
     private fun fetchPlayers() {
