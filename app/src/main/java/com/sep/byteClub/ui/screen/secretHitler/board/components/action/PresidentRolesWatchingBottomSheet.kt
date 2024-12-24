@@ -2,6 +2,7 @@ package com.sep.byteClub.ui.screen.secretHitler.board.components.action
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -73,20 +74,22 @@ private fun PresidentRolesWatchingItems(
     player: SecretHitlerPlayerEntity,
     seen: MutableState<Boolean>,
 ) {
+    val showRole = remember { mutableStateOf(false) }
+    val interactionSource = remember { MutableInteractionSource() }
     Row(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(padding_16)
+            .clickable(interactionSource = interactionSource, indication = null) {
+                if (seen.value.not()) {
+                    showRole.value = true
+                    seen.value = true
+                }
+            },
         verticalAlignment = Alignment.CenterVertically
     ) {
-        val showRole = remember { mutableStateOf(false) }
         Text(
-            modifier = Modifier
-                .weight(1f)
-                .clickable {
-                    if (seen.value.not()) {
-                        showRole.value = true
-                        seen.value = true
-                    }
-                },
+            modifier = Modifier.weight(1f),
             text = player.name,
             color = MaterialTheme.colorScheme.onPrimary,
             style = Regular_12
