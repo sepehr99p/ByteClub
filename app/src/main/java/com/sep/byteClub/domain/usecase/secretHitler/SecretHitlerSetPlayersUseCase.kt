@@ -15,17 +15,18 @@ class SecretHitlerSetPlayersUseCase @Inject constructor(
         val finalPlayers = arrayListOf<SecretHitlerPlayerEntity>()
         var player = unKnownPlayers.random()
         finalPlayers.add(SecretHitlerPlayerEntity(name = player, role = SecretHitlerRole.HITLER))
-        for (i in 0 until getLiberalCount(list)) {
-            player = unKnownPlayers.random()
-            finalPlayers.add(
-                SecretHitlerPlayerEntity(name = player, role = SecretHitlerRole.LIBERAL)
-            )
-            unKnownPlayers.remove(player)
-        }
-        for (i in 0..<list.size - getLiberalCount(list)) {
+        unKnownPlayers.remove(player)
+        repeat(getFascismCount(list)) {
             player = unKnownPlayers.random()
             finalPlayers.add(
                 SecretHitlerPlayerEntity(name = player, role = SecretHitlerRole.FASCISM)
+            )
+            unKnownPlayers.remove(player)
+        }
+        repeat(list.size - (getFascismCount(list) + 1)) {
+            player = unKnownPlayers.random()
+            finalPlayers.add(
+                SecretHitlerPlayerEntity(name = player, role = SecretHitlerRole.LIBERAL)
             )
             unKnownPlayers.remove(player)
         }
@@ -33,11 +34,11 @@ class SecretHitlerSetPlayersUseCase @Inject constructor(
     }
 
 
-    private fun getLiberalCount(list: List<String>): Int {
+    private fun getFascismCount(list: List<String>): Int {
         return when (list.size) {
-            5, 6 -> 4
-            7, 8 -> 5
-            9, 10 -> 6
+            5, 6 -> 1
+            7, 8 -> 2
+            9, 10 -> 3
             else -> 10
         }
     }

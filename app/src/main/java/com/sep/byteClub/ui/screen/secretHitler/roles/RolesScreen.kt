@@ -1,5 +1,6 @@
 package com.sep.byteClub.ui.screen.secretHitler.roles
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.TweenSpec
 import androidx.compose.animation.fadeIn
@@ -65,14 +66,20 @@ fun RolesScreen(
                     RevealRoleComponent(
                         player = players.value[currentPlayerIndex.intValue],
                         onClick = {
-                            roleState.value = RoleRevealState.NOT_REVEALED
-                            currentPlayerIndex.intValue += 1
+                            if (currentPlayerIndex.intValue == players.value.size - 1) {
+                                onNavigateToBoard.invoke()
+                            } else {
+                                roleState.value = RoleRevealState.NOT_REVEALED
+                                currentPlayerIndex.intValue += 1
+                            }
                         }
                     )
                 }
 
             }
+
         }
+
     }
 }
 
