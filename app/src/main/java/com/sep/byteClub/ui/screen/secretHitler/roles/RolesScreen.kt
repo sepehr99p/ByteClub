@@ -1,6 +1,5 @@
 package com.sep.byteClub.ui.screen.secretHitler.roles
 
-import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.TweenSpec
 import androidx.compose.animation.fadeIn
@@ -49,9 +48,6 @@ fun RolesScreen(
         val players = viewModel.players.collectAsStateWithLifecycle()
         val currentPlayerIndex = remember { mutableIntStateOf(0) }
         val roleState = remember { mutableStateOf(RoleRevealState.NOT_REVEALED) }
-        if (currentPlayerIndex.intValue == players.value.size - 1) {
-            onNavigateToBoard.invoke()
-        }
         if (players.value.isNotEmpty()) {
             when (roleState.value) {
                 RoleRevealState.NOT_REVEALED -> {
@@ -75,11 +71,8 @@ fun RolesScreen(
                         }
                     )
                 }
-
             }
-
         }
-
     }
 }
 
