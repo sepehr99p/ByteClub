@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.toMutableStateList
@@ -28,6 +29,13 @@ import com.sep.byteClub.ui.designSystem.theme.dimen.corner_24
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_32
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 
+sealed class SelectionState {
+    data object Init : SelectionState()
+    data object PresidentSelection : SelectionState()
+    data object Pause : SelectionState()
+    data object MinisterSelection : SelectionState()
+}
+
 @Composable
 internal fun CardsSelection(
     modifier: Modifier = Modifier,
@@ -35,46 +43,83 @@ internal fun CardsSelection(
     removeCard: (card: SecretHitlerCardEntity) -> Unit,
     getCardForPresident: () -> ArrayList<SecretHitlerCardEntity>
 ) {
-    val startLegislation = remember { mutableStateOf(false) }
+    val selectionState = remember { mutableStateOf<SelectionState>(SelectionState.Init) }
+    val cards = remember { mutableStateListOf<SecretHitlerCardEntity>() }
+
     Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(padding_8),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        if (startLegislation.value) {
-            val cards = remember { getCardForPresident.invoke().toMutableStateList() }
-            if (cards.size == 3) {
+        when (selectionState.value) {
+            SelectionState.Init -> {
+                InitSelectionComponent {
+                    cards.addAll(getCardForPresident.invoke().toMutableStateList())
+                    selectionState.value = SelectionState.PresidentSelection
+                }
+            }
+
+            SelectionState.PresidentSelection -> {
                 PresidentCardSelection(
                     cards = cards,
                     onRemoveCardSelected = {
                         cards.remove(it)
                         removeCard.invoke(it)
+                        selectionState.value = SelectionState.Pause
                     })
-            } else {
+            }
+
+            SelectionState.Pause -> {
+                PauseSelectionComponent {
+                    selectionState.value = SelectionState.MinisterSelection
+                }
+
+            }
+
+            SelectionState.MinisterSelection -> {
                 PrimeMinisterCardSelection(
                     cards = cards,
                     onRemoveCardSelected = {
                         cards.remove(it)
                         removeCard.invoke(it)
-                        startLegislation.value = false
                         submitCard.invoke(cards.first())
+                        cards.clear()
+                        selectionState.value = SelectionState.Init
                     })
+
             }
-
-        } else {
-            Text(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(corner_16))
-                    .background(MaterialTheme.colorScheme.primaryContainer)
-                    .clickable { startLegislation.value = true }
-                    .padding(padding_8),
-                text = stringResource(id = R.string.start_legislation),
-                color = MaterialTheme.colorScheme.onPrimary
-            )
         }
-
     }
+}
+
+@Composable
+private fun InitSelectionComponent(onClick: () -> Unit) {
+    Text(
+        modifier = Modifier
+            .clip(RoundedCornerShape(corner_16))
+            .background(MaterialTheme.colorScheme.primaryContainer)
+            .clickable {
+                onClick.invoke()
+            }
+            .padding(padding_8),
+        text = stringResource(id = R.string.start_legislation),
+        color = MaterialTheme.colorScheme.onPrimary
+    )
+
+}
+
+@Composable
+private fun PauseSelectionComponent(onClick: () -> Unit) {
+    Text(
+        modifier = Modifier
+            .clip(RoundedCornerShape(corner_16))
+            .background(MaterialTheme.colorScheme.primaryContainer)
+            .clickable { onClick.invoke() }
+            .padding(padding_8),
+        text = stringResource(id = R.string.watch),
+        color = MaterialTheme.colorScheme.onPrimary
+    )
 }
 
 @Composable
