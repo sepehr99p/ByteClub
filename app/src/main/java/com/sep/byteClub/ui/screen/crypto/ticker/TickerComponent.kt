@@ -47,7 +47,7 @@ import com.sep.byteClub.ui.designSystem.theme.dimen.padding_4
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 
 @Composable
-fun TickerListComponent(
+internal fun TickerListComponent(
     modifier: Modifier = Modifier,
     tickerList: List<TickerEntity>,
     onTickerClicked: ((symbol: String) -> Unit)? = null,
@@ -132,7 +132,7 @@ internal fun TickerListItemComponent(
 
 
 @Composable
-fun TickerPriceItemComponent(
+internal fun TickerPriceItemComponent(
     modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.onPrimary,
     value: String,
@@ -159,7 +159,7 @@ fun TickerPriceItemComponent(
     }
 }
 
-val mockTickerEntity = TickerEntity(
+private val mockTickerEntity = TickerEntity(
     "symbol",
     "name",
     "buy",
@@ -181,7 +181,7 @@ val mockTickerEntity = TickerEntity(
 )
 
 @Composable
-fun SingleTickerComponent(
+internal fun SingleTickerComponent(
     modifier: Modifier = Modifier,
     singleTickerEntity: SingleTickerEntity,
     onTickerClicked: (() -> Unit)? = null
@@ -235,7 +235,7 @@ fun SingleTickerComponent(
 }
 
 @Composable
-fun TickerScreenTopBar(callback: () -> Unit) {
+internal fun TickerScreenTopBar(callback: () -> Unit) {
     val interactionSource = remember { MutableInteractionSource() }
     Box(
         modifier = Modifier

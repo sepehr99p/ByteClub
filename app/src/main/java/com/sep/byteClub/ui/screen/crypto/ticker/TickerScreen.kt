@@ -83,9 +83,7 @@ fun TickerScreen(
                 when (ticker.value) {
                     is UiState.Failed -> ErrorComponent(
                         errorMessage = stringResource(id = R.string.error_ticker_search),
-                        onRetryClick = {
-                            //todo : impl later
-                        })
+                        onRetryClick = { viewModel.getTicker(searchTicker.value) })
 
                     is UiState.Success ->
                         SingleTickerComponent(
@@ -93,9 +91,7 @@ fun TickerScreen(
                             onTickerClicked = { onTickerClicked.invoke(searchTicker.value) })
 
                     is UiState.Loading -> LoadingComponent()
-                    is UiState.Initialize -> {
-
-                    }
+                    is UiState.Initialize -> {}
                 }
 
             }
