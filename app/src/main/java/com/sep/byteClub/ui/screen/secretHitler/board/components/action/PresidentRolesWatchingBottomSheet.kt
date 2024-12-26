@@ -27,17 +27,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sep.byteClub.R
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerRole
 import com.sep.byteClub.ui.designSystem.theme.Bold_12
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
 import com.sep.byteClub.ui.designSystem.theme.Regular_12
+import com.sep.byteClub.ui.designSystem.theme.dimen.border_1
+import com.sep.byteClub.ui.designSystem.theme.dimen.corner_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_24
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
-import com.sep.byteClub.R
-import com.sep.byteClub.ui.designSystem.theme.dimen.border_1
-import com.sep.byteClub.ui.designSystem.theme.dimen.corner_16
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,7 +45,8 @@ internal fun PresidentRolesWatching(
     modifier: Modifier = Modifier,
     players: List<SecretHitlerPlayerEntity>,
     showBottomSheet: MutableState<Boolean>,
-) {
+    onPlayerClicked : (player : SecretHitlerPlayerEntity) -> Unit
+    ) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     ModalBottomSheet(
         modifier = modifier.padding(start = padding_8, end = padding_8, bottom = padding_8),
@@ -53,7 +54,9 @@ internal fun PresidentRolesWatching(
         onDismissRequest = {
             showBottomSheet.value = false
         },
-        dragHandle = {},
+        dragHandle = {
+
+        },
         containerColor = Color.Transparent,
     ) {
         Card(
@@ -63,7 +66,6 @@ internal fun PresidentRolesWatching(
             shape = RoundedCornerShape(corner_24),
             colors = CardDefaults.elevatedCardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
         ) {
-            val seen = remember { mutableStateOf(false) }
             LazyColumn(
                 modifier = Modifier.padding(padding_8),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -72,7 +74,7 @@ internal fun PresidentRolesWatching(
                     PresidentRolesWatchingHeaderItem()
                 }
                 items(players) { player ->
-                    PresidentRolesWatchingItems(modifier = Modifier, player, seen)
+                    PresidentRolesWatchingItems(modifier = Modifier, player, onPlayerClicked)
                 }
             }
         }
@@ -93,7 +95,7 @@ private fun PresidentRolesWatchingHeaderItem(modifier: Modifier = Modifier) {
 private fun PresidentRolesWatchingItems(
     modifier: Modifier = Modifier,
     player: SecretHitlerPlayerEntity,
-    seen: MutableState<Boolean>,
+    onPlayerClicked : (player : SecretHitlerPlayerEntity) -> Unit
 ) {
     val showRole = remember { mutableStateOf(false) }
     val interactionSource = remember { MutableInteractionSource() }
@@ -110,10 +112,8 @@ private fun PresidentRolesWatchingItems(
             )
             .padding(padding_8)
             .clickable(interactionSource = interactionSource, indication = null) {
-                if (seen.value.not()) {
-                    showRole.value = true
-                    seen.value = true
-                }
+                showRole.value = true
+                onPlayerClicked.invoke(player)
             },
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -137,11 +137,10 @@ private fun PresidentRolesWatchingItems(
 @Composable
 private fun PresidentRolesWatchingItemsPreview() {
     ByteClubTheme {
-        val test = remember { mutableStateOf(false) }
         PresidentRolesWatchingItems(
             modifier = Modifier,
             player = SecretHitlerPlayerEntity(name = "sepi", role = SecretHitlerRole.HITLER),
-            seen = test
+            onPlayerClicked = {}
         )
     }
 }

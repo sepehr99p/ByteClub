@@ -9,6 +9,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerCardEntity
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
+import com.sep.byteClub.ui.screen.secretHitler.board.components.PresidentActionState
 import com.sep.byteClub.ui.screen.secretHitler.board.components.action.ActionsLayout
 import com.sep.byteClub.ui.screen.secretHitler.board.components.score.CardsSelection
 import com.sep.byteClub.ui.screen.secretHitler.board.components.score.ScoreLayout
@@ -16,12 +17,15 @@ import com.sep.byteClub.ui.screen.secretHitler.board.components.score.ScoreLayou
 @Composable
 fun BoardScreen(
     modifier: Modifier = Modifier,
-    onNavigateToResult: (winner : String) -> Unit,
+    onNavigateToResult: (winner: String) -> Unit,
     viewModel: BoardViewModel = hiltViewModel()
 ) {
     val liberalScore = viewModel.liberalScore.collectAsStateWithLifecycle()
     val fascismScore = viewModel.fascismScore.collectAsStateWithLifecycle()
-    LaunchedEffect(liberalScore.value,fascismScore.value) {
+    val presidentActionState = viewModel.presidentActionState.collectAsStateWithLifecycle()
+
+
+    LaunchedEffect(liberalScore.value, fascismScore.value) {
         if (liberalScore.value == 5) {
             onNavigateToResult.invoke(SecretHitlerCardEntity.LIBERAL.name)
         } else if (fascismScore.value == 6) {
@@ -31,13 +35,26 @@ fun BoardScreen(
     val players = viewModel.players.collectAsStateWithLifecycle()
     Column(modifier = modifier) {
         ScoreLayout(modifier = Modifier, liberalScore, fascismScore)
-        ActionsLayout(modifier = Modifier, fascismScore = fascismScore, players = players)
-        CardsSelection(
-            modifier = Modifier,
-            getCardForPresident = viewModel::getCardForPresident,
-            submitCard = viewModel::submitCard,
-            removeCard = viewModel::removeCard
-        )
+        when(presidentActionState.value) {
+            is PresidentActionState.NoAction -> {
+                CardsSelection(
+                    modifier = Modifier,
+                    getCardForPresident = viewModel::getCardForPresident,
+                    submitCard = viewModel::submitCard,
+                    removeCard = viewModel::removeCard
+                )
+            }
+            else -> {
+                ActionsLayout(
+                    modifier = Modifier,
+                    presidentActionState = presidentActionState,
+                    players = players,
+                    onPlayerClicked = viewModel::onPlayerRoleWatched
+                )
+            }
+        }
+
+
     }
 }
 

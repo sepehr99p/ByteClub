@@ -1,33 +1,66 @@
 package com.sep.byteClub.ui.screen.secretHitler.board.components.action
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
+import com.sep.byteClub.ui.designSystem.theme.Bold_14
+import com.sep.byteClub.ui.designSystem.theme.dimen.corner_16
+import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
+import com.sep.byteClub.ui.screen.secretHitler.board.components.PresidentActionState
+import com.sep.byteClub.R
 
 @Composable
 internal fun ActionsLayout(
     modifier: Modifier = Modifier,
-    fascismScore: State<Int>,
-    players: State<ArrayList<SecretHitlerPlayerEntity>>
+    presidentActionState: State<PresidentActionState>,
+    players: State<ArrayList<SecretHitlerPlayerEntity>>,
+    onPlayerClicked: (player: SecretHitlerPlayerEntity) -> Unit
 ) {
     Column(modifier = modifier) {
-        val showPresidentWatchRoleAction = remember { mutableStateOf(false) }
-        LaunchedEffect(key1 = fascismScore.value) {
-            if (fascismScore.value == 2) {
-                //todo : this will be changed later
-                showPresidentWatchRoleAction.value = true
+        val showPlayersBottomSheet = remember { mutableStateOf(false) }
+        when (presidentActionState.value) {
+            is PresidentActionState.NoAction -> {}
+            else -> {
+                PresidentRoleWatchingBtn(onClick = { showPlayersBottomSheet.value = true })
             }
         }
-        if (showPresidentWatchRoleAction.value) {
+        if (showPlayersBottomSheet.value) {
             PresidentRolesWatching(
                 players = players.value,
-                showBottomSheet = showPresidentWatchRoleAction
+                showBottomSheet = showPlayersBottomSheet,
+                onPlayerClicked = onPlayerClicked
             )
         }
     }
+}
+
+@Composable
+private fun PresidentRoleWatchingBtn(modifier: Modifier = Modifier, onClick: () -> Unit) {
+    Text(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(padding_8)
+            .clip(RoundedCornerShape(corner_16))
+            .background(
+                color = MaterialTheme.colorScheme.primaryContainer,
+                shape = RoundedCornerShape(corner_16)
+            )
+            .clickable { onClick.invoke() },
+        text = stringResource(R.string.click_to_watch_role),
+        color = MaterialTheme.colorScheme.onPrimary,
+        style = Bold_14
+    )
 }

@@ -6,7 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerCardEntity
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
 import com.sep.byteClub.domain.usecase.secretHitler.SecretHitlerFetchPlayersUseCase
+import com.sep.byteClub.ui.screen.secretHitler.board.components.PresidentActionState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -24,10 +26,38 @@ class BoardViewModel @Inject constructor(
     val unUsedCards = mutableStateListOf<SecretHitlerCardEntity>()
     val fascismScore = MutableStateFlow(0)
     val liberalScore = MutableStateFlow(0)
+    val _presidentActionState =
+        MutableStateFlow<PresidentActionState>(PresidentActionState.NoAction)
+    val presidentActionState = _presidentActionState.asStateFlow()
+    val firstSeenPlayer = MutableStateFlow<String?>(null)
+    val secondSeenPlayer = MutableStateFlow<String?>(null)
 
     init {
         fetchPlayers()
         initCardsToPlay()
+    }
+
+    private fun updatePresidentActionState() {
+        viewModelScope.launch {
+            delay(5000)
+            if (fascismScore.value == 2 && firstSeenPlayer.value == null) {
+                _presidentActionState.emit(PresidentActionState.FirstWatchRole)
+            } else if (fascismScore.value == 3 && secondSeenPlayer.value == null) {
+                _presidentActionState.emit(PresidentActionState.SecondWatchRole(firstSeenPlayer.value.orEmpty()))
+            } else {
+                _presidentActionState.emit(PresidentActionState.NoAction)
+            }
+        }
+    }
+
+
+    fun onPlayerRoleWatched(secretHitlerPlayerEntity: SecretHitlerPlayerEntity) {
+        if (fascismScore.value == 2) {
+            firstSeenPlayer.value = secretHitlerPlayerEntity.name
+        } else {
+            secondSeenPlayer.value = secretHitlerPlayerEntity.name
+        }
+        updatePresidentActionState()
     }
 
     fun submitCard(card: SecretHitlerCardEntity) {
@@ -37,6 +67,7 @@ class BoardViewModel @Inject constructor(
             fascismScore.value += 1
         }
         usedCards.value.add(card)
+        updatePresidentActionState()
     }
 
     fun removeCard(card: SecretHitlerCardEntity) = usedCards.value.add(card)
