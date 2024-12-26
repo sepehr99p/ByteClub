@@ -2,6 +2,7 @@ package com.sep.byteClub.ui.screen.secretHitler.board.components.action
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,15 +13,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
+import com.sep.byteClub.R
 import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
 import com.sep.byteClub.ui.designSystem.theme.Bold_14
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 import com.sep.byteClub.ui.screen.secretHitler.board.components.PresidentActionState
-import com.sep.byteClub.R
 
 @Composable
 internal fun ActionsLayout(
@@ -49,18 +51,23 @@ internal fun ActionsLayout(
 
 @Composable
 private fun PresidentRoleWatchingBtn(modifier: Modifier = Modifier, onClick: () -> Unit) {
-    Text(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(padding_8)
-            .clip(RoundedCornerShape(corner_16))
-            .background(
-                color = MaterialTheme.colorScheme.primaryContainer,
-                shape = RoundedCornerShape(corner_16)
-            )
-            .clickable { onClick.invoke() },
-        text = stringResource(R.string.click_to_watch_role),
-        color = MaterialTheme.colorScheme.onPrimary,
-        style = Bold_14
-    )
+    Box(modifier = modifier.fillMaxWidth()) {
+        Text(
+            modifier = modifier
+                .align(Alignment.Center)
+                .padding(padding_8)
+                .clip(RoundedCornerShape(corner_16))
+                .background(
+                    color = MaterialTheme.colorScheme.primaryContainer,
+                    shape = RoundedCornerShape(corner_16)
+                )
+                .padding(padding_8)
+                .clickable { onClick.invoke() },
+            text = stringResource(R.string.click_to_watch_role),
+            color = MaterialTheme.colorScheme.onPrimary,
+            style = Bold_14
+        )
+
+    }
+
 }

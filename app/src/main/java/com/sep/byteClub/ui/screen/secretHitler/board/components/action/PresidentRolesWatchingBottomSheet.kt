@@ -48,6 +48,7 @@ internal fun PresidentRolesWatching(
     onPlayerClicked : (player : SecretHitlerPlayerEntity) -> Unit
     ) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    val seen = remember { mutableStateOf(false) }
     ModalBottomSheet(
         modifier = modifier.padding(start = padding_8, end = padding_8, bottom = padding_8),
         sheetState = sheetState,
@@ -74,7 +75,7 @@ internal fun PresidentRolesWatching(
                     PresidentRolesWatchingHeaderItem()
                 }
                 items(players) { player ->
-                    PresidentRolesWatchingItems(modifier = Modifier, player, onPlayerClicked)
+                    PresidentRolesWatchingItems(modifier = Modifier, player, onPlayerClicked,seen)
                 }
             }
         }
@@ -95,7 +96,8 @@ private fun PresidentRolesWatchingHeaderItem(modifier: Modifier = Modifier) {
 private fun PresidentRolesWatchingItems(
     modifier: Modifier = Modifier,
     player: SecretHitlerPlayerEntity,
-    onPlayerClicked : (player : SecretHitlerPlayerEntity) -> Unit
+    onPlayerClicked : (player : SecretHitlerPlayerEntity) -> Unit,
+    seen : MutableState<Boolean>
 ) {
     val showRole = remember { mutableStateOf(false) }
     val interactionSource = remember { MutableInteractionSource() }
@@ -106,14 +108,15 @@ private fun PresidentRolesWatchingItems(
             .border(
                 width = border_1,
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
-                shape = RoundedCornerShape(
-                    corner_16
-                )
+                shape = RoundedCornerShape(corner_16)
             )
             .padding(padding_8)
             .clickable(interactionSource = interactionSource, indication = null) {
-                showRole.value = true
-                onPlayerClicked.invoke(player)
+                if (seen.value.not()) {
+                    showRole.value = true
+                    seen.value = true
+                    onPlayerClicked.invoke(player)
+                }
             },
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -137,10 +140,12 @@ private fun PresidentRolesWatchingItems(
 @Composable
 private fun PresidentRolesWatchingItemsPreview() {
     ByteClubTheme {
+        val seen = remember { mutableStateOf(false) }
         PresidentRolesWatchingItems(
             modifier = Modifier,
             player = SecretHitlerPlayerEntity(name = "sepi", role = SecretHitlerRole.HITLER),
-            onPlayerClicked = {}
+            onPlayerClicked = {},
+            seen = seen
         )
     }
 }

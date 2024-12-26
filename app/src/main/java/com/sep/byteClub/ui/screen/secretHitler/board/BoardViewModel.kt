@@ -39,12 +39,12 @@ class BoardViewModel @Inject constructor(
 
     private fun updatePresidentActionState() {
         viewModelScope.launch {
-            delay(5000)
             if (fascismScore.value == 2 && firstSeenPlayer.value == null) {
                 _presidentActionState.emit(PresidentActionState.FirstWatchRole)
             } else if (fascismScore.value == 3 && secondSeenPlayer.value == null) {
                 _presidentActionState.emit(PresidentActionState.SecondWatchRole(firstSeenPlayer.value.orEmpty()))
             } else {
+                delay(4000)
                 _presidentActionState.emit(PresidentActionState.NoAction)
             }
         }
