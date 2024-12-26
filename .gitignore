@@ -34,3 +34,4 @@ google-services.json
 
 app/benchmarkRelease/
 app/release/
+.kotlin/*
