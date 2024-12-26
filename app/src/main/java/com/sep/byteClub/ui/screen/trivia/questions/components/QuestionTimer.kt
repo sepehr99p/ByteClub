@@ -14,13 +14,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.sep.byteClub.ui.screen.trivia.questions.Delay
+import com.sep.byteClub.ui.screen.trivia.questions.TimerState
 import kotlinx.coroutines.delay
 
-const val Delay = 1000L
-
-enum class TimerState {
-    PAUSE, RESTART, START
-}
 
 @Composable
 internal fun QuestionTimer(
