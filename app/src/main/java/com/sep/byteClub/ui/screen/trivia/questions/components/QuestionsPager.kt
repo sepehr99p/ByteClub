@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.sep.byteClub.domain.entiry.QuestionEntity
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
+import com.sep.byteClub.ui.screen.trivia.questions.TimerState
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
