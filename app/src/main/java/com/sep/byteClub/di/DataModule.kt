@@ -12,12 +12,14 @@ import com.sep.byteClub.data.local.datastore.secretHitler.SecretHitlerSerializer
 import com.sep.byteClub.data.remote.crypto.KucoinApiService
 import com.sep.byteClub.data.remote.ninja.DadJokesApiService
 import com.sep.byteClub.data.remote.ninja.DictionaryApiService
+import com.sep.byteClub.data.remote.ninja.ImageToTextApiService
 import com.sep.byteClub.data.remote.quiz.QuizApiService
 import com.sep.byteClub.data.remote.weather.AirQualityApi
 import com.sep.byteClub.data.remote.weather.WeatherApiService
 import com.sep.byteClub.data.repository.crypto.KucoinRepositoryImpl
 import com.sep.byteClub.data.repository.ninja.DadJokeRepositoryImpl
 import com.sep.byteClub.data.repository.ninja.DictionaryRepositoryImpl
+import com.sep.byteClub.data.repository.ninja.ImageToTextRepositoryImpl
 import com.sep.byteClub.data.repository.quiz.QuizRepositoryImpl
 import com.sep.byteClub.data.repository.secretHitler.SecretHitlerRepositoryImpl
 import com.sep.byteClub.data.repository.weather.AirQualityRepositoryImpl
@@ -25,6 +27,7 @@ import com.sep.byteClub.data.repository.weather.WeatherRepositoryImpl
 import com.sep.byteClub.domain.repository.crypto.KucoinRepository
 import com.sep.byteClub.domain.repository.ninja.DadJokeRepository
 import com.sep.byteClub.domain.repository.ninja.DictionaryRepository
+import com.sep.byteClub.domain.repository.ninja.ImageToTextRepository
 import com.sep.byteClub.domain.repository.quiz.QuizRepository
 import com.sep.byteClub.domain.repository.secretHitler.SecretHitlerRepository
 import com.sep.byteClub.domain.repository.weather.AirQualityRepository
@@ -76,6 +79,12 @@ object DataModule {
 
     @Singleton
     @Provides
+    fun provideImageToTextRepository(
+        imageToTextApiService: ImageToTextApiService
+    ): ImageToTextRepository = ImageToTextRepositoryImpl(imageToTextApiService)
+
+    @Singleton
+    @Provides
     fun provideDadJokeRepository(
         dadJokesApiService: DadJokesApiService
     ): DadJokeRepository = DadJokeRepositoryImpl(
@@ -103,7 +112,7 @@ object DataModule {
     @Singleton
     @Provides
     fun provideSecretHitlerRepository(
-        dataSource : SecretHitlerDataSource
+        dataSource: SecretHitlerDataSource
     ): SecretHitlerRepository = SecretHitlerRepositoryImpl(dataSource = dataSource)
 
     @Provides
