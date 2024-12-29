@@ -74,7 +74,7 @@ internal fun QuestionsPager(
 }
 
 
-private val mockQuestions = QuestionEntity(
+internal val mockQuestions = QuestionEntity(
     questionDescription = "some des",
     correctAnswer = "co",
     incorrectAnswers = listOf("ro,do,vo")
