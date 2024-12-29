@@ -32,29 +32,21 @@ internal fun QuestionsPager(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         val pagerState = rememberPagerState(pageCount = { questions.size })
-        val answered = remember {
-            mutableStateOf(false)
-        }
-        val score = remember {
-            mutableIntStateOf(0)
-        }
-        val timerState = remember {
-            mutableStateOf(TimerState.START)
-        }
-
+        val answered = remember { mutableStateOf(false) }
+        val score = remember { mutableIntStateOf(0) }
+        val timerState = remember { mutableStateOf(TimerState.START) }
         QuestionsHeaderComponent(
             pagerState = pagerState,
             onCloseClicked = {
                 navigateToHome.invoke()
-            })
-
+            }
+        )
         QuestionTimer(
             onTimerFinished = {
-                 answered.value = true
+                answered.value = true
             },
             timerState = timerState
         )
-
 
         HorizontalPager(
             modifier = Modifier.weight(1f),
@@ -76,12 +68,13 @@ internal fun QuestionsPager(
             timerState = timerState,
             onFinish = {
                 navigateToResult.invoke(score.intValue)
-            })
+            }
+        )
     }
 }
 
 
-internal val mockQuestions = QuestionEntity(
+private val mockQuestions = QuestionEntity(
     questionDescription = "some des",
     correctAnswer = "co",
     incorrectAnswers = listOf("ro,do,vo")

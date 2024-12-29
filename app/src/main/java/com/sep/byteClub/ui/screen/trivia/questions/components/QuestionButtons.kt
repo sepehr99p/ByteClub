@@ -28,14 +28,12 @@ internal fun QuestionPagerButtons(
     modifier: Modifier = Modifier,
     pagerState: PagerState,
     answered: MutableState<Boolean>,
-    timerState : MutableState<TimerState>,
+    timerState: MutableState<TimerState>,
     onFinish: () -> Unit
 ) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = padding_8)
-    ) {
+    Row(modifier = modifier
+        .fillMaxWidth()
+        .padding(vertical = padding_8)) {
         val scrollNext = remember {
             mutableStateOf(false)
         }

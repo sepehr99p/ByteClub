@@ -69,7 +69,6 @@ private fun QuestionItemComponent(
     userChoice: MutableState<String>,
     onClick: () -> Unit
 ) {
-
     val shakeController = rememberShakeController()
     Row(
         modifier = modifier
@@ -119,17 +118,12 @@ private fun QuestionDescriptionPreview() {
 @Preview
 @Composable
 private fun QuestionComponentPreview() {
-    QuestionsComponent(question = mockQuestions) {
-
-    }
+    QuestionsComponent(question = mockQuestions) {}
 }
 
 @Preview
 @Composable
 private fun QuestionItemComponentPreview() {
-    val choice = remember {
-        mutableStateOf("")
-    }
-
+    val choice = remember { mutableStateOf("") }
     QuestionItemComponent(text = "some text", userChoice = choice, isCorrect = true) {}
 }

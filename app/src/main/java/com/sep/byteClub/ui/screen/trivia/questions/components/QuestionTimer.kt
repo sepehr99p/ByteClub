@@ -61,9 +61,5 @@ internal fun QuestionTimer(
 @Preview
 @Composable
 private fun QuestionTimerPreview() {
-    QuestionTimer(timerState = remember {
-        mutableStateOf(TimerState.PAUSE)
-    }) {
-
-    }
+    QuestionTimer(timerState = remember { mutableStateOf(TimerState.PAUSE) }) {}
 }
