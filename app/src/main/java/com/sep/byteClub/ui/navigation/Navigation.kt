@@ -27,6 +27,7 @@ const val difficultyRoute = "difficulty_route/{$idArg}"
 const val questionsRoute = "questions_route/{$idArg}/{$difficultyArg}/{$countArg}"
 const val resultRoute = "result/{$scoreArg}"
 const val dictionaryRoute = "dictionary"
+const val f1Route = "f1"
 const val secretHitlerRoute = "secretHitler"
 const val secretHitlerRoleRoute = "secretHitlerRoleRoute"
 const val secretHitlerBoardRoute = "secretHitlerBoard"
@@ -116,6 +117,10 @@ fun NavGraphBuilder.triviaScreen(
         DictionaryScreen()
     }
 
+    composable(route = f1Route) {
+
+    }
+
     composable(route = secretHitlerRoute) {
         PlayersScreen(onNavigateToRole = navController::navigateToRoles)
     }
@@ -140,13 +145,15 @@ fun NavGraphBuilder.triviaScreen(
 fun NavGraphBuilder.homeScreen(
     navigateToDifficulty: (id: String) -> Unit,
     navigateToDictionary: () -> Unit,
-    navigateToSecretHitler: () -> Unit
+    navigateToSecretHitler: () -> Unit,
+    navigateToF1: () -> Unit
 ) {
     composable(route = homeRoute) {
         HomeScreen(
             onCategorySelected = navigateToDifficulty,
             navigateToDictionary = navigateToDictionary,
-            navigateToSecretHitler = navigateToSecretHitler
+            navigateToSecretHitler = navigateToSecretHitler,
+            navigateToF1 = navigateToF1
         )
     }
 }

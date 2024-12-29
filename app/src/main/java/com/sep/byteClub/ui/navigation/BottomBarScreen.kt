@@ -20,7 +20,8 @@ fun BottomBarScreen(
     appState: BottomBarAppStatus,
     navigateToDifficulty: (id: String) -> Unit,
     navigateToSecretHitler: () -> Unit,
-    navigateToDictionary: () -> Unit
+    navigateToDictionary: () -> Unit,
+    navigateToF1: () -> Unit
 ) {
     val navController = appState.navController
 
@@ -46,7 +47,12 @@ fun BottomBarScreen(
                 navController = navController,
                 startDestination = homeRoute
             ) {
-                homeScreen(navigateToDifficulty, navigateToDictionary,navigateToSecretHitler)
+                homeScreen(
+                    navigateToDifficulty = navigateToDifficulty,
+                    navigateToDictionary = navigateToDictionary,
+                    navigateToSecretHitler = navigateToSecretHitler,
+                    navigateToF1 = navigateToF1
+                )
                 cryptoHomeScreen(navController)
                 weatherScreen()
             }

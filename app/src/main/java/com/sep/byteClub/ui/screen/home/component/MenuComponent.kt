@@ -38,6 +38,7 @@ internal fun MenuComponent(
     onAboutClick: () -> Unit,
     navigateToDictionary: () -> Unit,
     onDadJokeClicked: () -> Unit,
+    onF1Clicked: () -> Unit,
     navigateToSecretHitler: () -> Unit
 ) {
     Column(
@@ -50,6 +51,7 @@ internal fun MenuComponent(
         MenuScoreComponent(score = score)
         MenuComponentItem(title = stringResource(id = R.string.start), onClick = onStartClick)
         MenuComponentItem(title = stringResource(id = R.string.dadJoke), onClick = onDadJokeClicked)
+        MenuComponentItem(title = stringResource(id = R.string.f1), onClick = onF1Clicked)
         MenuComponentItem(
             title = stringResource(id = R.string.secret_hitler),
             onClick = navigateToSecretHitler
@@ -117,7 +119,8 @@ private fun MenuComponentPreview() {
         score = score,
         navigateToDictionary = {},
         onDadJokeClicked = {},
-        navigateToSecretHitler = {}
+        navigateToSecretHitler = {},
+        onF1Clicked = {}
     )
 }
 

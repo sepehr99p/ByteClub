@@ -23,6 +23,7 @@ import com.sep.byteClub.ui.navigation.BottomBarEntity
 import com.sep.byteClub.ui.navigation.BottomBarScreen
 import com.sep.byteClub.ui.navigation.BottomBarType
 import com.sep.byteClub.ui.navigation.dictionaryRoute
+import com.sep.byteClub.ui.navigation.f1Route
 import com.sep.byteClub.ui.navigation.homeRoute
 import com.sep.byteClub.ui.navigation.navigateToDifficulty
 import com.sep.byteClub.ui.navigation.secretHitlerRoute
@@ -97,7 +98,12 @@ class MainActivity : ComponentActivity(), LocationListener {
                                         )
                                     },
                                     navigateToDictionary = { navController.navigate(dictionaryRoute) },
-                                    navigateToSecretHitler = { navController.navigate(secretHitlerRoute) }
+                                    navigateToSecretHitler = {
+                                        navController.navigate(
+                                            secretHitlerRoute
+                                        )
+                                    },
+                                    navigateToF1 = { navController.navigate(f1Route) }
                                 )
                             }
                             triviaScreen(navController)
