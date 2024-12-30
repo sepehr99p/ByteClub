@@ -10,6 +10,7 @@ import com.sep.byteClub.data.local.database.QuestionDatabase
 import com.sep.byteClub.data.local.datastore.secretHitler.SecretHitlerDataSource
 import com.sep.byteClub.data.local.datastore.secretHitler.SecretHitlerSerializer
 import com.sep.byteClub.data.remote.crypto.KucoinApiService
+import com.sep.byteClub.data.remote.f1.F1ApiService
 import com.sep.byteClub.data.remote.ninja.DadJokesApiService
 import com.sep.byteClub.data.remote.ninja.DictionaryApiService
 import com.sep.byteClub.data.remote.ninja.ImageToTextApiService
@@ -17,6 +18,7 @@ import com.sep.byteClub.data.remote.quiz.QuizApiService
 import com.sep.byteClub.data.remote.weather.AirQualityApi
 import com.sep.byteClub.data.remote.weather.WeatherApiService
 import com.sep.byteClub.data.repository.crypto.KucoinRepositoryImpl
+import com.sep.byteClub.data.repository.f1.F1RepositoryImpl
 import com.sep.byteClub.data.repository.ninja.DadJokeRepositoryImpl
 import com.sep.byteClub.data.repository.ninja.DictionaryRepositoryImpl
 import com.sep.byteClub.data.repository.ninja.ImageToTextRepositoryImpl
@@ -25,6 +27,7 @@ import com.sep.byteClub.data.repository.secretHitler.SecretHitlerRepositoryImpl
 import com.sep.byteClub.data.repository.weather.AirQualityRepositoryImpl
 import com.sep.byteClub.data.repository.weather.WeatherRepositoryImpl
 import com.sep.byteClub.domain.repository.crypto.KucoinRepository
+import com.sep.byteClub.domain.repository.f1.F1Repository
 import com.sep.byteClub.domain.repository.ninja.DadJokeRepository
 import com.sep.byteClub.domain.repository.ninja.DictionaryRepository
 import com.sep.byteClub.domain.repository.ninja.ImageToTextRepository
@@ -82,6 +85,12 @@ object DataModule {
     fun provideImageToTextRepository(
         imageToTextApiService: ImageToTextApiService
     ): ImageToTextRepository = ImageToTextRepositoryImpl(imageToTextApiService)
+
+    @Singleton
+    @Provides
+    fun provideF1Repository(
+        f1ApiService: F1ApiService
+    ): F1Repository = F1RepositoryImpl(f1ApiService)
 
     @Singleton
     @Provides
