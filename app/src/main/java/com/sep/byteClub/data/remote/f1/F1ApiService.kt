@@ -2,6 +2,7 @@ package com.sep.byteClub.data.remote.f1
 
 import com.sep.byteClub.data.model.response.f1.DriversDto
 import com.sep.byteClub.data.model.response.f1.IntervalsDto
+import com.sep.byteClub.data.model.response.f1.MeetingDto
 import com.sep.byteClub.data.model.response.f1.PositionDto
 import com.sep.byteClub.data.model.response.f1.RaceWeatherDto
 import retrofit2.Response
@@ -20,5 +21,8 @@ interface F1ApiService {
 
     @GET("v1/weather")
     suspend fun fetchRaceWeather() : Response<List<RaceWeatherDto>>
+
+    @GET("v1/meetings")
+    suspend fun fetchMeetings() : Response<List<MeetingDto>>
 
 }

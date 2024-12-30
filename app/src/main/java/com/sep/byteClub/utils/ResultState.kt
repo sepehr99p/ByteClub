@@ -2,6 +2,7 @@ package com.sep.byteClub.utils
 
 import com.sep.byteClub.utils.callAdapter.BaseNetworkResponse
 import com.sep.byteClub.utils.callAdapter.NetworkResponse
+import retrofit2.Response
 
 
 sealed class ResultState<out T> {
@@ -43,5 +44,21 @@ suspend fun <T : BaseNetworkResponse, S> NetworkResponse<T>.toResultState(
         }
     } catch (e: Exception) {
         ResultState.Exception(Throwable(e))
+    }
+}
+
+suspend fun <T, S> Response<T>.toResultState(
+    onFailure: (suspend (error: String) -> Unit)? = null,
+    onSuccess: suspend (T) -> ResultState.Success<S>
+): ResultState<S> {
+    return if (this.isSuccessful) {
+        this.body()?.let {
+            onSuccess.invoke(it)
+        } ?: run {
+            ResultState.Exception(NullPointerException("no response body"))
+        }
+    } else {
+        onFailure?.invoke(this.errorBody()?.string() ?: run { "server error" })
+        ResultState.Failure(this.errorBody()?.string() ?: run { "server error" })
     }
 }
