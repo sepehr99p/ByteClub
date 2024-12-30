@@ -3,6 +3,7 @@ package com.sep.byteClub.di
 import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.sep.byteClub.data.remote.crypto.KucoinApiService
+import com.sep.byteClub.data.remote.f1.F1ApiService
 import com.sep.byteClub.data.remote.ninja.DadJokesApiService
 import com.sep.byteClub.data.remote.ninja.DictionaryApiService
 import com.sep.byteClub.data.remote.ninja.ImageToTextApiService
@@ -216,6 +217,10 @@ object NetworkModule {
         retrofit.create(
             ImageToTextApiService::class.java
         )
+
+    @Provides
+    fun provideF1ApiService(@F1Retrofit retrofit: Retrofit): F1ApiService =
+        retrofit.create(F1ApiService::class.java)
 
     @Provides
     fun provideKucoinApiService(@KucoinRetrofit retrofit: Retrofit): KucoinApiService =
