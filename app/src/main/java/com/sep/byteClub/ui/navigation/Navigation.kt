@@ -7,6 +7,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.sep.byteClub.ui.screen.dictionary.DictionaryScreen
+import com.sep.byteClub.ui.screen.f1.F1HomeScreen
 import com.sep.byteClub.ui.screen.home.HomeScreen
 import com.sep.byteClub.ui.screen.secretHitler.board.BoardScreen
 import com.sep.byteClub.ui.screen.secretHitler.players.PlayersScreen
@@ -118,7 +119,7 @@ fun NavGraphBuilder.triviaScreen(
     }
 
     composable(route = f1Route) {
-
+        F1HomeScreen()
     }
 
     composable(route = secretHitlerRoute) {

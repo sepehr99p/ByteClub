@@ -12,6 +12,7 @@ import com.sep.byteClub.data.remote.weather.WeatherApiService
 import com.sep.byteClub.domain.AIR_QUALITY_BASE_URL
 import com.sep.byteClub.domain.BASE_URL
 import com.sep.byteClub.domain.DICTIONARY_BASE_URL
+import com.sep.byteClub.domain.F1_BASE_URL
 import com.sep.byteClub.domain.FORECAST_BASE_URL
 import com.sep.byteClub.domain.KUCOIN_BASE_URL
 import com.sep.byteClub.utils.NetworkConnection
@@ -46,6 +47,10 @@ object NetworkModule {
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
     annotation class QuizRetrofit
+
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class F1Retrofit
 
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
@@ -137,6 +142,19 @@ object NetworkModule {
         json: Json,
     ): Retrofit = Retrofit.Builder()
         .baseUrl(DICTIONARY_BASE_URL)
+        .client(okHttpClient)
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        .addCallAdapterFactory(NetworkResponseAdapterFactory())
+        .build()
+
+    @F1Retrofit
+    @Provides
+    @Singleton
+    fun provideF1Retrofit(
+        okHttpClient: OkHttpClient,
+        json: Json,
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl(F1_BASE_URL)
         .client(okHttpClient)
         .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
         .addCallAdapterFactory(NetworkResponseAdapterFactory())
