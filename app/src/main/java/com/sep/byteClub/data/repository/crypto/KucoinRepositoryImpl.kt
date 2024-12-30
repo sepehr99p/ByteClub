@@ -2,11 +2,11 @@ package com.sep.byteClub.data.repository.crypto
 
 import com.sep.byteClub.data.remote.crypto.KucoinApiService
 import com.sep.byteClub.domain.DEFAULT_ERROR
-import com.sep.byteClub.domain.entiry.crypto.CandleEntity
-import com.sep.byteClub.domain.entiry.crypto.CurrencyEntity
-import com.sep.byteClub.domain.entiry.crypto.SingleTickerEntity
-import com.sep.byteClub.domain.entiry.crypto.Ticker24hEntity
-import com.sep.byteClub.domain.entiry.crypto.TickerEntity
+import com.sep.byteClub.domain.entity.crypto.CandleEntity
+import com.sep.byteClub.domain.entity.crypto.CurrencyEntity
+import com.sep.byteClub.domain.entity.crypto.SingleTickerEntity
+import com.sep.byteClub.domain.entity.crypto.Ticker24hEntity
+import com.sep.byteClub.domain.entity.crypto.TickerEntity
 import com.sep.byteClub.domain.repository.crypto.KucoinRepository
 import com.sep.byteClub.utils.ResultState
 import javax.inject.Inject

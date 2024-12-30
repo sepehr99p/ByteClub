@@ -3,7 +3,7 @@ package com.sep.byteClub.ui.screen.crypto.currency
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sep.byteClub.domain.entiry.crypto.CurrencyEntity
+import com.sep.byteClub.domain.entity.crypto.CurrencyEntity
 import com.sep.byteClub.domain.usecase.crypto.CurrencyListUseCase
 import com.sep.byteClub.ui.utils.UiState
 import com.sep.byteClub.utils.ResultState

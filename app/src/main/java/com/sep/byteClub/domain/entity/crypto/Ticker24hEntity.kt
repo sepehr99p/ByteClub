@@ -1,4 +1,4 @@
-package com.sep.byteClub.domain.entiry.crypto
+package com.sep.byteClub.domain.entity.crypto
 
 data class Ticker24hEntity(
     val changeRate : String,

@@ -3,7 +3,7 @@ package com.sep.byteClub.ui.screen.crypto.ticker
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
-import com.sep.byteClub.domain.entiry.crypto.TickerEntity
+import com.sep.byteClub.domain.entity.crypto.TickerEntity
 
 @Stable
 interface TickerUiState {

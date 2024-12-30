@@ -15,7 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerCardEntity
+import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerCardEntity
 import com.sep.byteClub.ui.designSystem.theme.Bold_18
 import com.sep.byteClub.ui.designSystem.theme.Bold_20
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme

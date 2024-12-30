@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.sep.byteClub.domain.entiry.crypto.CurrencyEntity
+import com.sep.byteClub.domain.entity.crypto.CurrencyEntity
 import com.sep.byteClub.ui.designSystem.components.LoadingComponent
 import com.sep.byteClub.ui.screen.crypto.currency.component.CurrencyListComponent
 import com.sep.byteClub.ui.utils.UiState

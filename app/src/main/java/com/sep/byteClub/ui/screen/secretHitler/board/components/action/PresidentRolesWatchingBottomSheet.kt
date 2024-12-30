@@ -28,8 +28,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sep.byteClub.R
-import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
-import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerRole
+import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerPlayerEntity
+import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerRole
 import com.sep.byteClub.ui.designSystem.theme.Bold_12
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
 import com.sep.byteClub.ui.designSystem.theme.Regular_12

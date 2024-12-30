@@ -1,7 +1,7 @@
 package com.sep.byteClub.data.repository.ninja
 
 import com.sep.byteClub.data.remote.ninja.DictionaryApiService
-import com.sep.byteClub.domain.entiry.dictionary.WordEntity
+import com.sep.byteClub.domain.entity.dictionary.WordEntity
 import com.sep.byteClub.domain.repository.ninja.DictionaryRepository
 import com.sep.byteClub.utils.ResultState
 import com.sep.byteClub.utils.toResultState

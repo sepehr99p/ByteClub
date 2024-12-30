@@ -1,6 +1,6 @@
 package com.sep.byteClub.data.model.response.crypto
 
-import com.sep.byteClub.domain.entiry.crypto.Ticker24hEntity
+import com.sep.byteClub.domain.entity.crypto.Ticker24hEntity
 import kotlinx.serialization.Serializable
 
 @Serializable

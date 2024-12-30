@@ -39,7 +39,7 @@ import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.core.cartesian.data.candlestickSeries
 import com.patrykandpatrick.vico.core.common.component.TextComponent
 import com.sep.byteClub.R
-import com.sep.byteClub.domain.entiry.crypto.CandleEntity
+import com.sep.byteClub.domain.entity.crypto.CandleEntity
 import com.sep.byteClub.ui.designSystem.components.ErrorComponent
 import com.sep.byteClub.ui.designSystem.components.LoadingComponent
 import com.sep.byteClub.ui.designSystem.theme.dimen.border_2

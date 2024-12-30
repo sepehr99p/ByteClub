@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sep.byteClub.domain.entiry.crypto.CandleEntity
+import com.sep.byteClub.domain.entity.crypto.CandleEntity
 import com.sep.byteClub.domain.usecase.crypto.CandlesUseCase
 import com.sep.byteClub.ui.utils.UiState
 import com.sep.byteClub.utils.ResultState

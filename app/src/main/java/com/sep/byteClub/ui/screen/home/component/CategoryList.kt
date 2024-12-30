@@ -19,7 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sep.byteClub.R
-import com.sep.byteClub.domain.entiry.CategoryEntity
+import com.sep.byteClub.domain.entity.CategoryEntity
 import com.sep.byteClub.ui.designSystem.ex.bounceClick
 import com.sep.byteClub.ui.designSystem.theme.Bold_14
 import com.sep.byteClub.ui.designSystem.theme.Bold_20

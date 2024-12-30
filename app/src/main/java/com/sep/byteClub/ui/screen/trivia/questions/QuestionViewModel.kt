@@ -3,9 +3,9 @@ package com.sep.byteClub.ui.screen.trivia.questions
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sep.byteClub.domain.entiry.QuestionDifficulty
-import com.sep.byteClub.domain.entiry.QuestionEntity
-import com.sep.byteClub.domain.entiry.QuestionType
+import com.sep.byteClub.domain.entity.QuestionDifficulty
+import com.sep.byteClub.domain.entity.QuestionEntity
+import com.sep.byteClub.domain.entity.QuestionType
 import com.sep.byteClub.domain.usecase.quiz.InquiryUseCase
 import com.sep.byteClub.ui.navigation.countArg
 import com.sep.byteClub.ui.navigation.difficultyArg

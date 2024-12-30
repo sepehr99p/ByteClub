@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.sep.byteClub.R
-import com.sep.byteClub.domain.entiry.weather.ForecastInfo
+import com.sep.byteClub.domain.entity.weather.ForecastInfo
 import com.sep.byteClub.ui.designSystem.components.ErrorComponent
 import com.sep.byteClub.ui.designSystem.components.LoadingComponent
 import com.sep.byteClub.ui.screen.weather.WeatherViewModel

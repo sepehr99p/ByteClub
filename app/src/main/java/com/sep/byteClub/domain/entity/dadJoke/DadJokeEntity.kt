@@ -1,4 +1,4 @@
-package com.sep.byteClub.domain.entiry.dadJoke
+package com.sep.byteClub.domain.entity.dadJoke
 
 data class DadJokeEntity(
     val joke: String

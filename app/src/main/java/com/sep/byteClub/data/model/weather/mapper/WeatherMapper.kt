@@ -3,9 +3,9 @@ package com.sep.byteClub.data.model.weather.mapper
 import com.sep.byteClub.data.model.weather.ForecastDto
 import com.sep.byteClub.data.model.weather.WeatherDataDto
 import com.sep.byteClub.data.model.weather.WeatherDto
-import com.sep.byteClub.domain.entiry.weather.ForecastInfo
-import com.sep.byteClub.domain.entiry.weather.WeatherData
-import com.sep.byteClub.domain.entiry.weather.WeatherInfo
+import com.sep.byteClub.domain.entity.weather.ForecastInfo
+import com.sep.byteClub.domain.entity.weather.WeatherData
+import com.sep.byteClub.domain.entity.weather.WeatherInfo
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 

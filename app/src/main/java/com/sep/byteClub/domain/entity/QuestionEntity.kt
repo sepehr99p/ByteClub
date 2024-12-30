@@ -1,4 +1,4 @@
-package com.sep.byteClub.domain.entiry
+package com.sep.byteClub.domain.entity
 
 data class QuestionEntity(
     val questionDescription: String,

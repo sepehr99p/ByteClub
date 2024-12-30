@@ -2,8 +2,8 @@ package com.sep.byteClub.data.repository.weather
 
 import com.sep.byteClub.data.model.weather.mapper.toDomainModel
 import com.sep.byteClub.data.remote.weather.WeatherApiService
-import com.sep.byteClub.domain.entiry.weather.ForecastInfo
-import com.sep.byteClub.domain.entiry.weather.WeatherInfo
+import com.sep.byteClub.domain.entity.weather.ForecastInfo
+import com.sep.byteClub.domain.entity.weather.WeatherInfo
 import com.sep.byteClub.domain.repository.weather.WeatherRepository
 import com.sep.byteClub.utils.ResultState
 import javax.inject.Inject

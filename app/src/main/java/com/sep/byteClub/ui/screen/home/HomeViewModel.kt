@@ -2,8 +2,8 @@ package com.sep.byteClub.ui.screen.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sep.byteClub.domain.entiry.CategoryEntity
-import com.sep.byteClub.domain.entiry.dadJoke.DadJokeEntity
+import com.sep.byteClub.domain.entity.CategoryEntity
+import com.sep.byteClub.domain.entity.dadJoke.DadJokeEntity
 import com.sep.byteClub.domain.usecase.quiz.FetchCategoriesUseCase
 import com.sep.byteClub.domain.usecase.joke.DadJokeUseCase
 import com.sep.byteClub.domain.usecase.quiz.score.GetScoreUseCase

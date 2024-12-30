@@ -1,4 +1,4 @@
-package com.sep.byteClub.domain.entiry.crypto
+package com.sep.byteClub.domain.entity.crypto
 
 data class CurrencyEntity(
     val currency : String,

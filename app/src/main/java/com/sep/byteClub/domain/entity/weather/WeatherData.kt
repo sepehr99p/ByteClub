@@ -1,4 +1,4 @@
-package com.sep.byteClub.domain.entiry.weather
+package com.sep.byteClub.domain.entity.weather
 
 import java.time.LocalDateTime
 

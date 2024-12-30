@@ -2,7 +2,7 @@ package com.sep.byteClub.ui.screen.dictionary
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sep.byteClub.domain.entiry.dictionary.WordEntity
+import com.sep.byteClub.domain.entity.dictionary.WordEntity
 import com.sep.byteClub.domain.usecase.dictionary.GetWordUseCase
 import com.sep.byteClub.ui.utils.UiState
 import com.sep.byteClub.utils.ResultState

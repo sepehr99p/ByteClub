@@ -1,4 +1,4 @@
-package com.sep.byteClub.domain.entiry
+package com.sep.byteClub.domain.entity
 
 enum class QuestionDifficulty(val leverage : Int){
     EASY(1),

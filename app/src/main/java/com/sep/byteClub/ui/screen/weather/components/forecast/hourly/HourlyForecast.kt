@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.sep.byteClub.ui.utils.Constants.TIME_PATTERN
-import com.sep.byteClub.domain.entiry.weather.WeatherInfo
+import com.sep.byteClub.domain.entity.weather.WeatherInfo
 import java.text.SimpleDateFormat
 
 @SuppressLint("SimpleDateFormat")

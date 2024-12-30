@@ -33,8 +33,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.sep.byteClub.R
-import com.sep.byteClub.domain.entiry.crypto.SingleTickerEntity
-import com.sep.byteClub.domain.entiry.crypto.TickerEntity
+import com.sep.byteClub.domain.entity.crypto.SingleTickerEntity
+import com.sep.byteClub.domain.entity.crypto.TickerEntity
 import com.sep.byteClub.ui.designSystem.ex.shadowBackground
 import com.sep.byteClub.ui.designSystem.theme.Medium_12
 import com.sep.byteClub.ui.designSystem.theme.Regular_10

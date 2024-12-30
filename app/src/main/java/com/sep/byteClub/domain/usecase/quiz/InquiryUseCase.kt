@@ -1,7 +1,7 @@
 package com.sep.byteClub.domain.usecase.quiz
 
-import com.sep.byteClub.domain.entiry.QuestionDifficulty
-import com.sep.byteClub.domain.entiry.QuestionType
+import com.sep.byteClub.domain.entity.QuestionDifficulty
+import com.sep.byteClub.domain.entity.QuestionType
 import com.sep.byteClub.domain.repository.quiz.QuizRepository
 import javax.inject.Inject
 

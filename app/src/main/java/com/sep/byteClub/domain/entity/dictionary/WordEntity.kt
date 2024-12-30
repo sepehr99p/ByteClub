@@ -1,4 +1,4 @@
-package com.sep.byteClub.domain.entiry.dictionary
+package com.sep.byteClub.domain.entity.dictionary
 
 data class WordEntity(
     val definition: String,

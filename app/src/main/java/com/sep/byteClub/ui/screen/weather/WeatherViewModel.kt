@@ -3,9 +3,9 @@ package com.sep.byteClub.ui.screen.weather
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sep.byteClub.domain.entiry.weather.AirQualityEntity
-import com.sep.byteClub.domain.entiry.weather.ForecastInfo
-import com.sep.byteClub.domain.entiry.weather.WeatherInfo
+import com.sep.byteClub.domain.entity.weather.AirQualityEntity
+import com.sep.byteClub.domain.entity.weather.ForecastInfo
+import com.sep.byteClub.domain.entity.weather.WeatherInfo
 import com.sep.byteClub.domain.usecase.weather.AirQualityUseCase
 import com.sep.byteClub.domain.usecase.weather.CurrentWeatherUseCase
 import com.sep.byteClub.domain.usecase.weather.ForecastWeatherUseCase
@@ -13,7 +13,6 @@ import com.sep.byteClub.ui.utils.GPSHelper
 import com.sep.byteClub.ui.utils.UiState
 import com.sep.byteClub.utils.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope

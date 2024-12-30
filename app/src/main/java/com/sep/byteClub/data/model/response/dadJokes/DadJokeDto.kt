@@ -1,6 +1,6 @@
 package com.sep.byteClub.data.model.response.dadJokes
 
-import com.sep.byteClub.domain.entiry.dadJoke.DadJokeEntity
+import com.sep.byteClub.domain.entity.dadJoke.DadJokeEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

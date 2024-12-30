@@ -13,7 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.sep.byteClub.domain.entiry.QuestionEntity
+import com.sep.byteClub.domain.entity.QuestionEntity
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 import com.sep.byteClub.ui.screen.trivia.questions.TimerState
 

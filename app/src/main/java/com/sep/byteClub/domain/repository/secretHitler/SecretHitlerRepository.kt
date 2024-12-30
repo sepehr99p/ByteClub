@@ -1,6 +1,6 @@
 package com.sep.byteClub.domain.repository.secretHitler
 
-import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
+import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerPlayerEntity
 import kotlinx.coroutines.flow.Flow
 
 interface SecretHitlerRepository {

@@ -2,7 +2,7 @@ package com.sep.byteClub.data.local.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.sep.byteClub.domain.entiry.CategoryEntity
+import com.sep.byteClub.domain.entity.CategoryEntity
 
 
 @Entity(tableName = "category")

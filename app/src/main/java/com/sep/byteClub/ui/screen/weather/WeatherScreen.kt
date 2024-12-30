@@ -22,8 +22,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sep.byteClub.R
-import com.sep.byteClub.domain.entiry.weather.ForecastInfo
-import com.sep.byteClub.domain.entiry.weather.WeatherInfo
+import com.sep.byteClub.domain.entity.weather.ForecastInfo
+import com.sep.byteClub.domain.entity.weather.WeatherInfo
 import com.sep.byteClub.ui.designSystem.components.ErrorComponent
 import com.sep.byteClub.ui.designSystem.components.LoadingComponent
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_16

@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.sep.byteClub.domain.entiry.crypto.CurrencyEntity
+import com.sep.byteClub.domain.entity.crypto.CurrencyEntity
 
 @Composable
 fun CurrencyListComponent(

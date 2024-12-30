@@ -1,8 +1,8 @@
 package com.sep.byteClub.domain.repository.quiz
 
-import com.sep.byteClub.domain.entiry.CategoryEntity
-import com.sep.byteClub.domain.entiry.CategoryInfo
-import com.sep.byteClub.domain.entiry.QuestionEntity
+import com.sep.byteClub.domain.entity.CategoryEntity
+import com.sep.byteClub.domain.entity.CategoryInfo
+import com.sep.byteClub.domain.entity.QuestionEntity
 import com.sep.byteClub.utils.ResultState
 
 interface QuizRepository {

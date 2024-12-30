@@ -1,6 +1,6 @@
 package com.sep.byteClub.data.model.response.quiz
 
-import com.sep.byteClub.domain.entiry.CategoryInfo
+import com.sep.byteClub.domain.entity.CategoryInfo
 import com.sep.byteClub.utils.callAdapter.BaseNetworkResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

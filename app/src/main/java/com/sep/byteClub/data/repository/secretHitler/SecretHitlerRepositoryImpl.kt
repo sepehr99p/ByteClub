@@ -2,8 +2,8 @@ package com.sep.byteClub.data.repository.secretHitler
 
 import com.sep.byteClub.SecretHitlerPlayer
 import com.sep.byteClub.data.local.datastore.secretHitler.SecretHitlerDataSource
-import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
-import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerRole
+import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerPlayerEntity
+import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerRole
 import com.sep.byteClub.domain.repository.secretHitler.SecretHitlerRepository
 import com.sep.byteClub.secretHitlerPlayer
 import com.sep.byteClub.secretHitlerPlayerListPreferences

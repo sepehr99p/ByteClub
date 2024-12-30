@@ -30,8 +30,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.sep.byteClub.ui.screen.weather.components.SimpleText
 import com.sep.byteClub.R
-import com.sep.byteClub.domain.entiry.weather.WeatherData
-import com.sep.byteClub.domain.entiry.weather.WeatherInfo
+import com.sep.byteClub.domain.entity.weather.WeatherData
+import com.sep.byteClub.domain.entity.weather.WeatherInfo
 import com.sep.byteClub.ui.designSystem.ex.dailyDetailsBackground
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_8

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.sep.byteClub.ui.utils.WeatherType
 import com.sep.byteClub.ui.utils.dayOfWeek
-import com.sep.byteClub.domain.entiry.weather.ForecastInfo
+import com.sep.byteClub.domain.entity.weather.ForecastInfo
 
 interface DailyForecastState {
     val time: String

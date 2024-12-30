@@ -1,6 +1,6 @@
 package com.sep.byteClub.data.model.response.dictionary
 
-import com.sep.byteClub.domain.entiry.dictionary.WordEntity
+import com.sep.byteClub.domain.entity.dictionary.WordEntity
 import com.sep.byteClub.utils.callAdapter.BaseNetworkResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

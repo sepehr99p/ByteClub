@@ -1,4 +1,4 @@
-package com.sep.byteClub.domain.entiry.secretHitler
+package com.sep.byteClub.domain.entity.secretHitler
 
 import androidx.compose.ui.graphics.Color
 import kotlinx.serialization.Serializable

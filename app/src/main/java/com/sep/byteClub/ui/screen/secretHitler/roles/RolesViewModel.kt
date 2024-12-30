@@ -2,7 +2,7 @@ package com.sep.byteClub.ui.screen.secretHitler.roles
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
+import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerPlayerEntity
 import com.sep.byteClub.domain.usecase.secretHitler.SecretHitlerFetchPlayersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

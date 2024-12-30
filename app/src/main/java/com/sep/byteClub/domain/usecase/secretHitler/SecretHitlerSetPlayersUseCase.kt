@@ -1,7 +1,7 @@
 package com.sep.byteClub.domain.usecase.secretHitler
 
-import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
-import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerRole
+import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerPlayerEntity
+import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerRole
 import com.sep.byteClub.domain.repository.secretHitler.SecretHitlerRepository
 import javax.inject.Inject
 

@@ -1,7 +1,7 @@
 package com.sep.byteClub.domain.repository.weather
 
-import com.sep.byteClub.domain.entiry.weather.ForecastInfo
-import com.sep.byteClub.domain.entiry.weather.WeatherInfo
+import com.sep.byteClub.domain.entity.weather.ForecastInfo
+import com.sep.byteClub.domain.entity.weather.WeatherInfo
 import com.sep.byteClub.utils.ResultState
 
 interface WeatherRepository {

@@ -2,9 +2,9 @@ package com.sep.byteClub.data.repository.quiz
 
 import com.sep.byteClub.data.local.database.QuestionDatabase
 import com.sep.byteClub.data.remote.quiz.QuizApiService
-import com.sep.byteClub.domain.entiry.CategoryEntity
-import com.sep.byteClub.domain.entiry.CategoryInfo
-import com.sep.byteClub.domain.entiry.QuestionEntity
+import com.sep.byteClub.domain.entity.CategoryEntity
+import com.sep.byteClub.domain.entity.CategoryInfo
+import com.sep.byteClub.domain.entity.QuestionEntity
 import com.sep.byteClub.domain.repository.quiz.QuizRepository
 import com.sep.byteClub.utils.NetworkConnection
 import com.sep.byteClub.utils.ResultState

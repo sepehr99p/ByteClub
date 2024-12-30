@@ -3,7 +3,7 @@ package com.sep.byteClub.ui.screen.weather.components.forecast.hourly
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.sep.byteClub.ui.utils.WeatherType
-import com.sep.byteClub.domain.entiry.weather.WeatherData
+import com.sep.byteClub.domain.entity.weather.WeatherData
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 

@@ -3,7 +3,7 @@ package com.sep.byteClub.ui.screen.trivia.difficulty
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sep.byteClub.domain.entiry.CategoryInfo
+import com.sep.byteClub.domain.entity.CategoryInfo
 import com.sep.byteClub.domain.usecase.quiz.CategoryInfoUseCase
 import com.sep.byteClub.ui.navigation.idArg
 import com.sep.byteClub.ui.utils.UiState

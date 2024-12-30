@@ -2,9 +2,9 @@ package com.sep.byteClub.data.model.weather.mapper
 
 import com.sep.byteClub.data.model.weather.airQuality.AirQualityDto
 import com.sep.byteClub.data.model.weather.airQuality.HourlyAirQuality
-import com.sep.byteClub.domain.entiry.weather.AirQualityEntity
-import com.sep.byteClub.domain.entiry.weather.DailyAirQualityEntity
-import com.sep.byteClub.domain.entiry.weather.HourlyAirQualityEntity
+import com.sep.byteClub.domain.entity.weather.AirQualityEntity
+import com.sep.byteClub.domain.entity.weather.DailyAirQualityEntity
+import com.sep.byteClub.domain.entity.weather.HourlyAirQualityEntity
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter

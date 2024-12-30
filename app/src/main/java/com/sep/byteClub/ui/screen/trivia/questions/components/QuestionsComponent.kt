@@ -18,7 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
-import com.sep.byteClub.domain.entiry.QuestionEntity
+import com.sep.byteClub.domain.entity.QuestionEntity
 import com.sep.byteClub.ui.designSystem.ex.ShakeConfig
 import com.sep.byteClub.ui.designSystem.ex.bounceClick
 import com.sep.byteClub.ui.designSystem.ex.rememberShakeController

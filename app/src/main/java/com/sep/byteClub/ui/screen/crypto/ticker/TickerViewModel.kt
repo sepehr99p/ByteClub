@@ -3,8 +3,8 @@ package com.sep.byteClub.ui.screen.crypto.ticker
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sep.byteClub.domain.entiry.crypto.SingleTickerEntity
-import com.sep.byteClub.domain.entiry.crypto.TickerEntity
+import com.sep.byteClub.domain.entity.crypto.SingleTickerEntity
+import com.sep.byteClub.domain.entity.crypto.TickerEntity
 import com.sep.byteClub.domain.usecase.crypto.FetchTickerUseCase
 import com.sep.byteClub.domain.usecase.crypto.TickerListUseCase
 import com.sep.byteClub.ui.utils.UiState

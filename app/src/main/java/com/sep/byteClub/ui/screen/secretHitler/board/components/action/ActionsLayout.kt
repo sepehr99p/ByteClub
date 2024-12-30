@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import com.sep.byteClub.R
-import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
+import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerPlayerEntity
 import com.sep.byteClub.ui.designSystem.theme.Bold_14
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8

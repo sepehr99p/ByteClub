@@ -3,8 +3,8 @@ package com.sep.byteClub.ui.screen.secretHitler.board
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerCardEntity
-import com.sep.byteClub.domain.entiry.secretHitler.SecretHitlerPlayerEntity
+import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerCardEntity
+import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerPlayerEntity
 import com.sep.byteClub.domain.usecase.secretHitler.SecretHitlerFetchPlayersUseCase
 import com.sep.byteClub.ui.screen.secretHitler.board.components.PresidentActionState
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -18,7 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.sep.byteClub.R
-import com.sep.byteClub.domain.entiry.weather.AirQualityEntity
+import com.sep.byteClub.domain.entity.weather.AirQualityEntity
 import com.sep.byteClub.ui.designSystem.ex.airQualityBackground
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_8
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_16
