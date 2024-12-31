@@ -60,6 +60,10 @@ internal fun MenuComponent(
             title = stringResource(id = R.string.dictionary),
             onClick = navigateToDictionary
         )
+        MenuComponentItem(
+            title = stringResource(id = R.string.image_to_text),
+            onClick = {}
+        )
         MenuComponentItem(title = stringResource(id = R.string.about), onClick = onAboutClick)
     }
 }
