@@ -7,7 +7,7 @@ class ImageToTextUseCase @Inject constructor(
     private val imageToTextRepository: ImageToTextRepository
 ) {
 
-    suspend operator fun invoke(data: ByteArray, imageMimType: String) =
+    operator fun invoke(data: ByteArray, imageMimType: String) =
         imageToTextRepository.uploadImage(data,imageMimType)
 
 }
