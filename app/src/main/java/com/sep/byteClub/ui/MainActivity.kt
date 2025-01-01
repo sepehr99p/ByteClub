@@ -19,6 +19,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.sep.byteClub.R
 import com.sep.byteClub.ui.designSystem.theme.ByteClubTheme
+import com.sep.byteClub.ui.navigation.AIRoute
 import com.sep.byteClub.ui.navigation.BottomBarEntity
 import com.sep.byteClub.ui.navigation.BottomBarScreen
 import com.sep.byteClub.ui.navigation.BottomBarType
@@ -103,7 +104,8 @@ class MainActivity : ComponentActivity(), LocationListener {
                                             secretHitlerRoute
                                         )
                                     },
-                                    navigateToF1 = { navController.navigate(f1Route) }
+                                    navigateToF1 = { navController.navigate(f1Route) },
+                                    navigateToAI = { navController.navigate(AIRoute) }
                                 )
                             }
                             triviaScreen(navController)

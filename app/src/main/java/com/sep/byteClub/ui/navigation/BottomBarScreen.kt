@@ -21,6 +21,7 @@ fun BottomBarScreen(
     navigateToDifficulty: (id: String) -> Unit,
     navigateToSecretHitler: () -> Unit,
     navigateToDictionary: () -> Unit,
+    navigateToAI: () -> Unit,
     navigateToF1: () -> Unit
 ) {
     val navController = appState.navController
@@ -51,7 +52,8 @@ fun BottomBarScreen(
                     navigateToDifficulty = navigateToDifficulty,
                     navigateToDictionary = navigateToDictionary,
                     navigateToSecretHitler = navigateToSecretHitler,
-                    navigateToF1 = navigateToF1
+                    navigateToF1 = navigateToF1,
+                    navigateToAI = navigateToAI
                 )
                 cryptoHomeScreen(navController)
                 weatherScreen()

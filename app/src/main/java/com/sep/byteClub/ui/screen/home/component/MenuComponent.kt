@@ -37,6 +37,7 @@ internal fun MenuComponent(
     onStartClick: () -> Unit,
     onAboutClick: () -> Unit,
     navigateToDictionary: () -> Unit,
+    navigateToAI: () -> Unit,
     onDadJokeClicked: () -> Unit,
     onF1Clicked: () -> Unit,
     navigateToSecretHitler: () -> Unit
@@ -62,7 +63,7 @@ internal fun MenuComponent(
         )
         MenuComponentItem(
             title = stringResource(id = R.string.image_to_text),
-            onClick = {}
+            onClick = navigateToAI
         )
         MenuComponentItem(title = stringResource(id = R.string.about), onClick = onAboutClick)
     }
@@ -124,7 +125,8 @@ private fun MenuComponentPreview() {
         navigateToDictionary = {},
         onDadJokeClicked = {},
         navigateToSecretHitler = {},
-        onF1Clicked = {}
+        onF1Clicked = {},
+        navigateToAI = {}
     )
 }
 

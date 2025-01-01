@@ -9,6 +9,7 @@ import androidx.navigation.navArgument
 import com.sep.byteClub.ui.screen.dictionary.DictionaryScreen
 import com.sep.byteClub.ui.screen.f1.F1HomeScreen
 import com.sep.byteClub.ui.screen.home.HomeScreen
+import com.sep.byteClub.ui.screen.imageToText.ImageToTextScreen
 import com.sep.byteClub.ui.screen.secretHitler.board.BoardScreen
 import com.sep.byteClub.ui.screen.secretHitler.players.PlayersScreen
 import com.sep.byteClub.ui.screen.secretHitler.result.SecretHitlerResultScreen
@@ -29,6 +30,7 @@ const val questionsRoute = "questions_route/{$idArg}/{$difficultyArg}/{$countArg
 const val resultRoute = "result/{$scoreArg}"
 const val dictionaryRoute = "dictionary"
 const val f1Route = "f1"
+const val AIRoute = "AIRoute"
 const val secretHitlerRoute = "secretHitler"
 const val secretHitlerRoleRoute = "secretHitlerRoleRoute"
 const val secretHitlerBoardRoute = "secretHitlerBoard"
@@ -141,12 +143,19 @@ fun NavGraphBuilder.triviaScreen(
         SecretHitlerResultScreen()
     }
 
+    composable(
+        route = AIRoute
+    ) {
+        ImageToTextScreen()
+    }
+
 }
 
 fun NavGraphBuilder.homeScreen(
     navigateToDifficulty: (id: String) -> Unit,
     navigateToDictionary: () -> Unit,
     navigateToSecretHitler: () -> Unit,
+    navigateToAI: () -> Unit,
     navigateToF1: () -> Unit
 ) {
     composable(route = homeRoute) {
@@ -154,7 +163,8 @@ fun NavGraphBuilder.homeScreen(
             onCategorySelected = navigateToDifficulty,
             navigateToDictionary = navigateToDictionary,
             navigateToSecretHitler = navigateToSecretHitler,
-            navigateToF1 = navigateToF1
+            navigateToF1 = navigateToF1,
+            navigateToAI = navigateToAI
         )
     }
 }

@@ -33,6 +33,7 @@ fun HomeScreen(
     onCategorySelected: (id: String) -> Unit,
     navigateToDictionary: () -> Unit,
     navigateToSecretHitler: () -> Unit,
+    navigateToAI: () -> Unit,
     navigateToF1 : ()-> Unit
 ) {
     val categoryState = viewModel.categories.collectAsState()
@@ -76,6 +77,7 @@ fun HomeScreen(
                 navigateToDictionary = {
                     navigateToDictionary.invoke()
                 },
+                navigateToAI = navigateToAI,
                 onDadJokeClicked = viewModel::getDadJoke,
                 navigateToSecretHitler = navigateToSecretHitler,
                 onF1Clicked = navigateToF1
@@ -116,6 +118,7 @@ private fun HomeScreenPreview() {
         onCategorySelected = {},
         navigateToDictionary = {},
         navigateToSecretHitler = {},
-        navigateToF1 = {}
+        navigateToF1 = {},
+        navigateToAI = {}
     )
 }
