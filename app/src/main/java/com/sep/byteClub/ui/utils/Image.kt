@@ -206,11 +206,6 @@ private fun DynamicAsyncImage(
         contentAlignment = Alignment.Center,
     ) {
         if (isLoading && !isLocalInspection) {
-            // Display a progress bar while loading
-//            CircularProgressIndicator(
-//                modifier = modifier,
-//                color = MaterialTheme.colorScheme.tertiary,
-//            )
             ImageLoadingShimmerEffect(modifier = modifier)
         }
         Image(

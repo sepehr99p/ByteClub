@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -26,6 +27,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.sep.byteClub.ui.designSystem.theme.Bold_20
 import com.sep.byteClub.ui.designSystem.theme.dimen.corner_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_16
+import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 import com.sep.byteClub.ui.screen.imageToText.component.ImageConfirmationBottomLayout
 import com.sep.byteClub.ui.screen.imageToText.component.ImageTypeSelectionModal
 import com.sep.byteClub.ui.utils.ComposeFileProvider
@@ -87,9 +89,11 @@ fun ImageToTextScreen(
         ThemeAsyncImage(
             modifier = Modifier
                 .weight(1f)
-                .clip(RoundedCornerShape(corner_16)),
+                .clip(RoundedCornerShape(corner_16))
+                .padding(padding_8)
+            ,
             model = imageUri.value.toString(),
-            contentScale = ContentScale.FillBounds
+            contentScale = ContentScale.Crop
         )
         Spacer(Modifier.height(padding_16))
         ImageConfirmationBottomLayout(
