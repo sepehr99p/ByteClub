@@ -1,6 +1,8 @@
 package com.sep.byteClub.ui.utils.extensions
 
+import android.app.Activity
 import android.content.Context
+import android.content.ContextWrapper
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.Uri
@@ -30,3 +32,10 @@ private fun Context.getContentFileName(uri: Uri): String? = runCatching {
         return@use cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME).let(cursor::getString)
     }
 }.getOrNull()
+
+fun Context?.getActivity(): Activity? {
+    if (this == null) return null
+    if (this is Activity) return this
+    if (this is ContextWrapper) return this.baseContext.getActivity()
+    return null
+}

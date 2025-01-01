@@ -129,7 +129,11 @@ dependencies {
         implementation("com.patrykandpatrick.vico:core:2.0.0-alpha.19")
         implementation("com.patrykandpatrick.vico:views:2.0.0-alpha.19")
 
-
+        implementation("com.google.accompanist:accompanist-permissions:0.37.0")
+        implementation(libs.glide)
+        implementation(libs.coil.kt.compose)
+        implementation(libs.coil.kt.svg)
+        implementation(libs.coil.kt.gif)
         implementation(platform(firebase))
         implementation(firebase.analytic)
         implementation(firebase.auth)

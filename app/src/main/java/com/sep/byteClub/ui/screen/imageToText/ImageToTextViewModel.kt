@@ -26,6 +26,13 @@ class ImageToTextViewModel @Inject constructor(
         MutableStateFlow<UploadImageUiState>(UploadImageUiState.Initialize)
     val imageUploadUiState = _imageUploadUiState.asStateFlow()
 
+    fun updateUri(uri: Uri?) {
+        viewModelScope.launch {
+            _imageUri.emit(uri)
+        }
+    }
+
+
     fun submitImage() {
         viewModelScope.launch {
             _imageUri.value?.let { uri ->

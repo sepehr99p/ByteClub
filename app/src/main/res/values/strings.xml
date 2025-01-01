@@ -77,6 +77,10 @@
     <string name="daily_detail">Daily Details</string>
 
     <string name="crashed">Something went wrong :/</string>
+    <string name="camera_permission_title">Camera Permission</string>
+    <string name="gallery_permission_title">Gallery Permission</string>
+    <string name="camera_permission_description">Camera Permission</string>
+    <string name="gallery_permission_description">Gallery Permission</string>
 
     <string name="add_new_player">Add new player</string>
     <string name="hidden_player">Click to reveal your role</string>
@@ -85,6 +89,13 @@
     <string name="minister_watch">Minister watch</string>
     <string name="prime_minister">PrimeMinister</string>
     <string name="president">President</string>
+
+    <string name="grant_permission">grant permission</string>
+    <string name="add_image">add image</string>
+    <string name="confirm_image">confirm image</string>
+    <string name="retry_upload_image">retry</string>
+    <string name="upload_image_in_progress">uploading</string>
+    <string name="cancel">cancel</string>
 
     <string name="players">players</string>
     <string name="select_player">Select a player</string>

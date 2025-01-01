@@ -12,6 +12,7 @@ import com.sep.byteClub.data.local.datastore.ScoreDataSource
 import com.sep.byteClub.data.local.datastore.ScoreSerializer
 import com.sep.byteClub.data.repository.quiz.ScoreRepositoryImpl
 import com.sep.byteClub.domain.repository.quiz.ScoreRepository
+import com.sep.byteClub.utils.ImageCompressor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,6 +25,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object LocalModule {
+
+    @Singleton
+    @Provides
+    fun provideImageCompressor(
+        @ApplicationContext applicationContext: Context
+    ) : ImageCompressor = ImageCompressor(applicationContext)
 
     @Provides
     fun provideDatabase(
