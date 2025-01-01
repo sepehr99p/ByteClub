@@ -1,5 +1,6 @@
 package com.sep.byteClub.ui.screen.imageToText.component
 
+import android.net.Uri
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -20,18 +21,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableFloatState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.sep.byteClub.ui.designSystem.components.button.ButtonComponent
-import com.sep.byteClub.ui.designSystem.theme.dimen.corner_24
-import com.sep.byteClub.ui.designSystem.theme.dimen.padding_16
 import com.sep.byteClub.R
+import com.sep.byteClub.ui.designSystem.components.button.ButtonComponent
 import com.sep.byteClub.ui.designSystem.components.button.ButtonStyle
+import com.sep.byteClub.ui.designSystem.theme.dimen.corner_24
 import com.sep.byteClub.ui.designSystem.theme.dimen.image_30
+import com.sep.byteClub.ui.designSystem.theme.dimen.padding_16
 import com.sep.byteClub.ui.designSystem.theme.dimen.padding_8
 import com.sep.byteClub.ui.utils.ThemeLocalImage
 
@@ -40,6 +42,7 @@ import com.sep.byteClub.ui.utils.ThemeLocalImage
 internal fun ImageConfirmationBottomLayout(
     modifier: Modifier = Modifier,
     isUploading: Boolean,
+    imageUri: State<Uri?>,
     uploadImageProgress: MutableFloatState,
     onCancelUploadClick: () -> Unit,
     onRetryUploadClick: () -> Unit,
@@ -51,25 +54,38 @@ internal fun ImageConfirmationBottomLayout(
             .clip(RoundedCornerShape(corner_24))
             .background(MaterialTheme.colorScheme.surfaceContainer)
     ) {
-        if (isUploading) {
-            ImageConfirmationUploadingComponent(onCancelUploadClick = onCancelUploadClick)
+        if (imageUri.value == null) {
+            ButtonComponent(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(padding_16),
+                title = stringResource(R.string.add_image),
+                onclick = {
+                    onRetryUploadClick.invoke()
+                }
+            )
         } else {
-            ImageConfirmationCheckingComponent(
-                onRetryUploadClick = onRetryUploadClick,
-                onStartUploadClick = onStartUploadClick
+            if (isUploading) {
+                ImageConfirmationUploadingComponent(onCancelUploadClick = onCancelUploadClick)
+            } else {
+                ImageConfirmationCheckingComponent(
+                    onRetryUploadClick = onRetryUploadClick,
+                    onStartUploadClick = onStartUploadClick
+                )
+            }
+            AnimatedLinearProgressIndicator(
+                modifier = Modifier.fillMaxWidth(),
+                uploadImageProgress = uploadImageProgress,
             )
         }
-
-        AnimatedLinearProgressIndicator(
-            modifier = Modifier.fillMaxWidth(),
-            uploadImageProgress = uploadImageProgress,
-
-            )
     }
 }
 
 @Composable
-private fun AnimatedLinearProgressIndicator(modifier: Modifier= Modifier, uploadImageProgress: MutableFloatState) {
+private fun AnimatedLinearProgressIndicator(
+    modifier: Modifier = Modifier,
+    uploadImageProgress: MutableFloatState
+) {
     val animatedProgress = animateFloatAsState(
         targetValue = uploadImageProgress.floatValue,
         animationSpec = tween(500), label = "",

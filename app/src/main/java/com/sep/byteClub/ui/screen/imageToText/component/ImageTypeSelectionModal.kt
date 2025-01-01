@@ -217,13 +217,13 @@ private fun ImageTypeSelectionModalBottomLayout(
         ImageTypeSelectionModalBottomItem(
             modifier = Modifier.weight(1f),
             iconRes = R.drawable.ic_camera_permission,
-            titleRes = R.string.camera_permission_title,
+            titleRes = R.string.camera,
             onclick = onCameraClick
         )
         ImageTypeSelectionModalBottomItem(
             modifier = Modifier.weight(1f),
             iconRes = R.drawable.ic_gallary_permission,
-            titleRes = R.string.gallery_permission_title,
+            titleRes = R.string.gallery,
             onclick = onGalleryClick
         )
     }

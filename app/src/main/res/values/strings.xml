@@ -97,6 +97,9 @@
     <string name="upload_image_in_progress">uploading</string>
     <string name="cancel">cancel</string>
 
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+
     <string name="players">players</string>
     <string name="select_player">Select a player</string>
     <string name="click_to_watch_role">click to watch roles</string>

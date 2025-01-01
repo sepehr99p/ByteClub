@@ -94,6 +94,7 @@ fun ImageToTextScreen(
         Spacer(Modifier.height(padding_16))
         ImageConfirmationBottomLayout(
             modifier = Modifier,
+            imageUri = imageUri,
             isUploading = uploadState.value is UploadImageUiState.Loading,
             uploadImageProgress = uploadImageProgress,
             onCancelUploadClick = {
