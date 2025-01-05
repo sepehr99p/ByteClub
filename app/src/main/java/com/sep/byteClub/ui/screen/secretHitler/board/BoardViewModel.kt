@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerCardEntity
 import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerPlayerEntity
-import com.sep.byteClub.domain.usecase.secretHitler.SecretHitlerFetchPlayersUseCase
+import com.sep.byteClub.domain.usecase.secretHitler.FetchSecretHitlerPlayersUseCase
 import com.sep.byteClub.ui.screen.secretHitler.board.components.PresidentActionState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BoardViewModel @Inject constructor(
-    private val secretHitlerFetchPlayersUseCase: SecretHitlerFetchPlayersUseCase
+    private val fetchSecretHitlerPlayersUseCase: FetchSecretHitlerPlayersUseCase
 ) : ViewModel() {
 
     private val _players = MutableStateFlow<ArrayList<SecretHitlerPlayerEntity>>(arrayListOf())
@@ -93,7 +93,7 @@ class BoardViewModel @Inject constructor(
 
     private fun fetchPlayers() {
         viewModelScope.launch {
-            secretHitlerFetchPlayersUseCase.invoke().collect {
+            fetchSecretHitlerPlayersUseCase.invoke().collect {
                 _players.value = it as ArrayList<SecretHitlerPlayerEntity>
             }
         }

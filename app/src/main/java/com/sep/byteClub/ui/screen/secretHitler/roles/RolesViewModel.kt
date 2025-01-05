@@ -3,7 +3,7 @@ package com.sep.byteClub.ui.screen.secretHitler.roles
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerPlayerEntity
-import com.sep.byteClub.domain.usecase.secretHitler.SecretHitlerFetchPlayersUseCase
+import com.sep.byteClub.domain.usecase.secretHitler.FetchSecretHitlerPlayersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RolesViewModel @Inject constructor(
-    private val secretHitlerFetchPlayersUseCase: SecretHitlerFetchPlayersUseCase
+    private val fetchSecretHitlerPlayersUseCase: FetchSecretHitlerPlayersUseCase
 ) : ViewModel() {
 
     private val _players = MutableStateFlow<ArrayList<SecretHitlerPlayerEntity>>(arrayListOf())
@@ -24,7 +24,7 @@ class RolesViewModel @Inject constructor(
 
     private fun fetchPlayers() {
         viewModelScope.launch {
-            secretHitlerFetchPlayersUseCase.invoke().collect { hitlerPlayerEntities ->
+            fetchSecretHitlerPlayersUseCase.invoke().collect { hitlerPlayerEntities ->
                 _players.value = hitlerPlayerEntities as ArrayList<SecretHitlerPlayerEntity>
             }
         }

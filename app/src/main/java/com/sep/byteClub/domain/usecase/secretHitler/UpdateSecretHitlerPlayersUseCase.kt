@@ -5,7 +5,7 @@ import com.sep.byteClub.domain.entity.secretHitler.SecretHitlerRole
 import com.sep.byteClub.domain.repository.secretHitler.SecretHitlerRepository
 import javax.inject.Inject
 
-class SecretHitlerSetPlayersUseCase @Inject constructor(
+class UpdateSecretHitlerPlayersUseCase @Inject constructor(
     private val secretHitlerRepository: SecretHitlerRepository
 ) {
 
@@ -16,14 +16,14 @@ class SecretHitlerSetPlayersUseCase @Inject constructor(
         var player = unKnownPlayers.random()
         finalPlayers.add(SecretHitlerPlayerEntity(name = player, role = SecretHitlerRole.HITLER))
         unKnownPlayers.remove(player)
-        repeat(getFascismCount(list)) {
+        repeat(getFascismCount(list.size)) {
             player = unKnownPlayers.random()
             finalPlayers.add(
                 SecretHitlerPlayerEntity(name = player, role = SecretHitlerRole.FASCISM)
             )
             unKnownPlayers.remove(player)
         }
-        repeat(list.size - (getFascismCount(list) + 1)) {
+        repeat(list.size - (getFascismCount(list.size) + 1)) {
             player = unKnownPlayers.random()
             finalPlayers.add(
                 SecretHitlerPlayerEntity(name = player, role = SecretHitlerRole.LIBERAL)
@@ -34,8 +34,8 @@ class SecretHitlerSetPlayersUseCase @Inject constructor(
     }
 
 
-    private fun getFascismCount(list: List<String>): Int {
-        return when (list.size) {
+    private fun getFascismCount(playersCount : Int): Int {
+        return when (playersCount) {
             5, 6 -> 1
             7, 8 -> 2
             9, 10 -> 3

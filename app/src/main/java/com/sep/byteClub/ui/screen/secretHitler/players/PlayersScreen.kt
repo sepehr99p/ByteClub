@@ -37,7 +37,7 @@ fun PlayersScreen(
             }
         )
         StartGameBtn(players = players, onClick = {
-            viewModel.setPlayers()
+            viewModel.submitPlayers()
             onNavigateToRole.invoke()
         })
     }

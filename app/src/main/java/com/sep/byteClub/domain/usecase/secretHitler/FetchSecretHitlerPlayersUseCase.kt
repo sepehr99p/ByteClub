@@ -5,7 +5,7 @@ import com.sep.byteClub.domain.repository.secretHitler.SecretHitlerRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class SecretHitlerFetchPlayersUseCase @Inject constructor(
+class FetchSecretHitlerPlayersUseCase @Inject constructor(
     private val secretHitlerRepository: SecretHitlerRepository
 ) {
     suspend operator fun invoke(): Flow<List<SecretHitlerPlayerEntity>> =
