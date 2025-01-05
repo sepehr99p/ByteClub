@@ -4,7 +4,7 @@ import com.sep.byteClub.data.model.ImageUploadStatus
 import com.sep.byteClub.data.model.ProgressRequestBody
 import com.sep.byteClub.data.model.UploadImageProgress
 import com.sep.byteClub.data.model.response.imageToText.ImageToTextResponse
-import com.sep.byteClub.data.remote.ninja.ImageToTextApiService
+import com.sep.byteClub.data.remote.ninja.NinjaApiService
 import com.sep.byteClub.domain.DEFAULT_ERROR
 import com.sep.byteClub.domain.repository.ninja.ImageToTextRepository
 import com.sep.byteClub.utils.ResultState
@@ -16,7 +16,7 @@ import okhttp3.MultipartBody
 
 
 class ImageToTextRepositoryImpl @Inject constructor(
-    private val imageToTextApiService: ImageToTextApiService
+    private val imageToTextApiService: NinjaApiService
 ) : ImageToTextRepository {
 
     override fun uploadImage(

@@ -11,9 +11,7 @@ import com.sep.byteClub.data.local.datastore.secretHitler.SecretHitlerDataSource
 import com.sep.byteClub.data.local.datastore.secretHitler.SecretHitlerSerializer
 import com.sep.byteClub.data.remote.crypto.KucoinApiService
 import com.sep.byteClub.data.remote.f1.F1ApiService
-import com.sep.byteClub.data.remote.ninja.DadJokesApiService
-import com.sep.byteClub.data.remote.ninja.DictionaryApiService
-import com.sep.byteClub.data.remote.ninja.ImageToTextApiService
+import com.sep.byteClub.data.remote.ninja.NinjaApiService
 import com.sep.byteClub.data.remote.quiz.QuizApiService
 import com.sep.byteClub.data.remote.weather.AirQualityApi
 import com.sep.byteClub.data.remote.weather.WeatherApiService
@@ -75,7 +73,7 @@ object DataModule {
     @Singleton
     @Provides
     fun provideDictionaryRepository(
-        dictionaryApiService: DictionaryApiService
+        dictionaryApiService: NinjaApiService
     ): DictionaryRepository = DictionaryRepositoryImpl(
         dictionaryApiService = dictionaryApiService
     )
@@ -83,7 +81,7 @@ object DataModule {
     @Singleton
     @Provides
     fun provideImageToTextRepository(
-        imageToTextApiService: ImageToTextApiService
+        imageToTextApiService: NinjaApiService
     ): ImageToTextRepository = ImageToTextRepositoryImpl(imageToTextApiService)
 
     @Singleton
@@ -95,7 +93,7 @@ object DataModule {
     @Singleton
     @Provides
     fun provideDadJokeRepository(
-        dadJokesApiService: DadJokesApiService
+        dadJokesApiService: NinjaApiService
     ): DadJokeRepository = DadJokeRepositoryImpl(
         dadJokesApiService = dadJokesApiService
     )

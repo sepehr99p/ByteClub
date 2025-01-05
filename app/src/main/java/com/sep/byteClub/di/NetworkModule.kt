@@ -4,9 +4,7 @@ import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.sep.byteClub.data.remote.crypto.KucoinApiService
 import com.sep.byteClub.data.remote.f1.F1ApiService
-import com.sep.byteClub.data.remote.ninja.DadJokesApiService
-import com.sep.byteClub.data.remote.ninja.DictionaryApiService
-import com.sep.byteClub.data.remote.ninja.ImageToTextApiService
+import com.sep.byteClub.data.remote.ninja.NinjaApiService
 import com.sep.byteClub.data.remote.quiz.QuizApiService
 import com.sep.byteClub.data.remote.weather.AirQualityApi
 import com.sep.byteClub.data.remote.weather.WeatherApiService
@@ -201,21 +199,9 @@ object NetworkModule {
         .build()
 
     @Provides
-    fun provideDictionaryApiService(@NinjasRetrofit retrofit: Retrofit): DictionaryApiService =
+    fun provideNinjaApiService(@NinjasRetrofit retrofit: Retrofit): NinjaApiService =
         retrofit.create(
-            DictionaryApiService::class.java
-        )
-
-    @Provides
-    fun provideDadJokeApiService(@NinjasRetrofit retrofit: Retrofit): DadJokesApiService =
-        retrofit.create(
-            DadJokesApiService::class.java
-        )
-
-    @Provides
-    fun provideImageToTextApiService(@NinjasRetrofit retrofit: Retrofit): ImageToTextApiService =
-        retrofit.create(
-            ImageToTextApiService::class.java
+            NinjaApiService::class.java
         )
 
     @Provides
