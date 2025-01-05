@@ -5,6 +5,7 @@ import com.sep.byteClub.data.model.ProgressRequestBody
 import com.sep.byteClub.data.model.UploadImageProgress
 import com.sep.byteClub.data.model.response.imageToText.ImageToTextResponse
 import com.sep.byteClub.data.remote.ninja.ImageToTextApiService
+import com.sep.byteClub.domain.DEFAULT_ERROR
 import com.sep.byteClub.domain.repository.ninja.ImageToTextRepository
 import com.sep.byteClub.utils.ResultState
 import com.sep.byteClub.utils.callAdapter.NetworkResponse
@@ -15,8 +16,9 @@ import okhttp3.MultipartBody
 
 
 class ImageToTextRepositoryImpl @Inject constructor(
-    val imageToTextApiService: ImageToTextApiService
+    private val imageToTextApiService: ImageToTextApiService
 ) : ImageToTextRepository {
+
     override fun uploadImage(
         data: ByteArray,
         imageMimType: String
@@ -34,20 +36,14 @@ class ImageToTextRepositoryImpl @Inject constructor(
         try {
             send(
                 ResultState.Success(
-                    UploadImageProgress(
-                        status = ImageUploadStatus.InProgress,
-                        0f
-                    )
+                    UploadImageProgress(status = ImageUploadStatus.InProgress, 0f)
                 )
             )
 
             val requestBody = ProgressRequestBody(data, imageMimType) { progress ->
                 trySend(
                     ResultState.Success(
-                        UploadImageProgress(
-                            ImageUploadStatus.InProgress,
-                            progress / 100f
-                        )
+                        UploadImageProgress(ImageUploadStatus.InProgress, progress / 100f)
                     )
                 )
             }
@@ -56,7 +52,7 @@ class ImageToTextRepositoryImpl @Inject constructor(
                 MultipartBody.Part.createFormData("file", "tempFile", requestBody)
             when (val result = uploadFunction(multipartBody)) {
                 is NetworkResponse.ApiError -> {
-                    send(ResultState.Failure(error = "error"))
+                    send(ResultState.Failure(error = DEFAULT_ERROR))
                 }
 
                 is NetworkResponse.Exception -> {

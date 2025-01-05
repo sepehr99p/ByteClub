@@ -49,7 +49,7 @@ fun ImageToTextScreen(
 
     val imagePicker = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent(),
-        onResult = { uri ->
+        onResult = { _ ->
             openGallery.value = false
         }
     )
