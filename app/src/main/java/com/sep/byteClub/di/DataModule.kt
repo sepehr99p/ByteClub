@@ -17,6 +17,7 @@ import com.sep.byteClub.data.remote.weather.AirQualityApi
 import com.sep.byteClub.data.remote.weather.WeatherApiService
 import com.sep.byteClub.data.repository.crypto.KucoinRepositoryImpl
 import com.sep.byteClub.data.repository.f1.F1RepositoryImpl
+import com.sep.byteClub.data.repository.ninja.CarsRepositoryImpl
 import com.sep.byteClub.data.repository.ninja.DadJokeRepositoryImpl
 import com.sep.byteClub.data.repository.ninja.DictionaryRepositoryImpl
 import com.sep.byteClub.data.repository.ninja.ImageToTextRepositoryImpl
@@ -26,6 +27,7 @@ import com.sep.byteClub.data.repository.weather.AirQualityRepositoryImpl
 import com.sep.byteClub.data.repository.weather.WeatherRepositoryImpl
 import com.sep.byteClub.domain.repository.crypto.KucoinRepository
 import com.sep.byteClub.domain.repository.f1.F1Repository
+import com.sep.byteClub.domain.repository.ninja.CarsRepository
 import com.sep.byteClub.domain.repository.ninja.DadJokeRepository
 import com.sep.byteClub.domain.repository.ninja.DictionaryRepository
 import com.sep.byteClub.domain.repository.ninja.ImageToTextRepository
@@ -89,6 +91,12 @@ object DataModule {
     fun provideF1Repository(
         f1ApiService: F1ApiService
     ): F1Repository = F1RepositoryImpl(f1ApiService)
+
+    @Singleton
+    @Provides
+    fun provideCarsRepository(
+        ninjaApiService: NinjaApiService
+    ): CarsRepository = CarsRepositoryImpl(ninjaApiService)
 
     @Singleton
     @Provides
