@@ -15,7 +15,7 @@ fun CarsListComponent(modifier: Modifier = Modifier, list: List<CarEntity>) {
 
 @Composable
 fun CarsListItemComponent(modifier: Modifier = Modifier, carEntity: CarEntity) {
-    Text(modifier = modifier, text = "sepehr testing")
+    Text(modifier = modifier,text = "testing - testing")
 }
 
 
